@@ -150,8 +150,9 @@ PLAYER_STATS: dict[str, dict] = {
         "pen_taker": False, "start_prob": 0.72, "min_60_prob": 0.65,
     },
     "André Ayew": {
+        # EXCLUDED from Ghana's WC 2026 squad by coach Carlos Queiroz
         "goals_p90": 0.28, "assists_p90": 0.12, "sot_p90": 1.20,
-        "pen_taker": False, "start_prob": 0.72, "min_60_prob": 0.65,
+        "pen_taker": False, "start_prob": 0.0, "min_60_prob": 0.0,
     },
 
     # === MIDFIELDERS ===
@@ -202,10 +203,9 @@ PLAYER_STATS: dict[str, dict] = {
         "min_60_prob": 0.88, "yellow_p90": 0.20,
     },
     "Phil Foden": {
-        "goals_p90": 0.38, "assists_p90": 0.38, "sot_p90": 2.00,
-        "kp_p90": 2.20, "tackles_p90": 0.80,
-        "pen_taker": False, "start_prob": 0.88, "min_60_prob": 0.82,
-        "obx_ratio": 0.22, "yellow_p90": 0.08,
+        # EXCLUDED from England's WC 2026 squad by Tuchel (poor club form at Man City)
+        "start_prob": 0.0, "min_60_prob": 0.0, "goals_p90": 0.38, "assists_p90": 0.38,
+        "sot_p90": 2.00, "kp_p90": 2.20, "tackles_p90": 0.80, "yellow_p90": 0.08,
     },
     "Bukayo Saka": {
         # June 2026: Achilles injury from March still limiting him — Tuchel
@@ -292,16 +292,16 @@ PLAYER_STATS: dict[str, dict] = {
         "yellow_p90": 0.10,
     },
     "Alejandro Balde": {
-        # Attacking LB. Good assists.
-        "goals_p90": 0.12, "assists_p90": 0.28, "sot_p90": 0.0,
-        "tackles_p90": 1.20,
-        "pen_taker": False, "start_prob": 0.88, "min_60_prob": 0.82,
-        "yellow_p90": 0.12,
+        # EXCLUDED from Spain's WC 2026 squad (Cucurella/Grimaldo preferred at LB)
+        "start_prob": 0.0, "min_60_prob": 0.0, "goals_p90": 0.12, "assists_p90": 0.28,
+        "tackles_p90": 1.20, "yellow_p90": 0.12,
     },
     "William Saliba": {
+        # Back injury: initially "very doubtful", Deschamps says he'll be managed.
+        # Expected to play but minutes managed — reduced start/min60 probabilities.
         "goals_p90": 0.06, "assists_p90": 0.06, "sot_p90": 0.0,
         "tackles_p90": 1.00,
-        "pen_taker": False, "start_prob": 0.90, "min_60_prob": 0.85,
+        "pen_taker": False, "start_prob": 0.70, "min_60_prob": 0.62,
         "yellow_p90": 0.10,
     },
     "Jules Kounde": {
@@ -336,10 +336,9 @@ PLAYER_STATS: dict[str, dict] = {
         "yellow_p90": 0.10,
     },
     "Jonathan Clauss": {
-        "goals_p90": 0.10, "assists_p90": 0.22, "sot_p90": 0.0,
-        "tackles_p90": 1.40,
-        "pen_taker": False, "start_prob": 0.80, "min_60_prob": 0.72,
-        "yellow_p90": 0.12,
+        # EXCLUDED from France's WC 2026 squad (Gusto/Hernandez brothers as fullbacks)
+        "start_prob": 0.0, "min_60_prob": 0.0, "goals_p90": 0.10, "assists_p90": 0.22,
+        "tackles_p90": 1.40, "yellow_p90": 0.12,
     },
     "Jose Gimenez": {
         "goals_p90": 0.08, "assists_p90": 0.06, "sot_p90": 0.0,
@@ -348,10 +347,9 @@ PLAYER_STATS: dict[str, dict] = {
         "yellow_p90": 0.12,
     },
     "Dani Carvajal": {
-        "goals_p90": 0.08, "assists_p90": 0.18, "sot_p90": 0.0,
-        "tackles_p90": 1.00,
-        "pen_taker": False, "start_prob": 0.78, "min_60_prob": 0.72,
-        "yellow_p90": 0.12,
+        # EXCLUDED — no Real Madrid players in Spain's WC 2026 squad
+        "start_prob": 0.0, "min_60_prob": 0.0, "goals_p90": 0.08, "assists_p90": 0.18,
+        "tackles_p90": 1.00, "yellow_p90": 0.12,
     },
     "Tyler Adams": {
         "goals_p90": 0.06, "assists_p90": 0.08, "sot_p90": 0.0,
@@ -360,9 +358,10 @@ PLAYER_STATS: dict[str, dict] = {
         "yellow_p90": 0.18,
     },
     "Perr Schuurs": {
+        # NOT in Netherlands WC 2026 squad (recovering from serious knee injury Oct 2023)
         "goals_p90": 0.06, "assists_p90": 0.05, "sot_p90": 0.0,
         "tackles_p90": 0.80,
-        "pen_taker": False, "start_prob": 0.80, "min_60_prob": 0.75,
+        "pen_taker": False, "start_prob": 0.0, "min_60_prob": 0.0,
         "yellow_p90": 0.10,
     },
     "Robin Gosens": {
@@ -384,9 +383,43 @@ PLAYER_STATS: dict[str, dict] = {
         "yellow_p90": 0.15,
     },
     "Ricardo Horta": {
-        "goals_p90": 0.06, "assists_p90": 0.06, "sot_p90": 0.0,
+        # EXCLUDED from Portugal's WC 2026 squad
+        "start_prob": 0.0, "min_60_prob": 0.0, "goals_p90": 0.06, "assists_p90": 0.06,
         "tackles_p90": 0.80,
-        "pen_taker": False, "start_prob": 0.72, "min_60_prob": 0.65,
+    },
+
+    # === NEW PLAYERS ADDED IN MD1 REVIEW ===
+    "Harry Kane": {
+        # England captain, Bayern Munich. Primary pen taker + FK scorer. Easy group.
+        # 55 WC goals for England in 92 apps; elite aerial, movement inside box.
+        "goals_p90": 0.72, "assists_p90": 0.25, "sot_p90": 2.80,
+        "kp_p90": 1.20, "tackles_p90": 0.30,
+        "pen_taker": True, "fk_taker": True, "start_prob": 0.95,
+        "min_60_prob": 0.88, "obx_ratio": 0.12, "yellow_p90": 0.08,
+        "win_pen_p90": 0.06,
+    },
+    "Marc Cucurella": {
+        # Spain LB (Chelsea). Confirmed starter, key to Spain's build-up play.
+        # More defensive than Balde; fewer attacking returns but solid CS value.
+        "goals_p90": 0.06, "assists_p90": 0.14, "sot_p90": 0.0,
+        "tackles_p90": 1.30,
+        "pen_taker": False, "start_prob": 0.88, "min_60_prob": 0.82,
+        "yellow_p90": 0.18,
+    },
+    "Alejandro Grimaldo": {
+        # Spain DEF option (Bayer Leverkusen). Attacking LB, set piece threat.
+        # Leverkusen's full season stats: ~6G + 15A — very high offensive returns.
+        "goals_p90": 0.15, "assists_p90": 0.32, "sot_p90": 0.0,
+        "tackles_p90": 1.50,
+        "pen_taker": False, "fk_taker": True, "start_prob": 0.82,
+        "min_60_prob": 0.75, "yellow_p90": 0.12,
+    },
+    "Theo Hernandez": {
+        # France LB (Al-Hilal). Consistent starter under Deschamps, attacking threat.
+        "goals_p90": 0.18, "assists_p90": 0.22, "sot_p90": 0.0,
+        "tackles_p90": 1.20,
+        "pen_taker": False, "start_prob": 0.88, "min_60_prob": 0.82,
+        "yellow_p90": 0.15,
     },
 
     # === GOALKEEPERS ===
@@ -430,8 +463,9 @@ PLAYER_STATS: dict[str, dict] = {
         "start_prob": 0.88, "min_60_prob": 0.85, "yellow_p90": 0.04,
     },
     "Paulo Gazzaniga": {
+        # NOT in Argentina's WC 2026 squad (last played for Argentina in 2018)
         "goals_p90": 0.0, "saves_p90": 2.80,
-        "start_prob": 0.72, "min_60_prob": 0.70, "yellow_p90": 0.04,
+        "start_prob": 0.0, "min_60_prob": 0.0, "yellow_p90": 0.04,
     },
     "David Raya": {
         "goals_p90": 0.0, "saves_p90": 2.50,
