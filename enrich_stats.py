@@ -173,10 +173,12 @@ PLAYER_STATS: dict[str, dict] = {
     },
     "Lamine Yamal": {
         # 12.81 xG, 37 SoT in La Liga. Key chance creator for Spain.
+        # June 2026: hamstring injury from April; skipping the June warmup,
+        # expected ready for the June 15 opener but minutes will be managed.
         "goals_p90": 0.48, "assists_p90": 0.62, "sot_p90": 3.00,
         "kp_p90": 3.20, "tackles_p90": 0.80,
-        "pen_taker": False, "fk_taker": True, "start_prob": 0.92,
-        "min_60_prob": 0.85, "obx_ratio": 0.30, "yellow_p90": 0.08,
+        "pen_taker": False, "fk_taker": True, "start_prob": 0.80,
+        "min_60_prob": 0.70, "obx_ratio": 0.30, "yellow_p90": 0.08,
     },
     "Jude Bellingham": {
         # Set piece threat. Goals and assists for England.
@@ -206,10 +208,12 @@ PLAYER_STATS: dict[str, dict] = {
         "obx_ratio": 0.22, "yellow_p90": 0.08,
     },
     "Bukayo Saka": {
+        # June 2026: Achilles injury from March still limiting him — Tuchel
+        # says he can't train consecutive days, "not close to 100%".
         "goals_p90": 0.35, "assists_p90": 0.38, "sot_p90": 2.10,
         "kp_p90": 2.50, "tackles_p90": 1.00,
-        "pen_taker": False, "fk_taker": True, "start_prob": 0.90,
-        "min_60_prob": 0.85, "yellow_p90": 0.10,
+        "pen_taker": False, "fk_taker": True, "start_prob": 0.70,
+        "min_60_prob": 0.68, "yellow_p90": 0.10,
     },
     "Mohamed Salah": {
         # Poor 2025-26 club season. Pen taker for Egypt.
@@ -274,9 +278,11 @@ PLAYER_STATS: dict[str, dict] = {
     # === DEFENDERS ===
     "Achraf Hakimi": {
         # Attacking RB. High assists and SoT for a DEF.
+        # June 2026: hamstring pull in May CL semi; expected fit but a
+        # small re-injury/management risk remains.
         "goals_p90": 0.22, "assists_p90": 0.32, "sot_p90": 0.0,
         "tackles_p90": 1.50,
-        "pen_taker": False, "start_prob": 0.92, "min_60_prob": 0.85,
+        "pen_taker": False, "start_prob": 0.86, "min_60_prob": 0.80,
         "obx_ratio": 0.30, "yellow_p90": 0.15,
     },
     "Virgil van Dijk": {

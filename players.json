@@ -365,11 +365,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 7.5,
-      "xp": 20.7,
+      "xp": 16.5,
       "xp_md": [
-        7.52,
-        6.87,
-        6.33
+        5.97,
+        5.46,
+        5.05
       ],
       "ownership": 0.27,
       "notes": "MD1 vs Cape Verde (easy), MD2 vs Saudi Arabia (easy), MD3 vs Uruguay (hard). Spain's creative star.",
@@ -381,8 +381,8 @@
         "tackles_p90": 0.8,
         "pen_taker": false,
         "fk_taker": true,
-        "start_prob": 0.92,
-        "min_60_prob": 0.85,
+        "start_prob": 0.8,
+        "min_60_prob": 0.7,
         "obx_ratio": 0.3,
         "yellow_p90": 0.08
       }
@@ -499,11 +499,11 @@
       "nation": "England",
       "group": "L",
       "price": 7.5,
-      "xp": 16.8,
+      "xp": 11.8,
       "xp_md": [
-        5.36,
-        5.72,
-        5.76
+        3.76,
+        4.01,
+        4.03
       ],
       "ownership": 0.2,
       "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England winger.",
@@ -515,8 +515,8 @@
         "tackles_p90": 1.0,
         "pen_taker": false,
         "fk_taker": true,
-        "start_prob": 0.9,
-        "min_60_prob": 0.85,
+        "start_prob": 0.7,
+        "min_60_prob": 0.68,
         "yellow_p90": 0.1
       }
     },
@@ -704,11 +704,11 @@
       "nation": "Morocco",
       "group": "C",
       "price": 6.0,
-      "xp": 13.9,
+      "xp": 12.5,
       "xp_md": [
-        3.87,
-        5.34,
-        4.68
+        3.49,
+        4.79,
+        4.21
       ],
       "ownership": 0.29,
       "notes": "MD1 vs Brazil (very hard), MD2 vs Haiti (easy!), MD3 vs Scotland (medium). Wait for MD2+.",
@@ -718,8 +718,8 @@
         "sot_p90": 0.0,
         "tackles_p90": 1.5,
         "pen_taker": false,
-        "start_prob": 0.92,
-        "min_60_prob": 0.85,
+        "start_prob": 0.86,
+        "min_60_prob": 0.8,
         "obx_ratio": 0.3,
         "yellow_p90": 0.15
       }
