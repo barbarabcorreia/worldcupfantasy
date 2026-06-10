@@ -7,16 +7,70 @@ greedy + local-search approach (no external dependencies required).
 
 import json
 import sys
-import itertools
 from pathlib import Path
+from collections import Counter
 
 BASE_DIR = Path(__file__).parent
+FLAGS = {
+    "Norway": "🇳🇴", "France": "🇫🇷", "Brazil": "🇧🇷", "Egypt": "🇪🇬",
+    "Portugal": "🇵🇹", "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Spain": "🇪🇸", "Germany": "🇩🇪",
+    "Belgium": "🇧🇪", "Senegal": "🇸🇳", "Morocco": "🇲🇦", "Netherlands": "🇳🇱",
+    "Argentina": "🇦🇷", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "Uruguay": "🇺🇾", "Poland": "🇵🇱",
+    "Switzerland": "🇨🇭", "Colombia": "🇨🇴", "Canada": "🇨🇦", "USA": "🇺🇸",
+    "Czechia": "🇨🇿", "Guinea": "🇬🇳", "Ivory Coast": "🇨🇮", "Ghana": "🇬🇭",
+    "Mexico": "🇲🇽", "Japan": "🇯🇵", "Croatia": "🇭🇷", "Austria": "🇦🇹",
+}
+DIFF_LABEL = {1: "★★★★★ very easy", 2: "★★★★☆ easy", 3: "★★★☆☆ medium",
+              4: "★★☆☆☆ hard", 5: "★☆☆☆☆ very hard"}
 
 
-def load_players(path: str | None = None) -> tuple[dict, list[dict]]:
-    p = Path(path) if path else BASE_DIR / "players.json"
-    data = json.loads(p.read_text())
-    return data["meta"], data["players"]
+def load_data(players_path: str | None = None, fixtures_path: str | None = None):
+    pp = Path(players_path) if players_path else BASE_DIR / "players.json"
+    fp = Path(fixtures_path) if fixtures_path else BASE_DIR / "fixtures.json"
+    pdata = json.loads(pp.read_text())
+    fdata = json.loads(fp.read_text()) if fp.exists() else {}
+    return pdata["meta"], pdata["players"], fdata
+
+
+def get_player_fixtures(player: dict, fixtures: dict) -> list[dict]:
+    """Return list of {md, date, opponent, difficulty} for a player's nation."""
+    if not fixtures or "groups" not in fixtures:
+        return []
+    group_id = player.get("group")
+    if not group_id:
+        return []
+    group = fixtures["groups"].get(group_id, {})
+    nation = player["nation"]
+    result = []
+    for fix in group.get("fixtures", []):
+        if fix["home"] == nation or fix["away"] == nation:
+            opponent = fix["away"] if fix["home"] == nation else fix["home"]
+            diff = fix["difficulty"].get(nation, 3)
+            result.append({"md": fix["md"], "date": fix["date"], "opponent": opponent, "difficulty": diff})
+    return sorted(result, key=lambda x: x["md"])
+
+
+def find_head_to_head_clashes(squad: list[dict], fixtures: dict) -> list[str]:
+    """Detect pairs of players in the squad who face each other in the group stage."""
+    clashes = []
+    if not fixtures or "groups" not in fixtures:
+        return clashes
+    for group_id, group in fixtures["groups"].items():
+        nations_in_squad = [p["nation"] for p in squad if p.get("group") == group_id]
+        if len(nations_in_squad) < 2:
+            continue
+        for fix in group.get("fixtures", []):
+            home, away = fix["home"], fix["away"]
+            if home in nations_in_squad and away in nations_in_squad:
+                home_players = [p["name"] for p in squad if p["nation"] == home]
+                away_players = [p["name"] for p in squad if p["nation"] == away]
+                date = fix["date"]
+                md = fix["md"]
+                clashes.append(
+                    f"MD{md} ({date}): {', '.join(home_players)} ({home}) vs "
+                    f"{', '.join(away_players)} ({away})"
+                )
+    return clashes
 
 
 def is_valid_squad(squad: list[dict], meta: dict) -> tuple[bool, str]:
@@ -25,23 +79,14 @@ def is_valid_squad(squad: list[dict], meta: dict) -> tuple[bool, str]:
     for pos, needed in req.items():
         if counts.get(pos, 0) != needed:
             return False, f"Need {needed} {pos}, have {counts.get(pos, 0)}"
-
     total_cost = sum(p["price"] for p in squad)
     if total_cost > meta["budget"] + 0.001:
         return False, f"Over budget: ${total_cost:.1f}m > ${meta['budget']}m"
-
-    # Nation limit
-    from collections import Counter
     nation_counts = Counter(p["nation"] for p in squad)
     for nation, cnt in nation_counts.items():
         if cnt > meta["max_per_nation"]:
             return False, f"Too many from {nation}: {cnt} > {meta['max_per_nation']}"
-
     return True, "OK"
-
-
-def nation_count(squad: list[dict], nation: str) -> int:
-    return sum(1 for p in squad if p["nation"] == nation)
 
 
 def optimize(meta: dict, players: list[dict]) -> list[dict]:
@@ -49,7 +94,6 @@ def optimize(meta: dict, players: list[dict]) -> list[dict]:
     budget = meta["budget"]
     max_per_nation = meta["max_per_nation"]
 
-    # Sort all players by value (xp / price) descending within each position
     by_pos: dict[str, list[dict]] = {}
     for pos in req:
         by_pos[pos] = sorted(
@@ -58,40 +102,20 @@ def optimize(meta: dict, players: list[dict]) -> list[dict]:
             reverse=True,
         )
 
-    best_squad: list[dict] | None = None
-    best_score = -1.0
-
-    # Precompute cheapest-n prices per position (for lookahead)
-    cheapest_prices: dict[str, list[float]] = {
-        pos: sorted(p["price"] for p in players if p["pos"] == pos)
-        for pos in req
-    }
-
-    def min_future_cost(pos_order: list[str], pos_idx: int, picks_done: int, excluded: list[dict]) -> float:
-        """Minimum budget needed to fill remaining slots after current pick."""
+    def min_future_cost(pos_order, pos_idx, picks_done, excluded):
         total = 0.0
-        for future_pos in pos_order[pos_idx:]:
-            future_needed = req[future_pos]
-            if future_pos == pos_order[pos_idx]:
-                future_needed -= picks_done + 1  # slots still needed in current pos
+        for i, future_pos in enumerate(pos_order[pos_idx:]):
+            future_needed = req[future_pos] - (picks_done + 1 if i == 0 else 0)
             if future_needed <= 0:
                 continue
-            avail = sorted(
-                p["price"] for p in players
-                if p["pos"] == future_pos and p not in excluded
-            )
+            avail = sorted(p["price"] for p in players if p["pos"] == future_pos and p not in excluded)
             if len(avail) < future_needed:
                 return float("inf")
             total += sum(avail[:future_needed])
         return total
 
-    # Phase 1: greedy seed with lookahead — pick best value players per position
-    # while ensuring enough budget remains for remaining required slots.
-    def greedy_build(pos_order: list[str]) -> list[dict] | None:
-        squad: list[dict] = []
-        remaining_budget = budget
-        nation_counts: dict[str, int] = {}
-
+    def greedy_build(pos_order):
+        squad, remaining, nation_counts = [], budget, {}
         for pi, pos in enumerate(pos_order):
             needed = req[pos]
             candidates = [p for p in by_pos[pos] if p not in squad]
@@ -99,63 +123,49 @@ def optimize(meta: dict, players: list[dict]) -> list[dict]:
             for candidate in candidates:
                 if picks == needed:
                     break
-                if candidate["price"] > remaining_budget:
+                if candidate["price"] > remaining:
                     continue
                 if nation_counts.get(candidate["nation"], 0) >= max_per_nation:
                     continue
-                # Lookahead: ensure remaining budget covers future required slots
                 future = min_future_cost(pos_order, pi, picks, squad + [candidate])
-                if candidate["price"] + future > remaining_budget + 0.001:
+                if candidate["price"] + future > remaining + 0.001:
                     continue
                 squad.append(candidate)
-                remaining_budget -= candidate["price"]
+                remaining -= candidate["price"]
                 nation_counts[candidate["nation"]] = nation_counts.get(candidate["nation"], 0) + 1
                 picks += 1
             if picks < needed:
                 return None
         return squad
 
-    # Try several position orderings to find good seeds
-    pos_list = list(req.keys())
     orderings = [
-        pos_list,
-        list(reversed(pos_list)),
-        ["FWD", "MID", "DEF", "GK"],
-        ["GK", "DEF", "MID", "FWD"],
-        ["MID", "FWD", "DEF", "GK"],
-        ["FWD", "DEF", "MID", "GK"],
+        ["GK", "DEF", "MID", "FWD"], ["FWD", "MID", "DEF", "GK"],
+        ["MID", "FWD", "DEF", "GK"], ["FWD", "DEF", "MID", "GK"],
+        ["GK", "FWD", "MID", "DEF"], ["DEF", "MID", "FWD", "GK"],
     ]
-    seeds: list[list[dict]] = []
-    for order in orderings:
-        result = greedy_build(order)
-        if result:
-            seeds.append(result)
+    seeds = [s for o in orderings if (s := greedy_build(o)) is not None]
 
     if not seeds:
-        # Fallback: pick cheapest valid squad as a seed for local search
-        cheapest_squad: list[dict] = []
+        cheapest = []
         for pos, n in req.items():
-            pos_players = sorted([p for p in players if p["pos"] == pos], key=lambda p: p["price"])
-            cheapest_squad.extend(pos_players[:n])
-        if is_valid_squad(cheapest_squad, meta)[0]:
-            seeds = [cheapest_squad]
+            cheapest.extend(sorted([p for p in players if p["pos"] == pos], key=lambda p: p["price"])[:n])
+        if is_valid_squad(cheapest, meta)[0]:
+            seeds = [cheapest]
 
-    # Phase 2: local search — swap one player at a time to improve score
-    def squad_xp(s: list[dict]) -> float:
-        return sum(p["xp"] for p in s)
+    if not seeds:
+        raise RuntimeError("Could not build a valid squad. Check players.json data.")
 
-    def swap_improve(squad: list[dict]) -> list[dict]:
-        improved = True
-        current = list(squad)
+    def squad_xp(s): return sum(p["xp"] for p in s)
+
+    def swap_improve(squad):
+        improved, current = True, list(squad)
         while improved:
             improved = False
             for i, player in enumerate(current):
                 pos = player["pos"]
                 squad_without = [p for j, p in enumerate(current) if j != i]
                 remaining = budget - sum(p["price"] for p in squad_without)
-                nations_without = {}
-                for p in squad_without:
-                    nations_without[p["nation"]] = nations_without.get(p["nation"], 0) + 1
+                nations_without = Counter(p["nation"] for p in squad_without)
                 for candidate in by_pos[pos]:
                     if candidate in squad_without:
                         continue
@@ -170,31 +180,25 @@ def optimize(meta: dict, players: list[dict]) -> list[dict]:
                         break
         return current
 
+    best_squad, best_score = None, -1.0
     for seed in seeds:
         improved = swap_improve(seed)
         score = squad_xp(improved)
         if score > best_score:
-            valid, msg = is_valid_squad(improved, meta)
+            valid, _ = is_valid_squad(improved, meta)
             if valid:
-                best_squad = improved
-                best_score = score
-
-    if best_squad is None:
-        raise RuntimeError("Could not build a valid squad. Check players.json data.")
+                best_squad, best_score = improved, score
 
     return best_squad
 
 
-def pick_starting_xi(squad: list[dict]) -> tuple[list[dict], list[dict]]:
-    """Return (starting_xi, bench) picking the highest xp valid formation."""
-    gks = sorted([p for p in squad if p["pos"] == "GK"], key=lambda p: p["xp"], reverse=True)
+def pick_starting_xi(squad):
+    gks  = sorted([p for p in squad if p["pos"] == "GK"],  key=lambda p: p["xp"], reverse=True)
     defs = sorted([p for p in squad if p["pos"] == "DEF"], key=lambda p: p["xp"], reverse=True)
     mids = sorted([p for p in squad if p["pos"] == "MID"], key=lambda p: p["xp"], reverse=True)
     fwds = sorted([p for p in squad if p["pos"] == "FWD"], key=lambda p: p["xp"], reverse=True)
 
-    best_xi = None
-    best_xp = -1.0
-    # Try all valid formations: 1 GK, 3-5 DEF, 2-5 MID, 1-3 FWD, total 11
+    best_xi, best_xp = None, -1.0
     for n_def in range(3, 6):
         for n_mid in range(2, 6):
             n_fwd = 11 - 1 - n_def - n_mid
@@ -205,103 +209,169 @@ def pick_starting_xi(squad: list[dict]) -> tuple[list[dict], list[dict]]:
             xi = [gks[0]] + defs[:n_def] + mids[:n_mid] + fwds[:n_fwd]
             xp = sum(p["xp"] for p in xi)
             if xp > best_xp:
-                best_xp = xp
-                best_xi = xi
-
+                best_xp, best_xi = xp, xi
     bench = [p for p in squad if p not in best_xi]
     return best_xi, bench
 
 
-def pick_captain(xi: list[dict]) -> dict:
-    return max(xi, key=lambda p: p["xp"])
-
-
-def format_player(p: dict, extra: str = "") -> str:
-    flag = {
-        "Norway": "🇳🇴", "France": "🇫🇷", "Brazil": "🇧🇷", "Egypt": "🇪🇬",
-        "Portugal": "🇵🇹", "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Spain": "🇪🇸", "Germany": "🇩🇪",
-        "Belgium": "🇧🇪", "Senegal": "🇸🇳", "Morocco": "🇲🇦", "Netherlands": "🇳🇱",
-        "Argentina": "🇦🇷", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "Uruguay": "🇺🇾", "Poland": "🇵🇱",
-        "Switzerland": "🇨🇭", "Colombia": "🇨🇴", "Canada": "🇨🇦", "USA": "🇺🇸",
-        "Czechia": "🇨🇿", "Guinea": "🇬🇳", "Ivory Coast": "🇨🇮", "Ghana": "🇬🇭",
-    }.get(p["nation"], "🌍")
+def fmt(p, extra=""):
+    flag = FLAGS.get(p["nation"], "🌍")
     return f"  {p['pos']:3s} | {flag} {p['nation']:15s} | ${p['price']:.1f}m | xp {p['xp']:4.1f} | {p['name']}{extra}"
 
 
-def print_team(meta: dict, squad: list[dict]) -> None:
+def print_team(meta: dict, squad: list[dict], fixtures: dict) -> None:
     xi, bench = pick_starting_xi(squad)
-    captain = pick_captain(xi)
-    vice = sorted([p for p in xi if p != captain], key=lambda p: p["xp"], reverse=True)[0]
+    captain = max(xi, key=lambda p: p["xp"])
+    vice    = sorted([p for p in xi if p != captain], key=lambda p: p["xp"], reverse=True)[0]
 
     total_cost = sum(p["price"] for p in squad)
-    total_xp = sum(p["xp"] for p in xi)
+    xi_xp = sum(p["xp"] for p in xi)
 
-    print("=" * 70)
+    print("=" * 72)
     print("  FIFA WORLD CUP FANTASY 2026 — OPTIMAL SQUAD")
-    print("=" * 70)
-    print(f"  Total squad cost : ${total_cost:.1f}m  (budget ${meta['budget']}m, ${meta['budget']-total_cost:.1f}m remaining)")
-    print(f"  Starting XI xp   : {total_xp:.1f} expected points")
+    print("=" * 72)
+    print(f"  Total squad cost : ${total_cost:.1f}m  (budget ${meta['budget']}m, ${meta['budget']-total_cost:.1f}m free)")
+    print(f"  Starting XI xp   : {xi_xp:.1f} expected points")
     print(f"  Captain          : {captain['name']} (×2 pts)")
     print(f"  Vice-captain     : {vice['name']}")
     print()
 
+    # --- Starting XI ---
     print("  STARTING XI")
-    print("  " + "-" * 66)
+    print("  " + "-" * 68)
     print(f"  {'POS':3s} | {'NATION':17s} | {'PRICE':6s} | {'XP':6s} | NAME")
-    print("  " + "-" * 66)
-
-    # Group by position for readability
-    for pos_label, pos_code in [("GOALKEEPER", "GK"), ("DEFENDERS", "DEF"), ("MIDFIELDERS", "MID"), ("FORWARDS", "FWD")]:
-        pos_players = [p for p in xi if p["pos"] == pos_code]
+    print("  " + "-" * 68)
+    for pos_label, pos_code in [("GOALKEEPER","GK"),("DEFENDERS","DEF"),("MIDFIELDERS","MID"),("FORWARDS","FWD")]:
+        pos_players = sorted([p for p in xi if p["pos"] == pos_code], key=lambda x: x["xp"], reverse=True)
         if pos_players:
             print(f"\n  [{pos_label}]")
-            for p in sorted(pos_players, key=lambda x: x["xp"], reverse=True):
-                cap_tag = " ★ CAPTAIN" if p == captain else (" © vice-captain" if p == vice else "")
-                print(format_player(p, cap_tag))
+            for p in pos_players:
+                tag = " ★ CAPTAIN" if p == captain else (" © VICE" if p == vice else "")
+                print(fmt(p, tag))
 
     print()
     print("  BENCH (4 players)")
-    print("  " + "-" * 66)
+    print("  " + "-" * 68)
     for p in sorted(bench, key=lambda x: x["xp"], reverse=True):
-        print(format_player(p))
+        print(fmt(p))
 
+    # --- Per-Matchday Fixture Guide ---
     print()
-    print("  NOTES ON KEY PICKS")
-    print("  " + "-" * 66)
-    for p in sorted(xi, key=lambda x: x["xp"], reverse=True)[:5]:
+    print("  FIXTURE GUIDE — Starting XI by matchday expected points")
+    print("  " + "-" * 68)
+    print(f"  {'Player':22s} | {'MD1 (pts)':18s} | {'MD2 (pts)':18s} | {'MD3 (pts)':18s}")
+    print("  " + "-" * 68)
+    for p in sorted(xi, key=lambda x: x["xp"], reverse=True):
+        fixs = get_player_fixtures(p, fixtures)
+        fix_map = {f["md"]: f for f in fixs}
+        xp_md = p.get("xp_md", [None, None, None])
+        cells = []
+        for md in [1, 2, 3]:
+            f = fix_map.get(md)
+            pts = xp_md[md-1] if len(xp_md) > md-1 else "?"
+            if f:
+                diff_str = "●" * (6 - f["difficulty"]) + "○" * (f["difficulty"] - 1)
+                cells.append(f"vs {f['opponent'][:10]:10s} {pts}")
+            else:
+                cells.append(f"{'?':10s} {pts}")
+        print(f"  {p['name']:22s} | {cells[0]:18s} | {cells[1]:18s} | {cells[2]:18s}")
+
+    # --- Captain Live-Switch Strategy ---
+    print()
+    print("  CAPTAIN LIVE-SWITCH STRATEGY")
+    print("  " + "-" * 68)
+    print("  The matchday LOCKS when the FIRST game of each round kicks off:")
+    locks = meta.get("matchday_locks", {}) or fixtures.get("matchday_locks", {})
+    for md_key in ["MD1", "MD2", "MD3"]:
+        lock = locks.get(md_key, "TBC")
+        print(f"    {md_key} lock: {lock}")
+    print()
+    print("  After lock, you can still switch captain to any player whose game")
+    print("  hasn't started yet. Use this order of games to decide:")
+    print()
+
+    if fixtures and "groups" in fixtures:
+        # Collect all game dates for XI players in MD1
+        game_slots = {}
+        for p in xi:
+            fixs = get_player_fixtures(p, fixtures)
+            md1 = next((f for f in fixs if f["md"] == 1), None)
+            if md1:
+                date = md1["date"]
+                if date not in game_slots:
+                    game_slots[date] = []
+                game_slots[date].append((p, md1))
+        print(f"  {'Date':12s} {'Player':22s} {'Opponent':14s} {'Difficulty'}")
+        print("  " + "-" * 68)
+        for date in sorted(game_slots):
+            for p, f in game_slots[date]:
+                cap_tag = " ← captain?" if p["xp"] >= sorted(xi, key=lambda x: x["xp"])[-3]["xp"] else ""
+                diff_stars = "★" * (6 - f["difficulty"])
+                print(f"  {date:12s} {p['name']:22s} vs {f['opponent']:14s} {diff_stars}{cap_tag}")
+
+    # --- Head-to-Head Clashes Warning ---
+    clashes = find_head_to_head_clashes(squad, fixtures)
+    if clashes:
+        print()
+        print("  ⚠  HEAD-TO-HEAD CLASHES IN YOUR SQUAD")
+        print("  " + "-" * 68)
+        print("  These players face each other — one will likely blank:")
+        for c in clashes:
+            print(f"    • {c}")
+        print()
+        print("  Strategy: use the live captain switch so you can assign")
+        print("  captain to whoever is in better form BEFORE their game starts.")
+
+    # --- Notes on key picks ---
+    print()
+    print("  KEY PICK NOTES")
+    print("  " + "-" * 68)
+    for p in sorted(xi, key=lambda x: x["xp"], reverse=True)[:6]:
         print(f"  • {p['name']}: {p.get('notes','')}")
 
+    # --- Booster chips ---
     print()
-    print("  BOOSTER CHIP STRATEGY")
-    print("  " + "-" * 66)
-    boosters = meta["boosters"]
-    print("  1. Maximum Captain   — Use in the quarter-finals or semi-finals when")
-    print("     your top player has a standout fixture. Auto-assigns the double.")
-    print("  2. 12th Man          — Use in a matchday with a huge fixture list")
-    print("     (e.g. Round of 32) so bench depth maximises your total score.")
-    print("  3. Qualification Booster — Best used just before a knockout round")
-    print("     when you're confident most of your XI will advance (+2 per player).")
-    print("  4. Wildcard          — Available from Round 2 onwards; use after")
-    print("     surprise early exits to overhaul your squad for free.")
-    print("  5. Mystery Booster   — Revealed at Round of 32. Evaluate then.")
+    print("  BOOSTER CHIP STRATEGY (5 chips, one at a time)")
+    print("  " + "-" * 68)
+    print("  1. Maximum Captain   — QF or SF when your best player has a weak opponent.")
+    print("     Auto-assigns double to highest XI scorer, so no wrong guess.")
+    print("  2. 12th Man          — Round of 32 (16 matches in one round).")
+    print("     Max bench depth so every player contributes.")
+    print("  3. Qualification Booster — Best in QF (+2 per player that advances).")
+    print("     With a full 11 advancing = +22 free points.")
+    print("  4. Wildcard          — After surprise group exits (MD2+).")
+    print("     Not available in MD1 or before R32; overhaul the squad for free.")
+    print("  5. Mystery Booster   — Revealed when Round of 32 opens. Evaluate then.")
+
+    # --- Transfer rules ---
     print()
-    print("  TRANSFER RULES")
-    print("  " + "-" * 66)
-    print("  • Group stage MD1-3 : 1 free transfer per matchday; rollovers allowed")
-    print("    (except MD3 → Round of 32, where unlimited transfers kick in).")
+    print("  TRANSFER & TEAM CHANGE RULES")
+    print("  " + "-" * 68)
+    print("  • Before the tournament (before MD1 lock): unlimited free changes.")
+    print("  • Group stage MD1-3 : 1 free transfer per matchday.")
+    print("    You CAN roll 1 transfer over into the next matchday (except MD3 → R32).")
+    print("    Extra transfers cost -3 pts each.")
     print("  • Round of 32+      : Unlimited free transfers each round.")
-    print("=" * 70)
+    print()
+    print("  DAILY CHANGE RULES (important!):")
+    print("  • Starting XI / formation: change freely BEFORE the matchday lock.")
+    print("    Once the first game of a matchday kicks off → LOCKED until next round.")
+    print("  • Captain: switch UNLIMITED TIMES before each player's game kicks off,")
+    print("    even during a live matchday. Use the fixture guide above to time this.")
+    print("  • Player transfers: counted per matchday, NOT per day. 1 free per round.")
+    print("=" * 72)
 
 
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="FIFA WC Fantasy 2026 Optimizer")
-    parser.add_argument("--data", help="Path to players.json", default=None)
-    parser.add_argument("--budget", type=float, help="Override budget (default 100.0)", default=None)
-    parser.add_argument("--json", action="store_true", help="Output as JSON instead of formatted text")
+    parser.add_argument("--data",     help="Path to players.json", default=None)
+    parser.add_argument("--fixtures", help="Path to fixtures.json", default=None)
+    parser.add_argument("--budget",   type=float, help="Override budget (default 100.0)", default=None)
+    parser.add_argument("--json",     action="store_true", help="Output JSON instead of formatted text")
     args = parser.parse_args()
 
-    meta, players = load_players(args.data)
+    meta, players, fixtures = load_data(args.data, args.fixtures)
     if args.budget:
         meta["budget"] = args.budget
 
@@ -310,17 +380,16 @@ def main():
 
     if args.json:
         xi, bench = pick_starting_xi(squad)
-        captain = pick_captain(xi)
+        captain = max(xi, key=lambda p: p["xp"])
         print(json.dumps({
-            "squad": squad,
-            "starting_xi": xi,
-            "bench": bench,
+            "squad": squad, "starting_xi": xi, "bench": bench,
             "captain": captain,
             "total_cost": round(sum(p["price"] for p in squad), 1),
             "xi_xp": round(sum(p["xp"] for p in xi), 1),
+            "clashes": find_head_to_head_clashes(squad, fixtures),
         }, indent=2))
     else:
-        print_team(meta, squad)
+        print_team(meta, squad, fixtures)
 
 
 if __name__ == "__main__":
