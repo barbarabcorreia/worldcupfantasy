@@ -3,12 +3,17 @@
 FIFA World Cup Fantasy 2026 — Team Optimizer
 Selects the optimal 15-player squad under the $100m budget using a
 greedy + local-search approach (no external dependencies required).
+
+Expected points are now computed by scoring.py using per-game stats
+(goals/90, assists/90, SoT/90, key passes/90, tackles/90, saves/90)
+and per-match clean sheet probabilities from fixtures.json.
 """
 
 import json
 import sys
 from pathlib import Path
 from collections import Counter
+from scoring import calc_xp_group_stage, describe_scoring
 
 BASE_DIR = Path(__file__).parent
 FLAGS = {
@@ -24,11 +29,60 @@ DIFF_LABEL = {1: "★★★★★ very easy", 2: "★★★★☆ easy", 3: "★
               4: "★★☆☆☆ hard", 5: "★☆☆☆☆ very hard"}
 
 
+def get_cs_probs_for_player(player: dict, fixtures: dict) -> list[float]:
+    """Return [cs_md1, cs_md2, cs_md3] for a player from fixtures cs_prob data."""
+    if not fixtures or "groups" not in fixtures:
+        return [0.30, 0.30, 0.30]
+    group_id = player.get("group")
+    if not group_id:
+        return [0.30, 0.30, 0.30]
+    nation = player["nation"]
+    group = fixtures["groups"].get(group_id, {})
+    probs = {}
+    for fix in group.get("fixtures", []):
+        if fix["home"] == nation or fix["away"] == nation:
+            md = fix["md"]
+            cs = fix.get("cs_prob", {}).get(nation, 0.30)
+            probs[md] = cs
+    return [probs.get(1, 0.30), probs.get(2, 0.30), probs.get(3, 0.30)]
+
+
+def get_difficulties_for_player(player: dict, fixtures: dict) -> list[int]:
+    """Return [diff_md1, diff_md2, diff_md3] for a player from fixtures."""
+    if not fixtures or "groups" not in fixtures:
+        return [3, 3, 3]
+    group_id = player.get("group")
+    if not group_id:
+        return [3, 3, 3]
+    nation = player["nation"]
+    group = fixtures["groups"].get(group_id, {})
+    diffs = {}
+    for fix in group.get("fixtures", []):
+        if fix["home"] == nation or fix["away"] == nation:
+            diffs[fix["md"]] = fix["difficulty"].get(nation, 3)
+    return [diffs.get(1, 3), diffs.get(2, 3), diffs.get(3, 3)]
+
+
+def compute_player_xp(player: dict, fixtures: dict) -> float:
+    """
+    Compute expected group-stage points using the scoring engine if stats
+    are available, else fall back to the hand-estimated player['xp'].
+    """
+    if player.get("stats"):
+        cs_probs = get_cs_probs_for_player(player, fixtures)
+        difficulties = get_difficulties_for_player(player, fixtures)
+        return calc_xp_group_stage(player, cs_probs, difficulties)
+    return player.get("xp", 0.0)
+
+
 def load_data(players_path: str | None = None, fixtures_path: str | None = None):
     pp = Path(players_path) if players_path else BASE_DIR / "players.json"
     fp = Path(fixtures_path) if fixtures_path else BASE_DIR / "fixtures.json"
     pdata = json.loads(pp.read_text())
     fdata = json.loads(fp.read_text()) if fp.exists() else {}
+    # Recompute xp for all players that have stats
+    for p in pdata["players"]:
+        p["xp"] = compute_player_xp(p, fdata)
     return pdata["meta"], pdata["players"], fdata
 
 
@@ -257,24 +311,26 @@ def print_team(meta: dict, squad: list[dict], fixtures: dict) -> None:
 
     # --- Per-Matchday Fixture Guide ---
     print()
-    print("  FIXTURE GUIDE — Starting XI by matchday expected points")
+    print("  FIXTURE GUIDE — Starting XI by matchday expected points (stats-driven)")
     print("  " + "-" * 68)
-    print(f"  {'Player':22s} | {'MD1 (pts)':18s} | {'MD2 (pts)':18s} | {'MD3 (pts)':18s}")
+    print(f"  {'Player':22s} | {'MD1':20s} | {'MD2':20s} | {'MD3':20s}")
     print("  " + "-" * 68)
+    from scoring import calc_xp_per_game, DEFAULT_STATS
     for p in sorted(xi, key=lambda x: x["xp"], reverse=True):
         fixs = get_player_fixtures(p, fixtures)
         fix_map = {f["md"]: f for f in fixs}
-        xp_md = p.get("xp_md", [None, None, None])
+        cs_probs = get_cs_probs_for_player(p, fixtures)
         cells = []
         for md in [1, 2, 3]:
             f = fix_map.get(md)
-            pts = xp_md[md-1] if len(xp_md) > md-1 else "?"
+            cs = cs_probs[md - 1]
+            diff = f["difficulty"] if f else 3
+            xp_game = calc_xp_per_game(p, cs, diff) if p.get("stats") else "?"
             if f:
-                diff_str = "●" * (6 - f["difficulty"]) + "○" * (f["difficulty"] - 1)
-                cells.append(f"vs {f['opponent'][:10]:10s} {pts}")
+                cells.append(f"vs {f['opponent'][:9]:9s} {xp_game:.1f}pt")
             else:
-                cells.append(f"{'?':10s} {pts}")
-        print(f"  {p['name']:22s} | {cells[0]:18s} | {cells[1]:18s} | {cells[2]:18s}")
+                cells.append(f"{'?':9s} {xp_game:.1f}pt" if isinstance(xp_game, float) else "?")
+        print(f"  {p['name']:22s} | {cells[0]:20s} | {cells[1]:20s} | {cells[2]:20s}")
 
     # --- Captain Live-Switch Strategy ---
     print()
@@ -369,7 +425,12 @@ def main():
     parser.add_argument("--fixtures", help="Path to fixtures.json", default=None)
     parser.add_argument("--budget",   type=float, help="Override budget (default 100.0)", default=None)
     parser.add_argument("--json",     action="store_true", help="Output JSON instead of formatted text")
+    parser.add_argument("--scoring",  action="store_true", help="Print scoring table and exit")
     args = parser.parse_args()
+
+    if args.scoring:
+        print(describe_scoring())
+        return
 
     meta, players, fixtures = load_data(args.data, args.fixtures)
     if args.budget:

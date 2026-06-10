@@ -6,135 +6,1131 @@
   },
   "groups": {
     "A": {
-      "teams": ["Mexico", "South Africa", "South Korea", "Czechia"],
+      "teams": [
+        "Mexico",
+        "South Africa",
+        "South Korea",
+        "Czechia"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-11", "home": "Mexico",       "away": "South Africa", "difficulty": {"Mexico": 2, "South Africa": 2}},
-        {"md": 1, "date": "2026-06-11", "home": "South Korea",  "away": "Czechia",       "difficulty": {"South Korea": 3, "Czechia": 3}},
-        {"md": 2, "date": "2026-06-18", "home": "Czechia",      "away": "South Africa",  "difficulty": {"Czechia": 2, "South Africa": 2}},
-        {"md": 2, "date": "2026-06-18", "home": "Mexico",       "away": "South Korea",   "difficulty": {"Mexico": 3, "South Korea": 3}},
-        {"md": 3, "date": "2026-06-24", "home": "Czechia",      "away": "Mexico",        "difficulty": {"Czechia": 3, "Mexico": 3}},
-        {"md": 3, "date": "2026-06-24", "home": "South Africa", "away": "South Korea",   "difficulty": {"South Africa": 3, "South Korea": 3}}
+        {
+          "md": 1,
+          "date": "2026-06-11",
+          "home": "Mexico",
+          "away": "South Africa",
+          "difficulty": {
+            "Mexico": 2,
+            "South Africa": 2
+          },
+          "cs_prob": {
+            "Mexico": 0.38,
+            "South Africa": 0.18
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-11",
+          "home": "South Korea",
+          "away": "Czechia",
+          "difficulty": {
+            "South Korea": 3,
+            "Czechia": 3
+          },
+          "cs_prob": {
+            "South Korea": 0.25,
+            "Czechia": 0.3
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-18",
+          "home": "Czechia",
+          "away": "South Africa",
+          "difficulty": {
+            "Czechia": 2,
+            "South Africa": 2
+          },
+          "cs_prob": {
+            "Czechia": 0.42,
+            "South Africa": 0.28
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-18",
+          "home": "Mexico",
+          "away": "South Korea",
+          "difficulty": {
+            "Mexico": 3,
+            "South Korea": 3
+          },
+          "cs_prob": {
+            "Mexico": 0.32,
+            "South Korea": 0.22
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "Czechia",
+          "away": "Mexico",
+          "difficulty": {
+            "Czechia": 3,
+            "Mexico": 3
+          },
+          "cs_prob": {
+            "Czechia": 0.3,
+            "Mexico": 0.3
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "South Africa",
+          "away": "South Korea",
+          "difficulty": {
+            "South Africa": 3,
+            "South Korea": 3
+          },
+          "cs_prob": {
+            "South Africa": 0.28,
+            "South Korea": 0.22
+          }
+        }
       ]
     },
     "B": {
-      "teams": ["Canada", "Bosnia-Herzegovina", "Qatar", "Switzerland"],
+      "teams": [
+        "Canada",
+        "Bosnia-Herzegovina",
+        "Qatar",
+        "Switzerland"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-12", "home": "Canada",             "away": "Bosnia-Herzegovina", "difficulty": {"Canada": 2, "Bosnia-Herzegovina": 2}},
-        {"md": 1, "date": "2026-06-13", "home": "Qatar",              "away": "Switzerland",         "difficulty": {"Qatar": 1, "Switzerland": 3}},
-        {"md": 2, "date": "2026-06-18", "home": "Switzerland",        "away": "Bosnia-Herzegovina",  "difficulty": {"Switzerland": 2, "Bosnia-Herzegovina": 2}},
-        {"md": 2, "date": "2026-06-18", "home": "Canada",             "away": "Qatar",               "difficulty": {"Canada": 2, "Qatar": 1}},
-        {"md": 3, "date": "2026-06-24", "home": "Bosnia-Herzegovina", "away": "Qatar",               "difficulty": {"Bosnia-Herzegovina": 2, "Qatar": 2}},
-        {"md": 3, "date": "2026-06-24", "home": "Switzerland",        "away": "Canada",              "difficulty": {"Switzerland": 3, "Canada": 3}}
+        {
+          "md": 1,
+          "date": "2026-06-12",
+          "home": "Canada",
+          "away": "Bosnia-Herzegovina",
+          "difficulty": {
+            "Canada": 2,
+            "Bosnia-Herzegovina": 2
+          },
+          "cs_prob": {
+            "Canada": 0.35,
+            "Bosnia-Herzegovina": 0.22
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-13",
+          "home": "Qatar",
+          "away": "Switzerland",
+          "difficulty": {
+            "Qatar": 1,
+            "Switzerland": 3
+          },
+          "cs_prob": {
+            "Qatar": 0.1,
+            "Switzerland": 0.52
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-18",
+          "home": "Switzerland",
+          "away": "Bosnia-Herzegovina",
+          "difficulty": {
+            "Switzerland": 2,
+            "Bosnia-Herzegovina": 2
+          },
+          "cs_prob": {
+            "Switzerland": 0.38,
+            "Bosnia-Herzegovina": 0.2
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-18",
+          "home": "Canada",
+          "away": "Qatar",
+          "difficulty": {
+            "Canada": 2,
+            "Qatar": 1
+          },
+          "cs_prob": {
+            "Canada": 0.48,
+            "Qatar": 0.22
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "Bosnia-Herzegovina",
+          "away": "Qatar",
+          "difficulty": {
+            "Bosnia-Herzegovina": 2,
+            "Qatar": 2
+          },
+          "cs_prob": {
+            "Bosnia-Herzegovina": 0.3,
+            "Qatar": 0.3
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "Switzerland",
+          "away": "Canada",
+          "difficulty": {
+            "Switzerland": 3,
+            "Canada": 3
+          },
+          "cs_prob": {
+            "Switzerland": 0.35,
+            "Canada": 0.3
+          }
+        }
       ]
     },
     "C": {
-      "teams": ["Brazil", "Morocco", "Haiti", "Scotland"],
+      "teams": [
+        "Brazil",
+        "Morocco",
+        "Haiti",
+        "Scotland"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-13", "home": "Brazil",   "away": "Morocco",   "difficulty": {"Brazil": 4, "Morocco": 4}},
-        {"md": 1, "date": "2026-06-13", "home": "Haiti",    "away": "Scotland",  "difficulty": {"Haiti": 1, "Scotland": 2}},
-        {"md": 2, "date": "2026-06-19", "home": "Scotland", "away": "Brazil",    "difficulty": {"Scotland": 4, "Brazil": 4}},
-        {"md": 2, "date": "2026-06-19", "home": "Morocco",  "away": "Haiti",     "difficulty": {"Morocco": 2, "Haiti": 1}},
-        {"md": 3, "date": "2026-06-24", "home": "Scotland", "away": "Morocco",   "difficulty": {"Scotland": 3, "Morocco": 3}},
-        {"md": 3, "date": "2026-06-24", "home": "Brazil",   "away": "Haiti",     "difficulty": {"Brazil": 2, "Haiti": 1}}
+        {
+          "md": 1,
+          "date": "2026-06-13",
+          "home": "Brazil",
+          "away": "Morocco",
+          "difficulty": {
+            "Brazil": 4,
+            "Morocco": 4
+          },
+          "cs_prob": {
+            "Brazil": 0.28,
+            "Morocco": 0.25
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-13",
+          "home": "Haiti",
+          "away": "Scotland",
+          "difficulty": {
+            "Haiti": 1,
+            "Scotland": 2
+          },
+          "cs_prob": {
+            "Haiti": 0.08,
+            "Scotland": 0.4
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-19",
+          "home": "Scotland",
+          "away": "Brazil",
+          "difficulty": {
+            "Scotland": 4,
+            "Brazil": 4
+          },
+          "cs_prob": {
+            "Scotland": 0.08,
+            "Brazil": 0.5
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-19",
+          "home": "Morocco",
+          "away": "Haiti",
+          "difficulty": {
+            "Morocco": 2,
+            "Haiti": 1
+          },
+          "cs_prob": {
+            "Morocco": 0.52,
+            "Haiti": 0.1
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "Scotland",
+          "away": "Morocco",
+          "difficulty": {
+            "Scotland": 3,
+            "Morocco": 3
+          },
+          "cs_prob": {
+            "Scotland": 0.28,
+            "Morocco": 0.4
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "Brazil",
+          "away": "Haiti",
+          "difficulty": {
+            "Brazil": 2,
+            "Haiti": 1
+          },
+          "cs_prob": {
+            "Brazil": 0.65,
+            "Haiti": 0.08
+          }
+        }
       ]
     },
     "D": {
-      "teams": ["USA", "Paraguay", "Australia", "Turkey"],
+      "teams": [
+        "USA",
+        "Paraguay",
+        "Australia",
+        "Turkey"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-12", "home": "USA",       "away": "Paraguay",   "difficulty": {"USA": 3, "Paraguay": 2}},
-        {"md": 1, "date": "2026-06-13", "home": "Australia", "away": "Turkey",     "difficulty": {"Australia": 3, "Turkey": 3}},
-        {"md": 2, "date": "2026-06-18", "home": "USA",       "away": "Australia",  "difficulty": {"USA": 3, "Australia": 3}},
-        {"md": 2, "date": "2026-06-18", "home": "Paraguay",  "away": "Turkey",     "difficulty": {"Paraguay": 3, "Turkey": 3}},
-        {"md": 3, "date": "2026-06-24", "home": "USA",       "away": "Turkey",     "difficulty": {"USA": 3, "Turkey": 3}},
-        {"md": 3, "date": "2026-06-24", "home": "Paraguay",  "away": "Australia",  "difficulty": {"Paraguay": 3, "Australia": 3}}
+        {
+          "md": 1,
+          "date": "2026-06-12",
+          "home": "USA",
+          "away": "Paraguay",
+          "difficulty": {
+            "USA": 3,
+            "Paraguay": 2
+          },
+          "cs_prob": {
+            "USA": 0.32,
+            "Paraguay": 0.2
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-13",
+          "home": "Australia",
+          "away": "Turkey",
+          "difficulty": {
+            "Australia": 3,
+            "Turkey": 3
+          },
+          "cs_prob": {
+            "Australia": 0.22,
+            "Turkey": 0.22
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-18",
+          "home": "USA",
+          "away": "Australia",
+          "difficulty": {
+            "USA": 3,
+            "Australia": 3
+          },
+          "cs_prob": {
+            "USA": 0.3,
+            "Australia": 0.2
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-18",
+          "home": "Paraguay",
+          "away": "Turkey",
+          "difficulty": {
+            "Paraguay": 3,
+            "Turkey": 3
+          },
+          "cs_prob": {
+            "Paraguay": 0.22,
+            "Turkey": 0.22
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "USA",
+          "away": "Turkey",
+          "difficulty": {
+            "USA": 3,
+            "Turkey": 3
+          },
+          "cs_prob": {
+            "USA": 0.32,
+            "Turkey": 0.25
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-24",
+          "home": "Paraguay",
+          "away": "Australia",
+          "difficulty": {
+            "Paraguay": 3,
+            "Australia": 3
+          },
+          "cs_prob": {
+            "Paraguay": 0.22,
+            "Australia": 0.25
+          }
+        }
       ]
     },
     "E": {
-      "teams": ["Germany", "Curacao", "Ivory Coast", "Ecuador"],
+      "teams": [
+        "Germany",
+        "Curacao",
+        "Ivory Coast",
+        "Ecuador"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-14", "home": "Germany",     "away": "Curacao",     "difficulty": {"Germany": 1, "Curacao": 1}},
-        {"md": 1, "date": "2026-06-14", "home": "Ivory Coast", "away": "Ecuador",     "difficulty": {"Ivory Coast": 3, "Ecuador": 3}},
-        {"md": 2, "date": "2026-06-20", "home": "Germany",     "away": "Ivory Coast", "difficulty": {"Germany": 2, "Ivory Coast": 3}},
-        {"md": 2, "date": "2026-06-20", "home": "Ecuador",     "away": "Curacao",     "difficulty": {"Ecuador": 2, "Curacao": 1}},
-        {"md": 3, "date": "2026-06-25", "home": "Ecuador",     "away": "Germany",     "difficulty": {"Ecuador": 4, "Germany": 3}},
-        {"md": 3, "date": "2026-06-25", "home": "Curacao",     "away": "Ivory Coast", "difficulty": {"Curacao": 2, "Ivory Coast": 2}}
+        {
+          "md": 1,
+          "date": "2026-06-14",
+          "home": "Germany",
+          "away": "Curacao",
+          "difficulty": {
+            "Germany": 1,
+            "Curacao": 1
+          },
+          "cs_prob": {
+            "Germany": 0.7,
+            "Curacao": 0.05
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-14",
+          "home": "Ivory Coast",
+          "away": "Ecuador",
+          "difficulty": {
+            "Ivory Coast": 3,
+            "Ecuador": 3
+          },
+          "cs_prob": {
+            "Ivory Coast": 0.28,
+            "Ecuador": 0.25
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-20",
+          "home": "Germany",
+          "away": "Ivory Coast",
+          "difficulty": {
+            "Germany": 2,
+            "Ivory Coast": 3
+          },
+          "cs_prob": {
+            "Germany": 0.55,
+            "Ivory Coast": 0.08
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-20",
+          "home": "Ecuador",
+          "away": "Curacao",
+          "difficulty": {
+            "Ecuador": 2,
+            "Curacao": 1
+          },
+          "cs_prob": {
+            "Ecuador": 0.5,
+            "Curacao": 0.22
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-25",
+          "home": "Ecuador",
+          "away": "Germany",
+          "difficulty": {
+            "Ecuador": 4,
+            "Germany": 3
+          },
+          "cs_prob": {
+            "Ecuador": 0.18,
+            "Germany": 0.38
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-25",
+          "home": "Curacao",
+          "away": "Ivory Coast",
+          "difficulty": {
+            "Curacao": 2,
+            "Ivory Coast": 2
+          },
+          "cs_prob": {
+            "Curacao": 0.3,
+            "Ivory Coast": 0.48
+          }
+        }
       ]
     },
     "F": {
-      "teams": ["Netherlands", "Japan", "Sweden", "Tunisia"],
+      "teams": [
+        "Netherlands",
+        "Japan",
+        "Sweden",
+        "Tunisia"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-14", "home": "Netherlands", "away": "Japan",       "difficulty": {"Netherlands": 3, "Japan": 3}},
-        {"md": 1, "date": "2026-06-14", "home": "Sweden",      "away": "Tunisia",     "difficulty": {"Sweden": 2, "Tunisia": 2}},
-        {"md": 2, "date": "2026-06-20", "home": "Netherlands", "away": "Sweden",      "difficulty": {"Netherlands": 3, "Sweden": 3}},
-        {"md": 2, "date": "2026-06-20", "home": "Tunisia",     "away": "Japan",       "difficulty": {"Tunisia": 3, "Japan": 3}},
-        {"md": 3, "date": "2026-06-25", "home": "Japan",       "away": "Sweden",      "difficulty": {"Japan": 3, "Sweden": 3}},
-        {"md": 3, "date": "2026-06-25", "home": "Tunisia",     "away": "Netherlands", "difficulty": {"Tunisia": 3, "Netherlands": 3}}
+        {
+          "md": 1,
+          "date": "2026-06-14",
+          "home": "Netherlands",
+          "away": "Japan",
+          "difficulty": {
+            "Netherlands": 3,
+            "Japan": 3
+          },
+          "cs_prob": {
+            "Netherlands": 0.35,
+            "Japan": 0.3
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-14",
+          "home": "Sweden",
+          "away": "Tunisia",
+          "difficulty": {
+            "Sweden": 2,
+            "Tunisia": 2
+          },
+          "cs_prob": {
+            "Sweden": 0.42,
+            "Tunisia": 0.28
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-20",
+          "home": "Netherlands",
+          "away": "Sweden",
+          "difficulty": {
+            "Netherlands": 3,
+            "Sweden": 3
+          },
+          "cs_prob": {
+            "Netherlands": 0.38,
+            "Sweden": 0.28
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-20",
+          "home": "Tunisia",
+          "away": "Japan",
+          "difficulty": {
+            "Tunisia": 3,
+            "Japan": 3
+          },
+          "cs_prob": {
+            "Tunisia": 0.3,
+            "Japan": 0.3
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-25",
+          "home": "Japan",
+          "away": "Sweden",
+          "difficulty": {
+            "Japan": 3,
+            "Sweden": 3
+          },
+          "cs_prob": {
+            "Japan": 0.32,
+            "Sweden": 0.3
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-25",
+          "home": "Tunisia",
+          "away": "Netherlands",
+          "difficulty": {
+            "Tunisia": 3,
+            "Netherlands": 3
+          },
+          "cs_prob": {
+            "Tunisia": 0.18,
+            "Netherlands": 0.5
+          }
+        }
       ]
     },
     "G": {
-      "teams": ["Belgium", "Egypt", "Iran", "New Zealand"],
+      "teams": [
+        "Belgium",
+        "Egypt",
+        "Iran",
+        "New Zealand"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-15", "home": "Belgium",     "away": "Egypt",       "difficulty": {"Belgium": 3, "Egypt": 3}},
-        {"md": 1, "date": "2026-06-15", "home": "Iran",        "away": "New Zealand", "difficulty": {"Iran": 2, "New Zealand": 2}},
-        {"md": 2, "date": "2026-06-21", "home": "Belgium",     "away": "Iran",        "difficulty": {"Belgium": 2, "Iran": 2}},
-        {"md": 2, "date": "2026-06-21", "home": "New Zealand", "away": "Egypt",       "difficulty": {"New Zealand": 2, "Egypt": 2}},
-        {"md": 3, "date": "2026-06-26", "home": "Egypt",       "away": "Iran",        "difficulty": {"Egypt": 3, "Iran": 3}},
-        {"md": 3, "date": "2026-06-26", "home": "New Zealand", "away": "Belgium",     "difficulty": {"New Zealand": 3, "Belgium": 2}}
+        {
+          "md": 1,
+          "date": "2026-06-15",
+          "home": "Belgium",
+          "away": "Egypt",
+          "difficulty": {
+            "Belgium": 3,
+            "Egypt": 3
+          },
+          "cs_prob": {
+            "Belgium": 0.38,
+            "Egypt": 0.2
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-15",
+          "home": "Iran",
+          "away": "New Zealand",
+          "difficulty": {
+            "Iran": 2,
+            "New Zealand": 2
+          },
+          "cs_prob": {
+            "Iran": 0.22,
+            "New Zealand": 0.2
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-21",
+          "home": "Belgium",
+          "away": "Iran",
+          "difficulty": {
+            "Belgium": 2,
+            "Iran": 2
+          },
+          "cs_prob": {
+            "Belgium": 0.52,
+            "Iran": 0.22
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-21",
+          "home": "New Zealand",
+          "away": "Egypt",
+          "difficulty": {
+            "New Zealand": 2,
+            "Egypt": 2
+          },
+          "cs_prob": {
+            "New Zealand": 0.3,
+            "Egypt": 0.28
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-26",
+          "home": "Egypt",
+          "away": "Iran",
+          "difficulty": {
+            "Egypt": 3,
+            "Iran": 3
+          },
+          "cs_prob": {
+            "Egypt": 0.35,
+            "Iran": 0.3
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-26",
+          "home": "New Zealand",
+          "away": "Belgium",
+          "difficulty": {
+            "New Zealand": 3,
+            "Belgium": 2
+          },
+          "cs_prob": {
+            "New Zealand": 0.18,
+            "Belgium": 0.62
+          }
+        }
       ]
     },
     "H": {
-      "teams": ["Spain", "Cape Verde", "Saudi Arabia", "Uruguay"],
+      "teams": [
+        "Spain",
+        "Cape Verde",
+        "Saudi Arabia",
+        "Uruguay"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-15", "home": "Spain",        "away": "Cape Verde",   "difficulty": {"Spain": 1, "Cape Verde": 1}},
-        {"md": 1, "date": "2026-06-15", "home": "Saudi Arabia", "away": "Uruguay",      "difficulty": {"Saudi Arabia": 3, "Uruguay": 3}},
-        {"md": 2, "date": "2026-06-21", "home": "Spain",        "away": "Saudi Arabia", "difficulty": {"Spain": 2, "Saudi Arabia": 2}},
-        {"md": 2, "date": "2026-06-21", "home": "Uruguay",      "away": "Cape Verde",   "difficulty": {"Uruguay": 2, "Cape Verde": 1}},
-        {"md": 3, "date": "2026-06-26", "home": "Cape Verde",   "away": "Saudi Arabia", "difficulty": {"Cape Verde": 2, "Saudi Arabia": 2}},
-        {"md": 3, "date": "2026-06-26", "home": "Uruguay",      "away": "Spain",        "difficulty": {"Uruguay": 4, "Spain": 3}}
+        {
+          "md": 1,
+          "date": "2026-06-15",
+          "home": "Spain",
+          "away": "Cape Verde",
+          "difficulty": {
+            "Spain": 1,
+            "Cape Verde": 1
+          },
+          "cs_prob": {
+            "Spain": 0.65,
+            "Cape Verde": 0.06
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-15",
+          "home": "Saudi Arabia",
+          "away": "Uruguay",
+          "difficulty": {
+            "Saudi Arabia": 3,
+            "Uruguay": 3
+          },
+          "cs_prob": {
+            "Saudi Arabia": 0.18,
+            "Uruguay": 0.3
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-21",
+          "home": "Spain",
+          "away": "Saudi Arabia",
+          "difficulty": {
+            "Spain": 2,
+            "Saudi Arabia": 2
+          },
+          "cs_prob": {
+            "Spain": 0.5,
+            "Saudi Arabia": 0.12
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-21",
+          "home": "Uruguay",
+          "away": "Cape Verde",
+          "difficulty": {
+            "Uruguay": 2,
+            "Cape Verde": 1
+          },
+          "cs_prob": {
+            "Uruguay": 0.45,
+            "Cape Verde": 0.18
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-26",
+          "home": "Cape Verde",
+          "away": "Saudi Arabia",
+          "difficulty": {
+            "Cape Verde": 2,
+            "Saudi Arabia": 2
+          },
+          "cs_prob": {
+            "Cape Verde": 0.3,
+            "Saudi Arabia": 0.3
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-26",
+          "home": "Uruguay",
+          "away": "Spain",
+          "difficulty": {
+            "Uruguay": 4,
+            "Spain": 3
+          },
+          "cs_prob": {
+            "Uruguay": 0.2,
+            "Spain": 0.28
+          }
+        }
       ]
     },
     "I": {
-      "teams": ["France", "Norway", "Iraq", "Senegal"],
+      "teams": [
+        "France",
+        "Norway",
+        "Iraq",
+        "Senegal"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-16", "home": "France",  "away": "Senegal", "difficulty": {"France": 3, "Senegal": 3}},
-        {"md": 1, "date": "2026-06-16", "home": "Iraq",    "away": "Norway",  "difficulty": {"Iraq": 1, "Norway": 1}},
-        {"md": 2, "date": "2026-06-22", "home": "France",  "away": "Iraq",    "difficulty": {"France": 1, "Iraq": 1}},
-        {"md": 2, "date": "2026-06-22", "home": "Norway",  "away": "Senegal", "difficulty": {"Norway": 3, "Senegal": 3}},
-        {"md": 3, "date": "2026-06-26", "home": "Norway",  "away": "France",  "difficulty": {"Norway": 5, "France": 5}},
-        {"md": 3, "date": "2026-06-26", "home": "Senegal", "away": "Iraq",    "difficulty": {"Senegal": 2, "Iraq": 2}}
+        {
+          "md": 1,
+          "date": "2026-06-16",
+          "home": "France",
+          "away": "Senegal",
+          "difficulty": {
+            "France": 3,
+            "Senegal": 3
+          },
+          "cs_prob": {
+            "France": 0.4,
+            "Senegal": 0.2
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-16",
+          "home": "Iraq",
+          "away": "Norway",
+          "difficulty": {
+            "Iraq": 1,
+            "Norway": 1
+          },
+          "cs_prob": {
+            "Iraq": 0.08,
+            "Norway": 0.52
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-22",
+          "home": "France",
+          "away": "Iraq",
+          "difficulty": {
+            "France": 1,
+            "Iraq": 1
+          },
+          "cs_prob": {
+            "France": 0.6,
+            "Iraq": 0.1
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-22",
+          "home": "Norway",
+          "away": "Senegal",
+          "difficulty": {
+            "Norway": 3,
+            "Senegal": 3
+          },
+          "cs_prob": {
+            "Norway": 0.32,
+            "Senegal": 0.22
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-26",
+          "home": "Norway",
+          "away": "France",
+          "difficulty": {
+            "Norway": 5,
+            "France": 5
+          },
+          "cs_prob": {
+            "Norway": 0.2,
+            "France": 0.22
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-26",
+          "home": "Senegal",
+          "away": "Iraq",
+          "difficulty": {
+            "Senegal": 2,
+            "Iraq": 2
+          },
+          "cs_prob": {
+            "Senegal": 0.4,
+            "Iraq": 0.22
+          }
+        }
       ]
     },
     "J": {
-      "teams": ["Argentina", "Algeria", "Austria", "Jordan"],
+      "teams": [
+        "Argentina",
+        "Algeria",
+        "Austria",
+        "Jordan"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-16", "home": "Argentina", "away": "Algeria",   "difficulty": {"Argentina": 2, "Algeria": 2}},
-        {"md": 1, "date": "2026-06-16", "home": "Austria",   "away": "Jordan",    "difficulty": {"Austria": 2, "Jordan": 1}},
-        {"md": 2, "date": "2026-06-22", "home": "Argentina", "away": "Austria",   "difficulty": {"Argentina": 3, "Austria": 3}},
-        {"md": 2, "date": "2026-06-22", "home": "Algeria",   "away": "Jordan",    "difficulty": {"Algeria": 2, "Jordan": 1}},
-        {"md": 3, "date": "2026-06-27", "home": "Argentina", "away": "Jordan",    "difficulty": {"Argentina": 1, "Jordan": 1}},
-        {"md": 3, "date": "2026-06-27", "home": "Austria",   "away": "Algeria",   "difficulty": {"Austria": 3, "Algeria": 3}}
+        {
+          "md": 1,
+          "date": "2026-06-16",
+          "home": "Argentina",
+          "away": "Algeria",
+          "difficulty": {
+            "Argentina": 2,
+            "Algeria": 2
+          },
+          "cs_prob": {
+            "Argentina": 0.5,
+            "Algeria": 0.22
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-16",
+          "home": "Austria",
+          "away": "Jordan",
+          "difficulty": {
+            "Austria": 2,
+            "Jordan": 1
+          },
+          "cs_prob": {
+            "Austria": 0.42,
+            "Jordan": 0.12
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-22",
+          "home": "Argentina",
+          "away": "Austria",
+          "difficulty": {
+            "Argentina": 3,
+            "Austria": 3
+          },
+          "cs_prob": {
+            "Argentina": 0.4,
+            "Austria": 0.28
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-22",
+          "home": "Algeria",
+          "away": "Jordan",
+          "difficulty": {
+            "Algeria": 2,
+            "Jordan": 1
+          },
+          "cs_prob": {
+            "Algeria": 0.3,
+            "Jordan": 0.15
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-27",
+          "home": "Argentina",
+          "away": "Jordan",
+          "difficulty": {
+            "Argentina": 1,
+            "Jordan": 1
+          },
+          "cs_prob": {
+            "Argentina": 0.65,
+            "Jordan": 0.12
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-27",
+          "home": "Austria",
+          "away": "Algeria",
+          "difficulty": {
+            "Austria": 3,
+            "Algeria": 3
+          },
+          "cs_prob": {
+            "Austria": 0.35,
+            "Algeria": 0.25
+          }
+        }
       ]
     },
     "K": {
-      "teams": ["Portugal", "Colombia", "Congo DR", "Uzbekistan"],
+      "teams": [
+        "Portugal",
+        "Colombia",
+        "Congo DR",
+        "Uzbekistan"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-17", "home": "Portugal",    "away": "Congo DR",    "difficulty": {"Portugal": 1, "Congo DR": 1}},
-        {"md": 1, "date": "2026-06-17", "home": "Uzbekistan",  "away": "Colombia",    "difficulty": {"Uzbekistan": 1, "Colombia": 2}},
-        {"md": 2, "date": "2026-06-23", "home": "Portugal",    "away": "Uzbekistan",  "difficulty": {"Portugal": 1, "Uzbekistan": 1}},
-        {"md": 2, "date": "2026-06-23", "home": "Colombia",    "away": "Congo DR",    "difficulty": {"Colombia": 2, "Congo DR": 1}},
-        {"md": 3, "date": "2026-06-27", "home": "Portugal",    "away": "Colombia",    "difficulty": {"Portugal": 3, "Colombia": 3}},
-        {"md": 3, "date": "2026-06-27", "home": "Congo DR",    "away": "Uzbekistan",  "difficulty": {"Congo DR": 2, "Uzbekistan": 2}}
+        {
+          "md": 1,
+          "date": "2026-06-17",
+          "home": "Portugal",
+          "away": "Congo DR",
+          "difficulty": {
+            "Portugal": 1,
+            "Congo DR": 1
+          },
+          "cs_prob": {
+            "Portugal": 0.62,
+            "Congo DR": 0.08
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-17",
+          "home": "Uzbekistan",
+          "away": "Colombia",
+          "difficulty": {
+            "Uzbekistan": 1,
+            "Colombia": 2
+          },
+          "cs_prob": {
+            "Uzbekistan": 0.12,
+            "Colombia": 0.4
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-23",
+          "home": "Portugal",
+          "away": "Uzbekistan",
+          "difficulty": {
+            "Portugal": 1,
+            "Uzbekistan": 1
+          },
+          "cs_prob": {
+            "Portugal": 0.62,
+            "Uzbekistan": 0.1
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-23",
+          "home": "Colombia",
+          "away": "Congo DR",
+          "difficulty": {
+            "Colombia": 2,
+            "Congo DR": 1
+          },
+          "cs_prob": {
+            "Colombia": 0.45,
+            "Congo DR": 0.18
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-27",
+          "home": "Portugal",
+          "away": "Colombia",
+          "difficulty": {
+            "Portugal": 3,
+            "Colombia": 3
+          },
+          "cs_prob": {
+            "Portugal": 0.35,
+            "Colombia": 0.22
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-27",
+          "home": "Congo DR",
+          "away": "Uzbekistan",
+          "difficulty": {
+            "Congo DR": 2,
+            "Uzbekistan": 2
+          },
+          "cs_prob": {
+            "Congo DR": 0.28,
+            "Uzbekistan": 0.28
+          }
+        }
       ]
     },
     "L": {
-      "teams": ["England", "Croatia", "Ghana", "Panama"],
+      "teams": [
+        "England",
+        "Croatia",
+        "Ghana",
+        "Panama"
+      ],
       "fixtures": [
-        {"md": 1, "date": "2026-06-17", "home": "England", "away": "Croatia", "difficulty": {"England": 3, "Croatia": 3}},
-        {"md": 1, "date": "2026-06-17", "home": "Ghana",   "away": "Panama",  "difficulty": {"Ghana": 2, "Panama": 2}},
-        {"md": 2, "date": "2026-06-23", "home": "England", "away": "Ghana",   "difficulty": {"England": 2, "Ghana": 2}},
-        {"md": 2, "date": "2026-06-23", "home": "Panama",  "away": "Croatia", "difficulty": {"Panama": 2, "Croatia": 3}},
-        {"md": 3, "date": "2026-06-27", "home": "Panama",  "away": "England", "difficulty": {"Panama": 2, "England": 2}},
-        {"md": 3, "date": "2026-06-27", "home": "Croatia", "away": "Ghana",   "difficulty": {"Croatia": 3, "Ghana": 3}}
+        {
+          "md": 1,
+          "date": "2026-06-17",
+          "home": "England",
+          "away": "Croatia",
+          "difficulty": {
+            "England": 3,
+            "Croatia": 3
+          },
+          "cs_prob": {
+            "England": 0.42,
+            "Croatia": 0.3
+          }
+        },
+        {
+          "md": 1,
+          "date": "2026-06-17",
+          "home": "Ghana",
+          "away": "Panama",
+          "difficulty": {
+            "Ghana": 2,
+            "Panama": 2
+          },
+          "cs_prob": {
+            "Ghana": 0.22,
+            "Panama": 0.12
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-23",
+          "home": "England",
+          "away": "Ghana",
+          "difficulty": {
+            "England": 2,
+            "Ghana": 2
+          },
+          "cs_prob": {
+            "England": 0.55,
+            "Ghana": 0.18
+          }
+        },
+        {
+          "md": 2,
+          "date": "2026-06-23",
+          "home": "Panama",
+          "away": "Croatia",
+          "difficulty": {
+            "Panama": 2,
+            "Croatia": 3
+          },
+          "cs_prob": {
+            "Panama": 0.25,
+            "Croatia": 0.4
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-27",
+          "home": "Panama",
+          "away": "England",
+          "difficulty": {
+            "Panama": 2,
+            "England": 2
+          },
+          "cs_prob": {
+            "Panama": 0.1,
+            "England": 0.6
+          }
+        },
+        {
+          "md": 3,
+          "date": "2026-06-27",
+          "home": "Croatia",
+          "away": "Ghana",
+          "difficulty": {
+            "Croatia": 3,
+            "Ghana": 3
+          },
+          "cs_prob": {
+            "Croatia": 0.35,
+            "Ghana": 0.3
+          }
+        }
       ]
     }
   }

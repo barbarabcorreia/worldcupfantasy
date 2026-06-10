@@ -2,21 +2,37 @@
   "meta": {
     "budget": 100.0,
     "squad_size": 15,
-    "positions": {"GK": 2, "DEF": 5, "MID": 5, "FWD": 3},
+    "positions": {
+      "GK": 2,
+      "DEF": 5,
+      "MID": 5,
+      "FWD": 3
+    },
     "max_per_nation": 3,
     "scoring": {
       "minutes_60_plus": 2,
       "minutes_under_60": 1,
-      "goal_GK": 6, "goal_DEF": 6, "goal_MID": 5, "goal_FWD": 4,
+      "goal_GK": 6,
+      "goal_DEF": 6,
+      "goal_MID": 5,
+      "goal_FWD": 4,
       "goal_outside_box_bonus": 1,
       "assist": 3,
       "clean_sheet_GK_DEF_60min": 5,
       "clean_sheet_MID_60min": 1,
       "saves_per_3": 1,
-      "penalty_save": 5,
-      "yellow_card": -1, "red_card": -3, "own_goal": -2, "missed_penalty": -2,
+      "penalty_save": 3,
+      "yellow_card": -1,
+      "red_card": -2,
+      "own_goal": -2,
+      "missed_penalty": -2,
       "potm": 3,
-      "scouting_bonus_lt5pct_over4pts": 2
+      "scouting_bonus_lt5pct_over4pts": 2,
+      "win_penalty": 2,
+      "concede_penalty": -1,
+      "tackle_per_3_MID": 1,
+      "chance_per_2_MID": 1,
+      "sot_per_2_FWD": 1
     },
     "boosters": {
       "wildcard": "Unlimited transfers before a deadline (not available in Round 1 or before Round of 32)",
@@ -27,76 +43,1757 @@
     }
   },
   "players": [
-    {"name": "Erling Haaland",     "pos": "FWD", "nation": "Norway",      "group": "I", "price": 10.5, "xp": 26.0, "xp_md": [9.5, 8.5, 8.0], "ownership": 0.33, "notes": "MD1 vs Iraq (easy), MD2 vs Senegal (medium), MD3 vs FRANCE (hard). Penalty taker, elite scorer."},
-    {"name": "Kylian Mbappe",      "pos": "FWD", "nation": "France",      "group": "I", "price": 10.5, "xp": 24.0, "xp_md": [8.0, 9.0, 7.0], "ownership": 0.52, "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy), MD3 vs NORWAY (hard). Penalty taker, 52% owned."},
-    {"name": "Vinícius Júnior",    "pos": "MID", "nation": "Brazil",      "group": "C", "price": 10.0, "xp": 21.0, "xp_md": [6.5, 7.0, 7.5], "ownership": 0.28, "notes": "MD1 vs Morocco (hard), MD2 vs Scotland (medium), MD3 vs Haiti (easy). Brazil powerhouse."},
-    {"name": "Mohamed Salah",      "pos": "MID", "nation": "Egypt",       "group": "G", "price": 10.0, "xp": 14.0, "xp_md": [4.5, 5.0, 4.5], "ownership": 0.12, "notes": "MD1 vs Belgium (hard), MD2 vs New Zealand (easy), MD3 vs Iran (medium). Poor 2025-26 season."},
-    {"name": "Bruno Fernandes",    "pos": "MID", "nation": "Portugal",    "group": "K", "price": 8.5,  "xp": 19.0, "xp_md": [7.0, 6.5, 5.5], "ownership": 0.31, "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy), MD3 vs Colombia (medium). 21 EPL assists."},
-    {"name": "Jude Bellingham",    "pos": "MID", "nation": "England",     "group": "L", "price": 8.3,  "xp": 16.0, "xp_md": [5.0, 5.5, 5.5], "ownership": 0.24, "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). Creative threat."},
-    {"name": "Mikel Oyarzabal",    "pos": "FWD", "nation": "Spain",       "group": "H", "price": 7.8,  "xp": 20.5, "xp_md": [8.0, 6.5, 6.0], "ownership": 0.16, "notes": "MD1 vs Cape Verde (easy), MD2 vs Saudi Arabia (easy), MD3 vs Uruguay (hard). 6G 3A in qualifying. Best value FWD."},
-    {"name": "Kai Havertz",        "pos": "FWD", "nation": "Germany",     "group": "E", "price": 8.0,  "xp": 17.0, "xp_md": [7.0, 5.5, 4.5], "ownership": 0.19, "notes": "MD1 vs Curacao (very easy), MD2 vs Ivory Coast (easy), MD3 vs Ecuador (medium)."},
-    {"name": "Declan Rice",        "pos": "MID", "nation": "England",     "group": "L", "price": 7.0,  "xp": 13.5, "xp_md": [4.5, 4.5, 4.5], "ownership": 0.22, "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). Set piece threat."},
-    {"name": "Leandro Trossard",   "pos": "MID", "nation": "Belgium",     "group": "G", "price": 7.2,  "xp": 16.0, "xp_md": [5.5, 5.5, 5.0], "ownership": 0.18, "notes": "MD1 vs Egypt (medium), MD2 vs Iran (easy), MD3 vs New Zealand (easy). Goal threat."},
-    {"name": "Nick Woltemade",     "pos": "FWD", "nation": "Germany",     "group": "E", "price": 7.2,  "xp": 15.0, "xp_md": [6.0, 4.5, 4.5], "ownership": 0.14, "notes": "MD1 vs Curacao (very easy), excellent early fixture."},
-    {"name": "Nicolas Jackson",    "pos": "FWD", "nation": "Senegal",     "group": "I", "price": 6.7,  "xp": 13.0, "xp_md": [4.0, 4.5, 4.5], "ownership": 0.11, "notes": "MD1 vs France (very hard), MD2 vs Norway (hard), MD3 vs Iraq (easy). Hard group stage."},
-    {"name": "Lamine Yamal",       "pos": "MID", "nation": "Spain",       "group": "H", "price": 7.5,  "xp": 17.5, "xp_md": [6.5, 5.5, 5.5], "ownership": 0.27, "notes": "MD1 vs Cape Verde (easy), MD2 vs Saudi Arabia (easy), MD3 vs Uruguay (hard). Spain's creative star."},
-    {"name": "Pedri",              "pos": "MID", "nation": "Spain",       "group": "H", "price": 7.0,  "xp": 14.0, "xp_md": [5.0, 4.5, 4.5], "ownership": 0.20, "notes": "MD1 vs Cape Verde (easy). Spain midfield engine."},
-    {"name": "Dani Olmo",          "pos": "MID", "nation": "Spain",       "group": "H", "price": 6.8,  "xp": 14.5, "xp_md": [5.5, 4.5, 4.5], "ownership": 0.15, "notes": "MD1 vs Cape Verde (easy). Spain attacking mid, good value."},
-    {"name": "John McGinn",        "pos": "MID", "nation": "Scotland",    "group": "C", "price": 6.0,  "xp": 11.5, "xp_md": [4.5, 3.0, 4.0], "ownership": 0.10, "notes": "MD1 vs Haiti (easy), MD2 vs Brazil (very hard), MD3 vs Morocco (hard). Set piece taker."},
-    {"name": "Phil Foden",         "pos": "MID", "nation": "England",     "group": "L", "price": 7.8,  "xp": 14.5, "xp_md": [4.5, 5.0, 5.0], "ownership": 0.21, "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England creative."},
-    {"name": "Bukayo Saka",        "pos": "MID", "nation": "England",     "group": "L", "price": 7.5,  "xp": 14.0, "xp_md": [4.5, 4.5, 5.0], "ownership": 0.20, "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England winger."},
-    {"name": "Gavi",               "pos": "MID", "nation": "Spain",       "group": "H", "price": 6.5,  "xp": 12.0, "xp_md": [4.5, 4.0, 3.5], "ownership": 0.10, "notes": "MD1 vs Cape Verde (easy). Fitness concern."},
-    {"name": "Bernardo Silva",     "pos": "MID", "nation": "Portugal",    "group": "K", "price": 7.0,  "xp": 13.0, "xp_md": [4.5, 4.5, 4.0], "ownership": 0.15, "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy), MD3 vs Colombia."},
-    {"name": "Federico Valverde",  "pos": "MID", "nation": "Uruguay",     "group": "H", "price": 7.5,  "xp": 13.5, "xp_md": [4.0, 4.5, 5.0], "ownership": 0.12, "notes": "MD1 vs Saudi Arabia (medium), MD2 vs Cape Verde (easy), MD3 vs Spain (hard)."},
-    {"name": "Carlos Soler",       "pos": "MID", "nation": "Spain",       "group": "H", "price": 5.5,  "xp": 10.0, "xp_md": [3.5, 3.5, 3.0], "ownership": 0.08, "notes": "Budget Spain MID. Good early fixtures."},
-    {"name": "Rodrigo Bentancur",  "pos": "MID", "nation": "Uruguay",     "group": "H", "price": 5.8,  "xp": 10.5, "xp_md": [3.5, 3.5, 3.5], "ownership": 0.09, "notes": "Uruguay midfield. MD3 vs Spain is hard."},
-    {"name": "Jarrod Bowen",       "pos": "MID", "nation": "England",     "group": "L", "price": 5.5,  "xp": 10.0, "xp_md": [3.5, 3.5, 3.0], "ownership": 0.08, "notes": "Budget England MID, bench option."},
-    {"name": "Virgil van Dijk",    "pos": "DEF", "nation": "Netherlands", "group": "F", "price": 5.8,  "xp": 14.0, "xp_md": [4.5, 4.5, 5.0], "ownership": 0.23, "notes": "MD1 vs Japan (medium), MD2 vs Sweden (medium), MD3 vs Tunisia (easy). Clean sheet upside."},
-    {"name": "Achraf Hakimi",      "pos": "DEF", "nation": "Morocco",     "group": "C", "price": 6.0,  "xp": 16.0, "xp_md": [4.5, 6.0, 5.5], "ownership": 0.29, "notes": "MD1 vs Brazil (very hard), MD2 vs Haiti (easy!), MD3 vs Scotland (medium). Wait for MD2+."},
-    {"name": "William Saliba",     "pos": "DEF", "nation": "France",      "group": "I", "price": 5.3,  "xp": 13.0, "xp_md": [4.0, 5.0, 4.0], "ownership": 0.18, "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy, clean sheet likely), MD3 vs Norway (hard)."},
-    {"name": "Jules Kounde",       "pos": "DEF", "nation": "France",      "group": "I", "price": 5.4,  "xp": 12.5, "xp_md": [3.5, 5.0, 3.5], "ownership": 0.15, "notes": "MD2 vs Iraq is the standout fixture (clean sheet + attacking threat)."},
-    {"name": "Dayot Upamecano",    "pos": "DEF", "nation": "France",      "group": "I", "price": 5.3,  "xp": 11.5, "xp_md": [3.5, 4.5, 3.5], "ownership": 0.12, "notes": "France CB."},
-    {"name": "Alejandro Balde",    "pos": "DEF", "nation": "Spain",       "group": "H", "price": 5.5,  "xp": 13.5, "xp_md": [5.0, 4.5, 4.0], "ownership": 0.20, "notes": "MD1 vs Cape Verde (very easy), MD2 vs Saudi Arabia (easy). Attacking LB for Spain."},
-    {"name": "Dani Carvajal",      "pos": "DEF", "nation": "Spain",       "group": "H", "price": 5.0,  "xp": 11.0, "xp_md": [4.0, 3.5, 3.5], "ownership": 0.13, "notes": "Spain RB, fitness concern."},
-    {"name": "Marc Guehi",         "pos": "DEF", "nation": "England",     "group": "L", "price": 4.8,  "xp": 11.5, "xp_md": [3.5, 4.0, 4.0], "ownership": 0.16, "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). 3 assists in qualifying!"},
-    {"name": "Goncalo Inacio",     "pos": "DEF", "nation": "Portugal",    "group": "K", "price": 4.6,  "xp": 10.5, "xp_md": [4.0, 4.0, 2.5], "ownership": 0.11, "notes": "MD1 vs Congo DR (very easy), MD2 vs Uzbekistan (easy). Clean sheet machine early."},
-    {"name": "Jose Gimenez",       "pos": "DEF", "nation": "Uruguay",     "group": "H", "price": 4.4,  "xp": 10.0, "xp_md": [3.0, 3.5, 3.5], "ownership": 0.10, "notes": "MD1 vs Saudi Arabia (medium)."},
-    {"name": "Ladislav Krejci",    "pos": "DEF", "nation": "Czechia",     "group": "A", "price": 4.4,  "xp": 9.5,  "xp_md": [3.0, 3.0, 3.5], "ownership": 0.08, "notes": "Budget option. Czech group fixtures vs South Africa, Mexico."},
-    {"name": "Mojica",             "pos": "DEF", "nation": "Colombia",    "group": "K", "price": 3.8,  "xp": 9.0,  "xp_md": [3.0, 3.0, 3.0], "ownership": 0.09, "notes": "Cheapest good DEF. Colombia vs Uzbekistan (easy), Congo DR (easy)."},
-    {"name": "Tyler Adams",        "pos": "DEF", "nation": "USA",         "group": "D", "price": 4.5,  "xp": 9.5,  "xp_md": [3.0, 3.0, 3.5], "ownership": 0.09, "notes": "USA host nation, medium fixtures."},
-    {"name": "Perr Schuurs",       "pos": "DEF", "nation": "Netherlands", "group": "F", "price": 4.3,  "xp": 9.0,  "xp_md": [3.0, 3.0, 3.0], "ownership": 0.07, "notes": "Netherlands CB."},
-    {"name": "Ricardo Horta",      "pos": "DEF", "nation": "Portugal",    "group": "K", "price": 4.0,  "xp": 8.5,  "xp_md": [3.0, 3.0, 2.5], "ownership": 0.06, "notes": "Budget Portugal DEF."},
-    {"name": "Nuno Mendes",        "pos": "DEF", "nation": "Portugal",    "group": "K", "price": 5.2,  "xp": 11.0, "xp_md": [4.0, 4.0, 3.0], "ownership": 0.14, "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy). Portugal LB, attacking threat."},
-    {"name": "Robin Gosens",       "pos": "DEF", "nation": "Germany",     "group": "E", "price": 4.5,  "xp": 9.5,  "xp_md": [3.5, 3.0, 3.0], "ownership": 0.08, "notes": "MD1 vs Curacao (very easy). Germany LB."},
-    {"name": "Jonathan Clauss",    "pos": "DEF", "nation": "France",      "group": "I", "price": 4.8,  "xp": 10.0, "xp_md": [3.0, 4.0, 3.0], "ownership": 0.09, "notes": "France RB, MD2 vs Iraq is standout."},
-    {"name": "Emiliano Martinez",  "pos": "GK",  "nation": "Argentina",   "group": "J", "price": 5.5,  "xp": 14.5, "xp_md": [5.5, 4.5, 4.5], "ownership": 0.26, "notes": "MD1 vs Algeria (easy), MD2 vs Austria (medium), MD3 vs Jordan (very easy). Clean sheet machine."},
-    {"name": "Jordan Pickford",    "pos": "GK",  "nation": "England",     "group": "L", "price": 5.2,  "xp": 13.0, "xp_md": [4.0, 4.5, 4.5], "ownership": 0.23, "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England didn't concede in qualifying."},
-    {"name": "Mike Maignan",       "pos": "GK",  "nation": "France",      "group": "I", "price": 5.8,  "xp": 13.5, "xp_md": [4.0, 5.5, 4.0], "ownership": 0.20, "notes": "MD2 vs Iraq is standout (clean sheet very likely). MD3 vs Norway is hard."},
-    {"name": "Bart Verbruggen",    "pos": "GK",  "nation": "Netherlands", "group": "F", "price": 5.0,  "xp": 12.0, "xp_md": [4.0, 4.0, 4.0], "ownership": 0.17, "notes": "MD1 vs Japan (medium), consistent clean sheet potential."},
-    {"name": "Unai Simon",         "pos": "GK",  "nation": "Spain",       "group": "H", "price": 5.5,  "xp": 13.5, "xp_md": [5.5, 4.5, 3.5], "ownership": 0.19, "notes": "MD1 vs Cape Verde (clean sheet very likely!), MD2 vs Saudi Arabia (easy)."},
-    {"name": "Manuel Neuer",       "pos": "GK",  "nation": "Germany",     "group": "E", "price": 5.0,  "xp": 11.5, "xp_md": [5.0, 4.0, 2.5], "ownership": 0.15, "notes": "MD1 vs Curacao (very easy, likely clean sheet). Gets harder later."},
-    {"name": "Yann Sommer",        "pos": "GK",  "nation": "Switzerland", "group": "B", "price": 5.0,  "xp": 12.0, "xp_md": [4.0, 4.5, 3.5], "ownership": 0.13, "notes": "MD1 vs Qatar (very easy), Switzerland solid defense."},
-    {"name": "Ederson",            "pos": "GK",  "nation": "Brazil",      "group": "C", "price": 5.2,  "xp": 12.0, "xp_md": [3.5, 4.5, 5.0], "ownership": 0.12, "notes": "MD1 vs Morocco (hard), better later: MD3 vs Haiti (easy)."},
-    {"name": "Maxime Crepeau",     "pos": "GK",  "nation": "Canada",      "group": "B", "price": 4.0,  "xp": 9.5,  "xp_md": [3.5, 3.0, 3.0], "ownership": 0.08, "notes": "Cheapest viable GK. MD1 vs Bosnia, MD2 vs Qatar (easy)."},
-    {"name": "Paulo Gazzaniga",    "pos": "GK",  "nation": "Argentina",   "group": "J", "price": 4.5,  "xp": 10.5, "xp_md": [4.0, 3.5, 3.0], "ownership": 0.09, "notes": "Budget Argentina GK if Martinez injured."},
-    {"name": "David Raya",         "pos": "GK",  "nation": "Spain",       "group": "H", "price": 4.8,  "xp": 11.0, "xp_md": [4.5, 3.5, 3.0], "ownership": 0.10, "notes": "Budget Spain GK option. Very easy MD1."},
-    {"name": "Rodrigo",            "pos": "FWD", "nation": "Spain",       "group": "H", "price": 6.5,  "xp": 13.0, "xp_md": [5.0, 4.0, 4.0], "ownership": 0.13, "notes": "Spain striker. MD1 vs Cape Verde ideal."},
-    {"name": "Cristiano Ronaldo",  "pos": "FWD", "nation": "Portugal",    "group": "K", "price": 9.0,  "xp": 17.0, "xp_md": [6.0, 6.0, 5.0], "ownership": 0.35, "notes": "MD1 vs Congo DR (easy), penalty taker. Declining age 41, but still a goal threat."},
-    {"name": "Richarlison",        "pos": "FWD", "nation": "Brazil",      "group": "C", "price": 7.5,  "xp": 15.5, "xp_md": [4.5, 5.0, 6.0], "ownership": 0.17, "notes": "MD1 vs Morocco (hard), gets easier: MD3 vs Haiti. Injury risk."},
-    {"name": "Vitor Roque",        "pos": "FWD", "nation": "Brazil",      "group": "C", "price": 5.5,  "xp": 11.0, "xp_md": [3.0, 4.0, 4.0], "ownership": 0.09, "notes": "Budget Brazil FWD, MD3 vs Haiti is excellent."},
-    {"name": "Robert Lewandowski", "pos": "FWD", "nation": "Poland",      "group": "A", "price": 9.0,  "xp": 16.0, "xp_md": [5.0, 5.5, 5.5], "ownership": 0.28, "notes": "Poland face South Korea/Mexico/Czechia. Penalty taker."},
-    {"name": "Alvaro Morata",      "pos": "FWD", "nation": "Spain",       "group": "H", "price": 7.0,  "xp": 14.0, "xp_md": [5.5, 4.5, 4.0], "ownership": 0.15, "notes": "MD1 vs Cape Verde (easy). Spain striker."},
-    {"name": "Darwin Nunez",       "pos": "FWD", "nation": "Uruguay",     "group": "H", "price": 7.5,  "xp": 14.5, "xp_md": [4.0, 5.0, 5.5], "ownership": 0.18, "notes": "MD1 vs Saudi Arabia (medium), MD2 vs Cape Verde (easy), MD3 vs Spain (hard)."},
-    {"name": "Antoine Griezmann",  "pos": "FWD", "nation": "France",      "group": "I", "price": 7.8,  "xp": 15.5, "xp_md": [5.0, 5.5, 5.0], "ownership": 0.20, "notes": "MD1 vs Senegal, MD2 vs Iraq (excellent!). France creative outlet."},
-    {"name": "Lautaro Martinez",   "pos": "FWD", "nation": "Argentina",   "group": "J", "price": 8.5,  "xp": 17.5, "xp_md": [6.5, 5.5, 5.5], "ownership": 0.24, "notes": "MD1 vs Algeria (easy), MD2 vs Austria (medium), penalty taker."},
-    {"name": "Gabriel Martinelli", "pos": "FWD", "nation": "Brazil",      "group": "C", "price": 6.0,  "xp": 12.0, "xp_md": [3.5, 4.0, 4.5], "ownership": 0.10, "notes": "Budget Brazil FWD. MD3 vs Haiti is best fixture."},
-    {"name": "Memphis Depay",      "pos": "FWD", "nation": "Netherlands", "group": "F", "price": 7.0,  "xp": 13.5, "xp_md": [4.0, 4.5, 5.0], "ownership": 0.14, "notes": "MD1 vs Japan, MD3 vs Tunisia (easy). Penalty threat."},
-    {"name": "Donyell Malen",      "pos": "FWD", "nation": "Netherlands", "group": "F", "price": 6.5,  "xp": 12.5, "xp_md": [4.0, 4.0, 4.5], "ownership": 0.11, "notes": "MD3 vs Tunisia (easy). Netherlands FWD."},
-    {"name": "Christopher Nkunku", "pos": "FWD", "nation": "France",      "group": "I", "price": 7.2,  "xp": 14.0, "xp_md": [4.5, 5.0, 4.5], "ownership": 0.16, "notes": "MD2 vs Iraq is standout. France sub/starter."},
-    {"name": "Serhou Guirassy",    "pos": "FWD", "nation": "Guinea",      "price": 6.5,  "xp": 13.5, "xp_md": [4.5, 4.5, 4.5], "ownership": 0.12, "notes": "Bundesliga top scorer. Guinea group info TBC."},
-    {"name": "Sébastien Haller",   "pos": "FWD", "nation": "Ivory Coast", "group": "E", "price": 5.5,  "xp": 11.0, "xp_md": [3.5, 3.5, 4.0], "ownership": 0.08, "notes": "MD1 vs Ecuador (medium), MD2 vs Germany (very hard), MD3 vs Curacao (easy)."},
-    {"name": "Jhon Duran",         "pos": "FWD", "nation": "Colombia",    "group": "K", "price": 6.0,  "xp": 12.5, "xp_md": [4.5, 4.0, 4.0], "ownership": 0.11, "notes": "MD1 vs Uzbekistan (easy), MD2 vs Congo DR (easy). Aston Villa striker."},
-    {"name": "André Ayew",         "pos": "FWD", "nation": "Ghana",       "group": "L", "price": 4.5,  "xp": 9.0,  "xp_md": [3.0, 2.5, 3.0], "ownership": 0.05, "notes": "Budget FWD. Ghana face Panama, England, Croatia."},
-    {"name": "Ferran Torres",      "pos": "FWD", "nation": "Spain",       "group": "H", "price": 6.2,  "xp": 12.0, "xp_md": [4.5, 4.0, 3.5], "ownership": 0.10, "notes": "Spain FWD, good early fixtures."}
+    {
+      "name": "Erling Haaland",
+      "pos": "FWD",
+      "nation": "Norway",
+      "group": "I",
+      "price": 10.5,
+      "xp": 26.0,
+      "xp_md": [
+        9.5,
+        8.5,
+        8.0
+      ],
+      "ownership": 0.33,
+      "notes": "MD1 vs Iraq (easy), MD2 vs Senegal (medium), MD3 vs FRANCE (hard). Penalty taker, elite scorer.",
+      "stats": {
+        "goals_p90": 2.0,
+        "assists_p90": 0.12,
+        "sot_p90": 3.5,
+        "pen_taker": true,
+        "start_prob": 0.95,
+        "min_60_prob": 0.88,
+        "obx_ratio": 0.1,
+        "yellow_p90": 0.05,
+        "win_pen_p90": 0.08
+      }
+    },
+    {
+      "name": "Kylian Mbappe",
+      "pos": "FWD",
+      "nation": "France",
+      "group": "I",
+      "price": 10.5,
+      "xp": 24.0,
+      "xp_md": [
+        8.0,
+        9.0,
+        7.0
+      ],
+      "ownership": 0.52,
+      "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy), MD3 vs NORWAY (hard). Penalty taker, 52% owned.",
+      "stats": {
+        "goals_p90": 0.85,
+        "assists_p90": 0.4,
+        "sot_p90": 3.2,
+        "pen_taker": true,
+        "start_prob": 0.95,
+        "min_60_prob": 0.85,
+        "obx_ratio": 0.15,
+        "yellow_p90": 0.08,
+        "win_pen_p90": 0.06
+      }
+    },
+    {
+      "name": "Vinícius Júnior",
+      "pos": "MID",
+      "nation": "Brazil",
+      "group": "C",
+      "price": 10.0,
+      "xp": 21.0,
+      "xp_md": [
+        6.5,
+        7.0,
+        7.5
+      ],
+      "ownership": 0.28,
+      "notes": "MD1 vs Morocco (hard), MD2 vs Scotland (medium), MD3 vs Haiti (easy). Brazil powerhouse.",
+      "stats": {
+        "goals_p90": 0.48,
+        "assists_p90": 0.38,
+        "sot_p90": 2.8,
+        "kp_p90": 2.4,
+        "tackles_p90": 0.8,
+        "pen_taker": false,
+        "start_prob": 0.92,
+        "min_60_prob": 0.85,
+        "obx_ratio": 0.25,
+        "yellow_p90": 0.15
+      }
+    },
+    {
+      "name": "Mohamed Salah",
+      "pos": "MID",
+      "nation": "Egypt",
+      "group": "G",
+      "price": 10.0,
+      "xp": 14.0,
+      "xp_md": [
+        4.5,
+        5.0,
+        4.5
+      ],
+      "ownership": 0.12,
+      "notes": "MD1 vs Belgium (hard), MD2 vs New Zealand (easy), MD3 vs Iran (medium). Poor 2025-26 season.",
+      "stats": {
+        "goals_p90": 0.32,
+        "assists_p90": 0.28,
+        "sot_p90": 2.2,
+        "kp_p90": 2.0,
+        "tackles_p90": 0.5,
+        "pen_taker": true,
+        "start_prob": 0.9,
+        "min_60_prob": 0.82,
+        "obx_ratio": 0.18,
+        "yellow_p90": 0.06
+      }
+    },
+    {
+      "name": "Bruno Fernandes",
+      "pos": "MID",
+      "nation": "Portugal",
+      "group": "K",
+      "price": 8.5,
+      "xp": 19.0,
+      "xp_md": [
+        7.0,
+        6.5,
+        5.5
+      ],
+      "ownership": 0.31,
+      "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy), MD3 vs Colombia (medium). 21 EPL assists.",
+      "stats": {
+        "goals_p90": 0.6,
+        "assists_p90": 1.0,
+        "sot_p90": 2.8,
+        "kp_p90": 2.8,
+        "tackles_p90": 1.2,
+        "pen_taker": true,
+        "fk_taker": true,
+        "start_prob": 0.95,
+        "min_60_prob": 0.88,
+        "obx_ratio": 0.22,
+        "yellow_p90": 0.18,
+        "win_pen_p90": 0.05
+      }
+    },
+    {
+      "name": "Jude Bellingham",
+      "pos": "MID",
+      "nation": "England",
+      "group": "L",
+      "price": 8.3,
+      "xp": 16.0,
+      "xp_md": [
+        5.0,
+        5.5,
+        5.5
+      ],
+      "ownership": 0.24,
+      "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). Creative threat.",
+      "stats": {
+        "goals_p90": 0.42,
+        "assists_p90": 0.35,
+        "sot_p90": 2.2,
+        "kp_p90": 2.2,
+        "tackles_p90": 1.5,
+        "pen_taker": false,
+        "fk_taker": false,
+        "start_prob": 0.92,
+        "min_60_prob": 0.88,
+        "obx_ratio": 0.18,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Mikel Oyarzabal",
+      "pos": "FWD",
+      "nation": "Spain",
+      "group": "H",
+      "price": 7.8,
+      "xp": 20.5,
+      "xp_md": [
+        8.0,
+        6.5,
+        6.0
+      ],
+      "ownership": 0.16,
+      "notes": "MD1 vs Cape Verde (easy), MD2 vs Saudi Arabia (easy), MD3 vs Uruguay (hard). 6G 3A in qualifying. Best value FWD.",
+      "stats": {
+        "goals_p90": 1.0,
+        "assists_p90": 0.67,
+        "sot_p90": 2.5,
+        "pen_taker": false,
+        "fk_taker": false,
+        "start_prob": 0.9,
+        "min_60_prob": 0.82,
+        "obx_ratio": 0.2,
+        "yellow_p90": 0.1,
+        "win_pen_p90": 0.05
+      }
+    },
+    {
+      "name": "Kai Havertz",
+      "pos": "FWD",
+      "nation": "Germany",
+      "group": "E",
+      "price": 8.0,
+      "xp": 17.0,
+      "xp_md": [
+        7.0,
+        5.5,
+        4.5
+      ],
+      "ownership": 0.19,
+      "notes": "MD1 vs Curacao (very easy), MD2 vs Ivory Coast (easy), MD3 vs Ecuador (medium).",
+      "stats": {
+        "goals_p90": 0.6,
+        "assists_p90": 0.25,
+        "sot_p90": 2.0,
+        "pen_taker": true,
+        "start_prob": 0.85,
+        "min_60_prob": 0.8,
+        "obx_ratio": 0.15,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Declan Rice",
+      "pos": "MID",
+      "nation": "England",
+      "group": "L",
+      "price": 7.0,
+      "xp": 13.5,
+      "xp_md": [
+        4.5,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.22,
+      "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). Set piece threat.",
+      "stats": {
+        "goals_p90": 0.2,
+        "assists_p90": 0.28,
+        "sot_p90": 1.2,
+        "kp_p90": 1.8,
+        "tackles_p90": 2.8,
+        "pen_taker": false,
+        "fk_taker": true,
+        "start_prob": 0.92,
+        "min_60_prob": 0.88,
+        "yellow_p90": 0.2
+      }
+    },
+    {
+      "name": "Leandro Trossard",
+      "pos": "MID",
+      "nation": "Belgium",
+      "group": "G",
+      "price": 7.2,
+      "xp": 16.0,
+      "xp_md": [
+        5.5,
+        5.5,
+        5.0
+      ],
+      "ownership": 0.18,
+      "notes": "MD1 vs Egypt (medium), MD2 vs Iran (easy), MD3 vs New Zealand (easy). Goal threat.",
+      "stats": {
+        "goals_p90": 0.42,
+        "assists_p90": 0.38,
+        "sot_p90": 2.2,
+        "kp_p90": 1.8,
+        "tackles_p90": 1.0,
+        "pen_taker": false,
+        "start_prob": 0.88,
+        "min_60_prob": 0.82,
+        "obx_ratio": 0.2,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Nick Woltemade",
+      "pos": "FWD",
+      "nation": "Germany",
+      "group": "E",
+      "price": 7.2,
+      "xp": 15.0,
+      "xp_md": [
+        6.0,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.14,
+      "notes": "MD1 vs Curacao (very easy), excellent early fixture.",
+      "stats": {
+        "goals_p90": 0.55,
+        "assists_p90": 0.2,
+        "sot_p90": 2.1,
+        "pen_taker": false,
+        "start_prob": 0.8,
+        "min_60_prob": 0.72,
+        "obx_ratio": 0.22
+      }
+    },
+    {
+      "name": "Nicolas Jackson",
+      "pos": "FWD",
+      "nation": "Senegal",
+      "group": "I",
+      "price": 6.7,
+      "xp": 13.0,
+      "xp_md": [
+        4.0,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.11,
+      "notes": "MD1 vs France (very hard), MD2 vs Norway (hard), MD3 vs Iraq (easy). Hard group stage.",
+      "stats": {
+        "goals_p90": 0.45,
+        "assists_p90": 0.2,
+        "sot_p90": 1.8,
+        "pen_taker": false,
+        "start_prob": 0.8,
+        "min_60_prob": 0.72
+      }
+    },
+    {
+      "name": "Lamine Yamal",
+      "pos": "MID",
+      "nation": "Spain",
+      "group": "H",
+      "price": 7.5,
+      "xp": 17.5,
+      "xp_md": [
+        6.5,
+        5.5,
+        5.5
+      ],
+      "ownership": 0.27,
+      "notes": "MD1 vs Cape Verde (easy), MD2 vs Saudi Arabia (easy), MD3 vs Uruguay (hard). Spain's creative star.",
+      "stats": {
+        "goals_p90": 0.48,
+        "assists_p90": 0.62,
+        "sot_p90": 3.0,
+        "kp_p90": 3.2,
+        "tackles_p90": 0.8,
+        "pen_taker": false,
+        "fk_taker": true,
+        "start_prob": 0.92,
+        "min_60_prob": 0.85,
+        "obx_ratio": 0.3,
+        "yellow_p90": 0.08
+      }
+    },
+    {
+      "name": "Pedri",
+      "pos": "MID",
+      "nation": "Spain",
+      "group": "H",
+      "price": 7.0,
+      "xp": 14.0,
+      "xp_md": [
+        5.0,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.2,
+      "notes": "MD1 vs Cape Verde (easy). Spain midfield engine.",
+      "stats": {
+        "goals_p90": 0.28,
+        "assists_p90": 0.32,
+        "sot_p90": 1.6,
+        "kp_p90": 3.0,
+        "tackles_p90": 2.2,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.78,
+        "yellow_p90": 0.14
+      }
+    },
+    {
+      "name": "Dani Olmo",
+      "pos": "MID",
+      "nation": "Spain",
+      "group": "H",
+      "price": 6.8,
+      "xp": 14.5,
+      "xp_md": [
+        5.5,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.15,
+      "notes": "MD1 vs Cape Verde (easy). Spain attacking mid, good value.",
+      "stats": {
+        "goals_p90": 0.32,
+        "assists_p90": 0.28,
+        "sot_p90": 1.8,
+        "kp_p90": 2.2,
+        "tackles_p90": 1.5,
+        "pen_taker": false,
+        "start_prob": 0.82,
+        "min_60_prob": 0.75,
+        "obx_ratio": 0.22
+      }
+    },
+    {
+      "name": "John McGinn",
+      "pos": "MID",
+      "nation": "Scotland",
+      "group": "C",
+      "price": 6.0,
+      "xp": 11.5,
+      "xp_md": [
+        4.5,
+        3.0,
+        4.0
+      ],
+      "ownership": 0.1,
+      "notes": "MD1 vs Haiti (easy), MD2 vs Brazil (very hard), MD3 vs Morocco (hard). Set piece taker.",
+      "stats": {
+        "goals_p90": 0.2,
+        "assists_p90": 0.22,
+        "sot_p90": 1.2,
+        "kp_p90": 1.5,
+        "tackles_p90": 2.2,
+        "pen_taker": false,
+        "fk_taker": true,
+        "start_prob": 0.9,
+        "min_60_prob": 0.85,
+        "yellow_p90": 0.15
+      }
+    },
+    {
+      "name": "Phil Foden",
+      "pos": "MID",
+      "nation": "England",
+      "group": "L",
+      "price": 7.8,
+      "xp": 14.5,
+      "xp_md": [
+        4.5,
+        5.0,
+        5.0
+      ],
+      "ownership": 0.21,
+      "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England creative.",
+      "stats": {
+        "goals_p90": 0.38,
+        "assists_p90": 0.38,
+        "sot_p90": 2.0,
+        "kp_p90": 2.2,
+        "tackles_p90": 0.8,
+        "pen_taker": false,
+        "start_prob": 0.88,
+        "min_60_prob": 0.82,
+        "obx_ratio": 0.22,
+        "yellow_p90": 0.08
+      }
+    },
+    {
+      "name": "Bukayo Saka",
+      "pos": "MID",
+      "nation": "England",
+      "group": "L",
+      "price": 7.5,
+      "xp": 14.0,
+      "xp_md": [
+        4.5,
+        4.5,
+        5.0
+      ],
+      "ownership": 0.2,
+      "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England winger.",
+      "stats": {
+        "goals_p90": 0.35,
+        "assists_p90": 0.38,
+        "sot_p90": 2.1,
+        "kp_p90": 2.5,
+        "tackles_p90": 1.0,
+        "pen_taker": false,
+        "fk_taker": true,
+        "start_prob": 0.9,
+        "min_60_prob": 0.85,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Gavi",
+      "pos": "MID",
+      "nation": "Spain",
+      "group": "H",
+      "price": 6.5,
+      "xp": 12.0,
+      "xp_md": [
+        4.5,
+        4.0,
+        3.5
+      ],
+      "ownership": 0.1,
+      "notes": "MD1 vs Cape Verde (easy). Fitness concern.",
+      "stats": {
+        "goals_p90": 0.18,
+        "assists_p90": 0.22,
+        "sot_p90": 1.0,
+        "kp_p90": 2.8,
+        "tackles_p90": 3.2,
+        "pen_taker": false,
+        "start_prob": 0.78,
+        "min_60_prob": 0.7,
+        "yellow_p90": 0.22
+      }
+    },
+    {
+      "name": "Bernardo Silva",
+      "pos": "MID",
+      "nation": "Portugal",
+      "group": "K",
+      "price": 7.0,
+      "xp": 13.0,
+      "xp_md": [
+        4.5,
+        4.5,
+        4.0
+      ],
+      "ownership": 0.15,
+      "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy), MD3 vs Colombia.",
+      "stats": {
+        "goals_p90": 0.22,
+        "assists_p90": 0.3,
+        "sot_p90": 1.4,
+        "kp_p90": 2.8,
+        "tackles_p90": 1.2,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.78
+      }
+    },
+    {
+      "name": "Federico Valverde",
+      "pos": "MID",
+      "nation": "Uruguay",
+      "group": "H",
+      "price": 7.5,
+      "xp": 13.5,
+      "xp_md": [
+        4.0,
+        4.5,
+        5.0
+      ],
+      "ownership": 0.12,
+      "notes": "MD1 vs Saudi Arabia (medium), MD2 vs Cape Verde (easy), MD3 vs Spain (hard).",
+      "stats": {
+        "goals_p90": 0.25,
+        "assists_p90": 0.2,
+        "sot_p90": 1.6,
+        "kp_p90": 1.8,
+        "tackles_p90": 2.5,
+        "pen_taker": false,
+        "start_prob": 0.88,
+        "min_60_prob": 0.82,
+        "yellow_p90": 0.18
+      }
+    },
+    {
+      "name": "Carlos Soler",
+      "pos": "MID",
+      "nation": "Spain",
+      "group": "H",
+      "price": 5.5,
+      "xp": 10.0,
+      "xp_md": [
+        3.5,
+        3.5,
+        3.0
+      ],
+      "ownership": 0.08,
+      "notes": "Budget Spain MID. Good early fixtures.",
+      "stats": {
+        "goals_p90": 0.18,
+        "assists_p90": 0.15,
+        "sot_p90": 0.9,
+        "kp_p90": 1.5,
+        "tackles_p90": 1.8,
+        "pen_taker": false,
+        "start_prob": 0.72,
+        "min_60_prob": 0.65
+      }
+    },
+    {
+      "name": "Rodrigo Bentancur",
+      "pos": "MID",
+      "nation": "Uruguay",
+      "group": "H",
+      "price": 5.8,
+      "xp": 10.5,
+      "xp_md": [
+        3.5,
+        3.5,
+        3.5
+      ],
+      "ownership": 0.09,
+      "notes": "Uruguay midfield. MD3 vs Spain is hard.",
+      "stats": {
+        "goals_p90": 0.12,
+        "assists_p90": 0.15,
+        "sot_p90": 0.8,
+        "kp_p90": 1.2,
+        "tackles_p90": 2.8,
+        "pen_taker": false,
+        "start_prob": 0.78,
+        "min_60_prob": 0.72,
+        "yellow_p90": 0.2
+      }
+    },
+    {
+      "name": "Jarrod Bowen",
+      "pos": "MID",
+      "nation": "England",
+      "group": "L",
+      "price": 5.5,
+      "xp": 10.0,
+      "xp_md": [
+        3.5,
+        3.5,
+        3.0
+      ],
+      "ownership": 0.08,
+      "notes": "Budget England MID, bench option.",
+      "stats": {
+        "goals_p90": 0.22,
+        "assists_p90": 0.18,
+        "sot_p90": 1.2,
+        "kp_p90": 1.4,
+        "tackles_p90": 1.0,
+        "pen_taker": false,
+        "start_prob": 0.68,
+        "min_60_prob": 0.6
+      }
+    },
+    {
+      "name": "Virgil van Dijk",
+      "pos": "DEF",
+      "nation": "Netherlands",
+      "group": "F",
+      "price": 5.8,
+      "xp": 14.0,
+      "xp_md": [
+        4.5,
+        4.5,
+        5.0
+      ],
+      "ownership": 0.23,
+      "notes": "MD1 vs Japan (medium), MD2 vs Sweden (medium), MD3 vs Tunisia (easy). Clean sheet upside.",
+      "stats": {
+        "goals_p90": 0.12,
+        "assists_p90": 0.08,
+        "sot_p90": 0.0,
+        "tackles_p90": 0.8,
+        "pen_taker": false,
+        "start_prob": 0.92,
+        "min_60_prob": 0.88,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Achraf Hakimi",
+      "pos": "DEF",
+      "nation": "Morocco",
+      "group": "C",
+      "price": 6.0,
+      "xp": 16.0,
+      "xp_md": [
+        4.5,
+        6.0,
+        5.5
+      ],
+      "ownership": 0.29,
+      "notes": "MD1 vs Brazil (very hard), MD2 vs Haiti (easy!), MD3 vs Scotland (medium). Wait for MD2+.",
+      "stats": {
+        "goals_p90": 0.22,
+        "assists_p90": 0.32,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.5,
+        "pen_taker": false,
+        "start_prob": 0.92,
+        "min_60_prob": 0.85,
+        "obx_ratio": 0.3,
+        "yellow_p90": 0.15
+      }
+    },
+    {
+      "name": "William Saliba",
+      "pos": "DEF",
+      "nation": "France",
+      "group": "I",
+      "price": 5.3,
+      "xp": 13.0,
+      "xp_md": [
+        4.0,
+        5.0,
+        4.0
+      ],
+      "ownership": 0.18,
+      "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy, clean sheet likely), MD3 vs Norway (hard).",
+      "stats": {
+        "goals_p90": 0.06,
+        "assists_p90": 0.06,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.0,
+        "pen_taker": false,
+        "start_prob": 0.9,
+        "min_60_prob": 0.85,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Jules Kounde",
+      "pos": "DEF",
+      "nation": "France",
+      "group": "I",
+      "price": 5.4,
+      "xp": 12.5,
+      "xp_md": [
+        3.5,
+        5.0,
+        3.5
+      ],
+      "ownership": 0.15,
+      "notes": "MD2 vs Iraq is the standout fixture (clean sheet + attacking threat).",
+      "stats": {
+        "goals_p90": 0.08,
+        "assists_p90": 0.18,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.2,
+        "pen_taker": false,
+        "start_prob": 0.88,
+        "min_60_prob": 0.82,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Dayot Upamecano",
+      "pos": "DEF",
+      "nation": "France",
+      "group": "I",
+      "price": 5.3,
+      "xp": 11.5,
+      "xp_md": [
+        3.5,
+        4.5,
+        3.5
+      ],
+      "ownership": 0.12,
+      "notes": "France CB.",
+      "stats": {
+        "goals_p90": 0.08,
+        "assists_p90": 0.05,
+        "sot_p90": 0.0,
+        "tackles_p90": 0.8,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.8,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Alejandro Balde",
+      "pos": "DEF",
+      "nation": "Spain",
+      "group": "H",
+      "price": 5.5,
+      "xp": 13.5,
+      "xp_md": [
+        5.0,
+        4.5,
+        4.0
+      ],
+      "ownership": 0.2,
+      "notes": "MD1 vs Cape Verde (very easy), MD2 vs Saudi Arabia (easy). Attacking LB for Spain.",
+      "stats": {
+        "goals_p90": 0.12,
+        "assists_p90": 0.28,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.2,
+        "pen_taker": false,
+        "start_prob": 0.88,
+        "min_60_prob": 0.82,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Dani Carvajal",
+      "pos": "DEF",
+      "nation": "Spain",
+      "group": "H",
+      "price": 5.0,
+      "xp": 11.0,
+      "xp_md": [
+        4.0,
+        3.5,
+        3.5
+      ],
+      "ownership": 0.13,
+      "notes": "Spain RB, fitness concern.",
+      "stats": {
+        "goals_p90": 0.08,
+        "assists_p90": 0.18,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.0,
+        "pen_taker": false,
+        "start_prob": 0.78,
+        "min_60_prob": 0.72,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Marc Guehi",
+      "pos": "DEF",
+      "nation": "England",
+      "group": "L",
+      "price": 4.8,
+      "xp": 11.5,
+      "xp_md": [
+        3.5,
+        4.0,
+        4.0
+      ],
+      "ownership": 0.16,
+      "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). 3 assists in qualifying!",
+      "stats": {
+        "goals_p90": 0.1,
+        "assists_p90": 0.3,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.2,
+        "pen_taker": false,
+        "start_prob": 0.88,
+        "min_60_prob": 0.82,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Goncalo Inacio",
+      "pos": "DEF",
+      "nation": "Portugal",
+      "group": "K",
+      "price": 4.6,
+      "xp": 10.5,
+      "xp_md": [
+        4.0,
+        4.0,
+        2.5
+      ],
+      "ownership": 0.11,
+      "notes": "MD1 vs Congo DR (very easy), MD2 vs Uzbekistan (easy). Clean sheet machine early.",
+      "stats": {
+        "goals_p90": 0.08,
+        "assists_p90": 0.08,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.0,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.8,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Jose Gimenez",
+      "pos": "DEF",
+      "nation": "Uruguay",
+      "group": "H",
+      "price": 4.4,
+      "xp": 10.0,
+      "xp_md": [
+        3.0,
+        3.5,
+        3.5
+      ],
+      "ownership": 0.1,
+      "notes": "MD1 vs Saudi Arabia (medium).",
+      "stats": {
+        "goals_p90": 0.08,
+        "assists_p90": 0.06,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.0,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.8,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Ladislav Krejci",
+      "pos": "DEF",
+      "nation": "Czechia",
+      "group": "A",
+      "price": 4.4,
+      "xp": 9.5,
+      "xp_md": [
+        3.0,
+        3.0,
+        3.5
+      ],
+      "ownership": 0.08,
+      "notes": "Budget option. Czech group fixtures vs South Africa, Mexico.",
+      "stats": {
+        "goals_p90": 0.06,
+        "assists_p90": 0.06,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.2,
+        "pen_taker": false,
+        "start_prob": 0.82,
+        "min_60_prob": 0.75,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Mojica",
+      "pos": "DEF",
+      "nation": "Colombia",
+      "group": "K",
+      "price": 3.8,
+      "xp": 9.0,
+      "xp_md": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "ownership": 0.09,
+      "notes": "Cheapest good DEF. Colombia vs Uzbekistan (easy), Congo DR (easy).",
+      "stats": {
+        "goals_p90": 0.08,
+        "assists_p90": 0.15,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.8,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.78,
+        "yellow_p90": 0.15
+      }
+    },
+    {
+      "name": "Tyler Adams",
+      "pos": "DEF",
+      "nation": "USA",
+      "group": "D",
+      "price": 4.5,
+      "xp": 9.5,
+      "xp_md": [
+        3.0,
+        3.0,
+        3.5
+      ],
+      "ownership": 0.09,
+      "notes": "USA host nation, medium fixtures.",
+      "stats": {
+        "goals_p90": 0.06,
+        "assists_p90": 0.08,
+        "sot_p90": 0.0,
+        "tackles_p90": 2.0,
+        "pen_taker": false,
+        "start_prob": 0.82,
+        "min_60_prob": 0.75,
+        "yellow_p90": 0.18
+      }
+    },
+    {
+      "name": "Perr Schuurs",
+      "pos": "DEF",
+      "nation": "Netherlands",
+      "group": "F",
+      "price": 4.3,
+      "xp": 9.0,
+      "xp_md": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "ownership": 0.07,
+      "notes": "Netherlands CB.",
+      "stats": {
+        "goals_p90": 0.06,
+        "assists_p90": 0.05,
+        "sot_p90": 0.0,
+        "tackles_p90": 0.8,
+        "pen_taker": false,
+        "start_prob": 0.8,
+        "min_60_prob": 0.75,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Ricardo Horta",
+      "pos": "DEF",
+      "nation": "Portugal",
+      "group": "K",
+      "price": 4.0,
+      "xp": 8.5,
+      "xp_md": [
+        3.0,
+        3.0,
+        2.5
+      ],
+      "ownership": 0.06,
+      "notes": "Budget Portugal DEF.",
+      "stats": {
+        "goals_p90": 0.06,
+        "assists_p90": 0.06,
+        "sot_p90": 0.0,
+        "tackles_p90": 0.8,
+        "pen_taker": false,
+        "start_prob": 0.72,
+        "min_60_prob": 0.65
+      }
+    },
+    {
+      "name": "Nuno Mendes",
+      "pos": "DEF",
+      "nation": "Portugal",
+      "group": "K",
+      "price": 5.2,
+      "xp": 11.0,
+      "xp_md": [
+        4.0,
+        4.0,
+        3.0
+      ],
+      "ownership": 0.14,
+      "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy). Portugal LB, attacking threat.",
+      "stats": {
+        "goals_p90": 0.1,
+        "assists_p90": 0.22,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.2,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.78,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Robin Gosens",
+      "pos": "DEF",
+      "nation": "Germany",
+      "group": "E",
+      "price": 4.5,
+      "xp": 9.5,
+      "xp_md": [
+        3.5,
+        3.0,
+        3.0
+      ],
+      "ownership": 0.08,
+      "notes": "MD1 vs Curacao (very easy). Germany LB.",
+      "stats": {
+        "goals_p90": 0.1,
+        "assists_p90": 0.18,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.5,
+        "pen_taker": false,
+        "start_prob": 0.78,
+        "min_60_prob": 0.7,
+        "yellow_p90": 0.15
+      }
+    },
+    {
+      "name": "Jonathan Clauss",
+      "pos": "DEF",
+      "nation": "France",
+      "group": "I",
+      "price": 4.8,
+      "xp": 10.0,
+      "xp_md": [
+        3.0,
+        4.0,
+        3.0
+      ],
+      "ownership": 0.09,
+      "notes": "France RB, MD2 vs Iraq is standout.",
+      "stats": {
+        "goals_p90": 0.1,
+        "assists_p90": 0.22,
+        "sot_p90": 0.0,
+        "tackles_p90": 1.4,
+        "pen_taker": false,
+        "start_prob": 0.8,
+        "min_60_prob": 0.72,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Emiliano Martinez",
+      "pos": "GK",
+      "nation": "Argentina",
+      "group": "J",
+      "price": 5.5,
+      "xp": 14.5,
+      "xp_md": [
+        5.5,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.26,
+      "notes": "MD1 vs Algeria (easy), MD2 vs Austria (medium), MD3 vs Jordan (very easy). Clean sheet machine.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 3.2,
+        "start_prob": 0.95,
+        "min_60_prob": 0.92,
+        "yellow_p90": 0.05
+      }
+    },
+    {
+      "name": "Jordan Pickford",
+      "pos": "GK",
+      "nation": "England",
+      "group": "L",
+      "price": 5.2,
+      "xp": 13.0,
+      "xp_md": [
+        4.0,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.23,
+      "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England didn't concede in qualifying.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.6,
+        "start_prob": 0.95,
+        "min_60_prob": 0.92,
+        "yellow_p90": 0.04
+      }
+    },
+    {
+      "name": "Mike Maignan",
+      "pos": "GK",
+      "nation": "France",
+      "group": "I",
+      "price": 5.8,
+      "xp": 13.5,
+      "xp_md": [
+        4.0,
+        5.5,
+        4.0
+      ],
+      "ownership": 0.2,
+      "notes": "MD2 vs Iraq is standout (clean sheet very likely). MD3 vs Norway is hard.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.8,
+        "start_prob": 0.95,
+        "min_60_prob": 0.92,
+        "yellow_p90": 0.04
+      }
+    },
+    {
+      "name": "Bart Verbruggen",
+      "pos": "GK",
+      "nation": "Netherlands",
+      "group": "F",
+      "price": 5.0,
+      "xp": 12.0,
+      "xp_md": [
+        4.0,
+        4.0,
+        4.0
+      ],
+      "ownership": 0.17,
+      "notes": "MD1 vs Japan (medium), consistent clean sheet potential.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.8,
+        "start_prob": 0.92,
+        "min_60_prob": 0.9,
+        "yellow_p90": 0.04
+      }
+    },
+    {
+      "name": "Unai Simon",
+      "pos": "GK",
+      "nation": "Spain",
+      "group": "H",
+      "price": 5.5,
+      "xp": 13.5,
+      "xp_md": [
+        5.5,
+        4.5,
+        3.5
+      ],
+      "ownership": 0.19,
+      "notes": "MD1 vs Cape Verde (clean sheet very likely!), MD2 vs Saudi Arabia (easy).",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.5,
+        "start_prob": 0.92,
+        "min_60_prob": 0.9,
+        "yellow_p90": 0.04
+      }
+    },
+    {
+      "name": "Manuel Neuer",
+      "pos": "GK",
+      "nation": "Germany",
+      "group": "E",
+      "price": 5.0,
+      "xp": 11.5,
+      "xp_md": [
+        5.0,
+        4.0,
+        2.5
+      ],
+      "ownership": 0.15,
+      "notes": "MD1 vs Curacao (very easy, likely clean sheet). Gets harder later.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.4,
+        "start_prob": 0.9,
+        "min_60_prob": 0.88,
+        "yellow_p90": 0.03
+      }
+    },
+    {
+      "name": "Yann Sommer",
+      "pos": "GK",
+      "nation": "Switzerland",
+      "group": "B",
+      "price": 5.0,
+      "xp": 12.0,
+      "xp_md": [
+        4.0,
+        4.5,
+        3.5
+      ],
+      "ownership": 0.13,
+      "notes": "MD1 vs Qatar (very easy), Switzerland solid defense.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.6,
+        "start_prob": 0.92,
+        "min_60_prob": 0.9,
+        "yellow_p90": 0.03
+      }
+    },
+    {
+      "name": "Ederson",
+      "pos": "GK",
+      "nation": "Brazil",
+      "group": "C",
+      "price": 5.2,
+      "xp": 12.0,
+      "xp_md": [
+        3.5,
+        4.5,
+        5.0
+      ],
+      "ownership": 0.12,
+      "notes": "MD1 vs Morocco (hard), better later: MD3 vs Haiti (easy).",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.4,
+        "start_prob": 0.92,
+        "min_60_prob": 0.9,
+        "yellow_p90": 0.03
+      }
+    },
+    {
+      "name": "Maxime Crepeau",
+      "pos": "GK",
+      "nation": "Canada",
+      "group": "B",
+      "price": 4.0,
+      "xp": 9.5,
+      "xp_md": [
+        3.5,
+        3.0,
+        3.0
+      ],
+      "ownership": 0.08,
+      "notes": "Cheapest viable GK. MD1 vs Bosnia, MD2 vs Qatar (easy).",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 3.0,
+        "start_prob": 0.88,
+        "min_60_prob": 0.85,
+        "yellow_p90": 0.04
+      }
+    },
+    {
+      "name": "Paulo Gazzaniga",
+      "pos": "GK",
+      "nation": "Argentina",
+      "group": "J",
+      "price": 4.5,
+      "xp": 10.5,
+      "xp_md": [
+        4.0,
+        3.5,
+        3.0
+      ],
+      "ownership": 0.09,
+      "notes": "Budget Argentina GK if Martinez injured.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.8,
+        "start_prob": 0.72,
+        "min_60_prob": 0.7,
+        "yellow_p90": 0.04
+      }
+    },
+    {
+      "name": "David Raya",
+      "pos": "GK",
+      "nation": "Spain",
+      "group": "H",
+      "price": 4.8,
+      "xp": 11.0,
+      "xp_md": [
+        4.5,
+        3.5,
+        3.0
+      ],
+      "ownership": 0.1,
+      "notes": "Budget Spain GK option. Very easy MD1.",
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 2.5,
+        "start_prob": 0.72,
+        "min_60_prob": 0.7,
+        "yellow_p90": 0.04
+      }
+    },
+    {
+      "name": "Rodrigo",
+      "pos": "FWD",
+      "nation": "Spain",
+      "group": "H",
+      "price": 6.5,
+      "xp": 13.0,
+      "xp_md": [
+        5.0,
+        4.0,
+        4.0
+      ],
+      "ownership": 0.13,
+      "notes": "Spain striker. MD1 vs Cape Verde ideal.",
+      "stats": {
+        "goals_p90": 0.42,
+        "assists_p90": 0.18,
+        "sot_p90": 1.8,
+        "pen_taker": false,
+        "start_prob": 0.75,
+        "min_60_prob": 0.68
+      }
+    },
+    {
+      "name": "Cristiano Ronaldo",
+      "pos": "FWD",
+      "nation": "Portugal",
+      "group": "K",
+      "price": 9.0,
+      "xp": 17.0,
+      "xp_md": [
+        6.0,
+        6.0,
+        5.0
+      ],
+      "ownership": 0.35,
+      "notes": "MD1 vs Congo DR (easy), penalty taker. Declining age 41, but still a goal threat.",
+      "stats": {
+        "goals_p90": 0.45,
+        "assists_p90": 0.2,
+        "sot_p90": 2.2,
+        "pen_taker": true,
+        "start_prob": 0.88,
+        "min_60_prob": 0.78,
+        "obx_ratio": 0.08,
+        "yellow_p90": 0.08
+      }
+    },
+    {
+      "name": "Richarlison",
+      "pos": "FWD",
+      "nation": "Brazil",
+      "group": "C",
+      "price": 7.5,
+      "xp": 15.5,
+      "xp_md": [
+        4.5,
+        5.0,
+        6.0
+      ],
+      "ownership": 0.17,
+      "notes": "MD1 vs Morocco (hard), gets easier: MD3 vs Haiti. Injury risk.",
+      "stats": {
+        "goals_p90": 0.55,
+        "assists_p90": 0.18,
+        "sot_p90": 2.3,
+        "pen_taker": false,
+        "start_prob": 0.78,
+        "min_60_prob": 0.72,
+        "obx_ratio": 0.1,
+        "yellow_p90": 0.12
+      }
+    },
+    {
+      "name": "Vitor Roque",
+      "pos": "FWD",
+      "nation": "Brazil",
+      "group": "C",
+      "price": 5.5,
+      "xp": 11.0,
+      "xp_md": [
+        3.0,
+        4.0,
+        4.0
+      ],
+      "ownership": 0.09,
+      "notes": "Budget Brazil FWD, MD3 vs Haiti is excellent.",
+      "stats": {
+        "goals_p90": 0.35,
+        "assists_p90": 0.12,
+        "sot_p90": 1.5,
+        "pen_taker": false,
+        "start_prob": 0.65,
+        "min_60_prob": 0.58
+      }
+    },
+    {
+      "name": "Robert Lewandowski",
+      "pos": "FWD",
+      "nation": "Poland",
+      "group": "A",
+      "price": 9.0,
+      "xp": 16.0,
+      "xp_md": [
+        5.0,
+        5.5,
+        5.5
+      ],
+      "ownership": 0.28,
+      "notes": "Poland face South Korea/Mexico/Czechia. Penalty taker.",
+      "stats": {
+        "goals_p90": 0.72,
+        "assists_p90": 0.18,
+        "sot_p90": 2.6,
+        "pen_taker": true,
+        "start_prob": 0.92,
+        "min_60_prob": 0.85,
+        "obx_ratio": 0.1,
+        "yellow_p90": 0.08
+      }
+    },
+    {
+      "name": "Alvaro Morata",
+      "pos": "FWD",
+      "nation": "Spain",
+      "group": "H",
+      "price": 7.0,
+      "xp": 14.0,
+      "xp_md": [
+        5.5,
+        4.5,
+        4.0
+      ],
+      "ownership": 0.15,
+      "notes": "MD1 vs Cape Verde (easy). Spain striker.",
+      "stats": {
+        "goals_p90": 0.48,
+        "assists_p90": 0.22,
+        "sot_p90": 1.8,
+        "pen_taker": true,
+        "start_prob": 0.75,
+        "min_60_prob": 0.68,
+        "obx_ratio": 0.1
+      }
+    },
+    {
+      "name": "Darwin Nunez",
+      "pos": "FWD",
+      "nation": "Uruguay",
+      "group": "H",
+      "price": 7.5,
+      "xp": 14.5,
+      "xp_md": [
+        4.0,
+        5.0,
+        5.5
+      ],
+      "ownership": 0.18,
+      "notes": "MD1 vs Saudi Arabia (medium), MD2 vs Cape Verde (easy), MD3 vs Spain (hard).",
+      "stats": {
+        "goals_p90": 0.5,
+        "assists_p90": 0.22,
+        "sot_p90": 2.2,
+        "pen_taker": false,
+        "start_prob": 0.82,
+        "min_60_prob": 0.75,
+        "obx_ratio": 0.12,
+        "yellow_p90": 0.15
+      }
+    },
+    {
+      "name": "Antoine Griezmann",
+      "pos": "FWD",
+      "nation": "France",
+      "group": "I",
+      "price": 7.8,
+      "xp": 15.5,
+      "xp_md": [
+        5.0,
+        5.5,
+        5.0
+      ],
+      "ownership": 0.2,
+      "notes": "MD1 vs Senegal, MD2 vs Iraq (excellent!). France creative outlet.",
+      "stats": {
+        "goals_p90": 0.45,
+        "assists_p90": 0.45,
+        "sot_p90": 2.0,
+        "pen_taker": false,
+        "start_prob": 0.85,
+        "min_60_prob": 0.78,
+        "obx_ratio": 0.18,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Lautaro Martinez",
+      "pos": "FWD",
+      "nation": "Argentina",
+      "group": "J",
+      "price": 8.5,
+      "xp": 17.5,
+      "xp_md": [
+        6.5,
+        5.5,
+        5.5
+      ],
+      "ownership": 0.24,
+      "notes": "MD1 vs Algeria (easy), MD2 vs Austria (medium), penalty taker.",
+      "stats": {
+        "goals_p90": 0.65,
+        "assists_p90": 0.28,
+        "sot_p90": 2.8,
+        "pen_taker": true,
+        "start_prob": 0.92,
+        "min_60_prob": 0.85,
+        "obx_ratio": 0.12,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Gabriel Martinelli",
+      "pos": "FWD",
+      "nation": "Brazil",
+      "group": "C",
+      "price": 6.0,
+      "xp": 12.0,
+      "xp_md": [
+        3.5,
+        4.0,
+        4.5
+      ],
+      "ownership": 0.1,
+      "notes": "Budget Brazil FWD. MD3 vs Haiti is best fixture.",
+      "stats": {
+        "goals_p90": 0.38,
+        "assists_p90": 0.25,
+        "sot_p90": 1.8,
+        "pen_taker": false,
+        "start_prob": 0.72,
+        "min_60_prob": 0.65
+      }
+    },
+    {
+      "name": "Memphis Depay",
+      "pos": "FWD",
+      "nation": "Netherlands",
+      "group": "F",
+      "price": 7.0,
+      "xp": 13.5,
+      "xp_md": [
+        4.0,
+        4.5,
+        5.0
+      ],
+      "ownership": 0.14,
+      "notes": "MD1 vs Japan, MD3 vs Tunisia (easy). Penalty threat.",
+      "stats": {
+        "goals_p90": 0.62,
+        "assists_p90": 0.3,
+        "sot_p90": 2.2,
+        "pen_taker": true,
+        "start_prob": 0.82,
+        "min_60_prob": 0.75,
+        "obx_ratio": 0.15,
+        "yellow_p90": 0.1
+      }
+    },
+    {
+      "name": "Donyell Malen",
+      "pos": "FWD",
+      "nation": "Netherlands",
+      "group": "F",
+      "price": 6.5,
+      "xp": 12.5,
+      "xp_md": [
+        4.0,
+        4.0,
+        4.5
+      ],
+      "ownership": 0.11,
+      "notes": "MD3 vs Tunisia (easy). Netherlands FWD.",
+      "stats": {
+        "goals_p90": 0.38,
+        "assists_p90": 0.22,
+        "sot_p90": 1.8,
+        "pen_taker": false,
+        "start_prob": 0.72,
+        "min_60_prob": 0.65
+      }
+    },
+    {
+      "name": "Christopher Nkunku",
+      "pos": "FWD",
+      "nation": "France",
+      "group": "I",
+      "price": 7.2,
+      "xp": 14.0,
+      "xp_md": [
+        4.5,
+        5.0,
+        4.5
+      ],
+      "ownership": 0.16,
+      "notes": "MD2 vs Iraq is standout. France sub/starter.",
+      "stats": {
+        "goals_p90": 0.48,
+        "assists_p90": 0.3,
+        "sot_p90": 2.1,
+        "pen_taker": false,
+        "start_prob": 0.72,
+        "min_60_prob": 0.65,
+        "obx_ratio": 0.2
+      }
+    },
+    {
+      "name": "Serhou Guirassy",
+      "pos": "FWD",
+      "nation": "Guinea",
+      "price": 6.5,
+      "xp": 13.5,
+      "xp_md": [
+        4.5,
+        4.5,
+        4.5
+      ],
+      "ownership": 0.12,
+      "notes": "Bundesliga top scorer. Guinea group info TBC.",
+      "stats": {
+        "goals_p90": 0.65,
+        "assists_p90": 0.18,
+        "sot_p90": 2.4,
+        "pen_taker": true,
+        "start_prob": 0.85,
+        "min_60_prob": 0.78,
+        "obx_ratio": 0.12
+      }
+    },
+    {
+      "name": "Sébastien Haller",
+      "pos": "FWD",
+      "nation": "Ivory Coast",
+      "group": "E",
+      "price": 5.5,
+      "xp": 11.0,
+      "xp_md": [
+        3.5,
+        3.5,
+        4.0
+      ],
+      "ownership": 0.08,
+      "notes": "MD1 vs Ecuador (medium), MD2 vs Germany (very hard), MD3 vs Curacao (easy).",
+      "stats": {
+        "goals_p90": 0.38,
+        "assists_p90": 0.12,
+        "sot_p90": 1.6,
+        "pen_taker": true,
+        "start_prob": 0.75,
+        "min_60_prob": 0.68
+      }
+    },
+    {
+      "name": "Jhon Duran",
+      "pos": "FWD",
+      "nation": "Colombia",
+      "group": "K",
+      "price": 6.0,
+      "xp": 12.5,
+      "xp_md": [
+        4.5,
+        4.0,
+        4.0
+      ],
+      "ownership": 0.11,
+      "notes": "MD1 vs Uzbekistan (easy), MD2 vs Congo DR (easy). Aston Villa striker.",
+      "stats": {
+        "goals_p90": 0.5,
+        "assists_p90": 0.15,
+        "sot_p90": 2.0,
+        "pen_taker": false,
+        "start_prob": 0.78,
+        "min_60_prob": 0.7
+      }
+    },
+    {
+      "name": "André Ayew",
+      "pos": "FWD",
+      "nation": "Ghana",
+      "group": "L",
+      "price": 4.5,
+      "xp": 9.0,
+      "xp_md": [
+        3.0,
+        2.5,
+        3.0
+      ],
+      "ownership": 0.05,
+      "notes": "Budget FWD. Ghana face Panama, England, Croatia.",
+      "stats": {
+        "goals_p90": 0.28,
+        "assists_p90": 0.12,
+        "sot_p90": 1.2,
+        "pen_taker": false,
+        "start_prob": 0.72,
+        "min_60_prob": 0.65
+      }
+    },
+    {
+      "name": "Ferran Torres",
+      "pos": "FWD",
+      "nation": "Spain",
+      "group": "H",
+      "price": 6.2,
+      "xp": 12.0,
+      "xp_md": [
+        4.5,
+        4.0,
+        3.5
+      ],
+      "ownership": 0.1,
+      "notes": "Spain FWD, good early fixtures.",
+      "stats": {
+        "goals_p90": 0.38,
+        "assists_p90": 0.2,
+        "sot_p90": 1.6,
+        "pen_taker": false,
+        "start_prob": 0.7,
+        "min_60_prob": 0.62
+      }
+    }
   ]
 }
