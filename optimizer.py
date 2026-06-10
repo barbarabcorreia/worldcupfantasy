@@ -13,9 +13,13 @@ import json
 import sys
 from pathlib import Path
 from collections import Counter
-from scoring import calc_xp_group_stage, describe_scoring
+from scoring import calc_xp_group_stage, calc_xp_per_game, describe_scoring
 
 BASE_DIR = Path(__file__).parent
+
+# Weight of bench xp in the squad objective. Only the XI scores, but a bench
+# with some xp covers rotation/injury risk and the 12th Man chip.
+BENCH_WEIGHT = 0.15
 FLAGS = {
     "Norway": "🇳🇴", "France": "🇫🇷", "Brazil": "🇧🇷", "Egypt": "🇪🇬",
     "Portugal": "🇵🇹", "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Spain": "🇪🇸", "Germany": "🇩🇪",
@@ -73,6 +77,15 @@ def compute_player_xp(player: dict, fixtures: dict) -> float:
         difficulties = get_difficulties_for_player(player, fixtures)
         return calc_xp_group_stage(player, cs_probs, difficulties)
     return player.get("xp", 0.0)
+
+
+def player_md_xp(player: dict, fixtures: dict, md: int) -> float:
+    """Expected points for one specific matchday (1-3)."""
+    if not player.get("stats"):
+        return round(player.get("xp", 0.0) / 3, 2)
+    cs = get_cs_probs_for_player(player, fixtures)[md - 1]
+    diff = get_difficulties_for_player(player, fixtures)[md - 1]
+    return calc_xp_per_game(player, cs, diff)
 
 
 def load_data(players_path: str | None = None, fixtures_path: str | None = None):
@@ -209,12 +222,33 @@ def optimize(meta: dict, players: list[dict]) -> list[dict]:
     if not seeds:
         raise RuntimeError("Could not build a valid squad. Check players.json data.")
 
-    def squad_xp(s): return sum(p["xp"] for p in s)
+    def squad_value(s):
+        """Objective: starting XI xp + captain doubling + weighted bench.
+        Only the XI scores points, and the captain scores double — a flat
+        15-player sum would waste budget on bench players."""
+        xi, bench = pick_starting_xi(s)
+        xi_xp = sum(p["xp"] for p in xi)
+        captain_xp = max(p["xp"] for p in xi)
+        return xi_xp + captain_xp + BENCH_WEIGHT * sum(p["xp"] for p in bench)
 
-    def swap_improve(squad):
+    # Candidate pools for swap moves: top by xp (XI upgrades) plus the
+    # cheapest few (bench enablers that free budget for the XI).
+    swap_cands: dict[str, list[dict]] = {}
+    for pos in req:
+        by_xp = sorted(by_pos[pos], key=lambda p: p["xp"], reverse=True)[:12]
+        by_price = sorted(by_pos[pos], key=lambda p: p["price"])[:6]
+        seen, pool = set(), []
+        for p in by_xp + by_price:
+            if p["name"] not in seen:
+                seen.add(p["name"])
+                pool.append(p)
+        swap_cands[pos] = pool
+
+    def single_swap_improve(squad):
         improved, current = True, list(squad)
         while improved:
             improved = False
+            cur_val = squad_value(current)
             for i, player in enumerate(current):
                 pos = player["pos"]
                 squad_without = [p for j, p in enumerate(current) if j != i]
@@ -228,16 +262,57 @@ def optimize(meta: dict, players: list[dict]) -> list[dict]:
                     if nations_without.get(candidate["nation"], 0) >= max_per_nation:
                         continue
                     new_squad = squad_without + [candidate]
-                    if squad_xp(new_squad) > squad_xp(current) + 0.001:
+                    if squad_value(new_squad) > cur_val + 0.001:
                         current = new_squad
                         improved = True
                         break
+                if improved:
+                    break
         return current
+
+    def two_swap_improve(squad):
+        """Replace two players at once. Escapes the single-swap trap where
+        an XI upgrade is only affordable by also downgrading a bench spot."""
+        current = list(squad)
+        cur_val = squad_value(current)
+        n = len(current)
+        for i in range(n):
+            for j in range(i + 1, n):
+                pi, pj = current[i], current[j]
+                rest = [p for k, p in enumerate(current) if k not in (i, j)]
+                rest_cost = sum(p["price"] for p in rest)
+                rest_names = {p["name"] for p in rest}
+                nations_rest = Counter(p["nation"] for p in rest)
+                for a in swap_cands[pi["pos"]]:
+                    if a["name"] in rest_names:
+                        continue
+                    for b in swap_cands[pj["pos"]]:
+                        if b["name"] in rest_names or b["name"] == a["name"]:
+                            continue
+                        if rest_cost + a["price"] + b["price"] > budget + 0.001:
+                            continue
+                        nations = nations_rest.copy()
+                        nations[a["nation"]] += 1
+                        nations[b["nation"]] += 1
+                        if any(c > max_per_nation for c in nations.values()):
+                            continue
+                        new_squad = rest + [a, b]
+                        if squad_value(new_squad) > cur_val + 0.001:
+                            return new_squad, True
+        return current, False
+
+    def improve(squad):
+        current = list(squad)
+        while True:
+            current = single_swap_improve(current)
+            current, changed = two_swap_improve(current)
+            if not changed:
+                return current
 
     best_squad, best_score = None, -1.0
     for seed in seeds:
-        improved = swap_improve(seed)
-        score = squad_xp(improved)
+        improved = improve(seed)
+        score = squad_value(improved)
         if score > best_score:
             valid, _ = is_valid_squad(improved, meta)
             if valid:
@@ -268,12 +343,48 @@ def pick_starting_xi(squad):
     return best_xi, bench
 
 
+def suggest_transfers(squad, players, fixtures, meta, top_n=3):
+    """For each upcoming matchday, rank the best single transfers
+    (1 free transfer per matchday) by xp gained over the remaining games."""
+    bank = meta["budget"] - sum(p["price"] for p in squad)
+    squad_names = {p["name"] for p in squad}
+    plans = []
+    for label, window in [("Before MD2 (gain over MD2+MD3)", [2, 3]),
+                          ("Before MD3 (gain over MD3)", [3])]:
+        options = []
+        for out_p in squad:
+            out_val = sum(player_md_xp(out_p, fixtures, m) for m in window)
+            nations = Counter(q["nation"] for q in squad if q["name"] != out_p["name"])
+            for in_p in players:
+                if in_p["pos"] != out_p["pos"] or in_p["name"] in squad_names:
+                    continue
+                if in_p["price"] > out_p["price"] + bank + 0.001:
+                    continue
+                if nations.get(in_p["nation"], 0) >= meta["max_per_nation"]:
+                    continue
+                gain = sum(player_md_xp(in_p, fixtures, m) for m in window) - out_val
+                if gain > 0.5:
+                    options.append((gain, out_p, in_p))
+        options.sort(key=lambda t: -t[0])
+        plans.append((label, options[:top_n]))
+    return plans
+
+
+def top_differentials(players, squad, max_ownership=0.10, top_n=5):
+    """Low-ownership players ranked by leverage (xp × share of rivals
+    who DON'T own them). These gain the most rank when they haul."""
+    cands = [p for p in players if p.get("ownership", 1.0) < max_ownership]
+    squad_names = {p["name"] for p in squad}
+    ranked = sorted(cands, key=lambda p: p["xp"] * (1 - p.get("ownership", 0)), reverse=True)
+    return [(p, p["name"] in squad_names) for p in ranked[:top_n]]
+
+
 def fmt(p, extra=""):
     flag = FLAGS.get(p["nation"], "🌍")
     return f"  {p['pos']:3s} | {flag} {p['nation']:15s} | ${p['price']:.1f}m | xp {p['xp']:4.1f} | {p['name']}{extra}"
 
 
-def print_team(meta: dict, squad: list[dict], fixtures: dict) -> None:
+def print_team(meta: dict, squad: list[dict], fixtures: dict, players: list[dict]) -> None:
     xi, bench = pick_starting_xi(squad)
     captain = max(xi, key=lambda p: p["xp"])
     vice    = sorted([p for p in xi if p != captain], key=lambda p: p["xp"], reverse=True)[0]
@@ -315,21 +426,15 @@ def print_team(meta: dict, squad: list[dict], fixtures: dict) -> None:
     print("  " + "-" * 68)
     print(f"  {'Player':22s} | {'MD1':20s} | {'MD2':20s} | {'MD3':20s}")
     print("  " + "-" * 68)
-    from scoring import calc_xp_per_game, DEFAULT_STATS
     for p in sorted(xi, key=lambda x: x["xp"], reverse=True):
         fixs = get_player_fixtures(p, fixtures)
         fix_map = {f["md"]: f for f in fixs}
-        cs_probs = get_cs_probs_for_player(p, fixtures)
         cells = []
         for md in [1, 2, 3]:
             f = fix_map.get(md)
-            cs = cs_probs[md - 1]
-            diff = f["difficulty"] if f else 3
-            xp_game = calc_xp_per_game(p, cs, diff) if p.get("stats") else "?"
-            if f:
-                cells.append(f"vs {f['opponent'][:9]:9s} {xp_game:.1f}pt")
-            else:
-                cells.append(f"{'?':9s} {xp_game:.1f}pt" if isinstance(xp_game, float) else "?")
+            xp_game = player_md_xp(p, fixtures, md)
+            opp = f["opponent"][:9] if f else "?"
+            cells.append(f"vs {opp:9s} {xp_game:.1f}pt")
         print(f"  {p['name']:22s} | {cells[0]:20s} | {cells[1]:20s} | {cells[2]:20s}")
 
     # --- Captain Live-Switch Strategy ---
@@ -377,6 +482,35 @@ def print_team(meta: dict, squad: list[dict], fixtures: dict) -> None:
         print()
         print("  Strategy: use the live captain switch so you can assign")
         print("  captain to whoever is in better form BEFORE their game starts.")
+
+    # --- Transfer plan ---
+    plans = suggest_transfers(squad, players, fixtures, meta)
+    print()
+    print("  TRANSFER PLAN (1 free transfer per matchday, rollable once)")
+    print("  " + "-" * 68)
+    any_plan = False
+    for label, options in plans:
+        if not options:
+            continue
+        any_plan = True
+        print(f"  {label}:")
+        for gain, out_p, in_p in options:
+            print(f"    OUT {out_p['name']:20s} → IN {in_p['name']:20s} (+{gain:.1f} xp)")
+    if not any_plan:
+        print("  No transfer beats the current squad by >0.5 xp — hold your free")
+        print("  transfer and roll it over to react to injuries/suspensions.")
+
+    # --- Differentials ---
+    diffs = top_differentials(players, squad)
+    if diffs:
+        print()
+        print("  DIFFERENTIALS (<10% owned — big rank gains when they haul)")
+        print("  " + "-" * 68)
+        for p, in_squad in diffs:
+            own = p.get("ownership", 0) * 100
+            tag = "  ← in your squad" if in_squad else ""
+            print(f"    {p['name']:22s} {p['pos']:3s} ${p['price']:.1f}m  "
+                  f"xp {p['xp']:5.1f}  own {own:4.1f}%{tag}")
 
     # --- Notes on key picks ---
     print()
@@ -426,6 +560,9 @@ def main():
     parser.add_argument("--budget",   type=float, help="Override budget (default 100.0)", default=None)
     parser.add_argument("--json",     action="store_true", help="Output JSON instead of formatted text")
     parser.add_argument("--scoring",  action="store_true", help="Print scoring table and exit")
+    parser.add_argument("--differential", action="store_true",
+                        help="Optimize leverage-adjusted xp (downweights highly-owned "
+                             "players) — for chasing rank in a league, not max points")
     args = parser.parse_args()
 
     if args.scoring:
@@ -436,21 +573,35 @@ def main():
     if args.budget:
         meta["budget"] = args.budget
 
+    if args.differential:
+        # Discount xp by ownership: a haul from a player everyone owns barely
+        # moves your rank. Capped so superstars stay viable as captains.
+        for p in players:
+            p["xp"] = round(p["xp"] * (1 - 0.5 * min(p.get("ownership", 0.0), 0.6)), 2)
+        print("Differential mode: xp discounted by ownership.\n", file=sys.stderr)
+
     print("Optimizing squad...\n", file=sys.stderr)
     squad = optimize(meta, players)
 
     if args.json:
         xi, bench = pick_starting_xi(squad)
         captain = max(xi, key=lambda p: p["xp"])
+        plans = suggest_transfers(squad, players, fixtures, meta)
         print(json.dumps({
             "squad": squad, "starting_xi": xi, "bench": bench,
             "captain": captain,
             "total_cost": round(sum(p["price"] for p in squad), 1),
             "xi_xp": round(sum(p["xp"] for p in xi), 1),
             "clashes": find_head_to_head_clashes(squad, fixtures),
+            "transfer_plan": [
+                {"window": label,
+                 "options": [{"out": o["name"], "in": i["name"], "gain": round(g, 1)}
+                             for g, o, i in opts]}
+                for label, opts in plans
+            ],
         }, indent=2))
     else:
-        print_team(meta, squad, fixtures)
+        print_team(meta, squad, fixtures, players)
 
 
 if __name__ == "__main__":

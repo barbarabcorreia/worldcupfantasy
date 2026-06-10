@@ -72,6 +72,43 @@ def pts(action: str, pos: str) -> float:
 # difficulty 1 = very easy → +30% more, difficulty 5 = very hard → -30% less
 DIFFICULTY_MULT = {1: 1.30, 2: 1.12, 3: 1.00, 4: 0.85, 5: 0.70}
 
+# GK save volume moves the OPPOSITE way: harder opponent → more shots faced.
+SAVES_MULT = {1: 0.75, 2: 0.88, 3: 1.00, 4: 1.15, 5: 1.30}
+
+# Penalty event rates
+PEN_ATTEMPT_PG = 0.115  # attempts per game for a team's designated taker
+PEN_CONVERT    = 0.78   # conversion rate → 0.09 pen goals/game (taker)
+PEN_FACED_PG   = 0.10   # penalties faced by a GK per game
+PEN_SAVE_RATE  = 0.22   # share of faced penalties saved
+
+# ---------------------------------------------------------------------------
+# Shrinkage: observed per-90 rates come from small samples (6-10 qualifiers,
+# often vs weak opposition). Blend each volume stat toward a positional prior
+# so the model doesn't over-trust two or three hot data points.
+# ---------------------------------------------------------------------------
+SHRINK = 0.35  # weight on the prior (0 = trust data fully, 1 = ignore data)
+
+POSITION_PRIORS = {
+    "GK":  {"goals_p90": 0.00, "assists_p90": 0.01, "sot_p90": 0.00,
+            "kp_p90": 0.05, "tackles_p90": 0.05, "saves_p90": 2.60},
+    "DEF": {"goals_p90": 0.08, "assists_p90": 0.12, "sot_p90": 0.30,
+            "kp_p90": 0.60, "tackles_p90": 1.40, "saves_p90": 0.00},
+    "MID": {"goals_p90": 0.25, "assists_p90": 0.25, "sot_p90": 1.30,
+            "kp_p90": 1.80, "tackles_p90": 1.60, "saves_p90": 0.00},
+    "FWD": {"goals_p90": 0.45, "assists_p90": 0.20, "sot_p90": 2.00,
+            "kp_p90": 1.00, "tackles_p90": 0.70, "saves_p90": 0.00},
+}
+
+
+def effective_stats(player: dict) -> dict:
+    """Merge player stats over defaults, then shrink volume rates toward
+    the positional prior. Probabilities and flags are left untouched."""
+    s = {**DEFAULT_STATS, **player.get("stats", {})}
+    prior = POSITION_PRIORS.get(player["pos"], {})
+    for key, prior_val in prior.items():
+        s[key] = (1 - SHRINK) * s[key] + SHRINK * prior_val
+    return s
+
 
 def calc_xp_per_game(player: dict, cs_prob: float, difficulty: int = 3) -> float:
     """
@@ -79,10 +116,10 @@ def calc_xp_per_game(player: dict, cs_prob: float, difficulty: int = 3) -> float
     and fixture difficulty (1=very easy … 5=very hard).
 
     player must have a 'stats' dict with per-game rates. Missing keys fall
-    back to DEFAULT_STATS values.
+    back to DEFAULT_STATS; volume rates are shrunk toward positional priors.
     """
     pos = player["pos"]
-    s = {**DEFAULT_STATS, **player.get("stats", {})}
+    s = effective_stats(player)
     att_mult = DIFFICULTY_MULT.get(difficulty, 1.0)  # scale goals/assists by fixture
 
     start_p   = s["start_prob"]
@@ -99,10 +136,14 @@ def calc_xp_per_game(player: dict, cs_prob: float, difficulty: int = 3) -> float
     fk_taker  = s["fk_taker"]
     win_pen_pg = s["win_pen_p90"]
 
-    # Penalty takers score an extra ~0.1 goals/game from the spot
-    # (rough: ~3 penalties per team per tournament = ~1 per group match)
-    pen_goals_pg = 0.09 if pen_taker else 0.0
-    fk_goals_pg  = 0.04 if fk_taker  else 0.0
+    # Expected minutes per start: starters subbed off early produce less.
+    # All volume stats (goals, assists, SoT, KP, tackles, saves) are prorated.
+    exp_min = min60_p * 88 + (1 - min60_p) * 45
+    vol = start_p * (exp_min / 90.0)
+
+    pen_goals_pg = PEN_ATTEMPT_PG * PEN_CONVERT if pen_taker else 0.0
+    pen_miss_pg  = PEN_ATTEMPT_PG * (1 - PEN_CONVERT) if pen_taker else 0.0
+    fk_goals_pg  = 0.04 if fk_taker else 0.0
     total_goals  = goals_pg + pen_goals_pg
 
     xp = 0.0
@@ -113,37 +154,48 @@ def calc_xp_per_game(player: dict, cs_prob: float, difficulty: int = 3) -> float
     # Goals (basic) — scaled by fixture difficulty
     g = total_goals * att_mult
     goal_pt = pts("goal", pos)
-    xp += start_p * (g - fk_goals_pg - g * obx_r) * goal_pt
-    xp += start_p * g * obx_r * (goal_pt + pts("goal_obx_bonus", pos))
-    xp += start_p * fk_goals_pg * (goal_pt + pts("goal_fk_bonus", pos))
+    xp += vol * (g - fk_goals_pg - g * obx_r) * goal_pt
+    xp += vol * g * obx_r * (goal_pt + pts("goal_obx_bonus", pos))
+    xp += vol * fk_goals_pg * (goal_pt + pts("goal_fk_bonus", pos))
+
+    # Missed penalties (takers attempt ~0.115/game, ~22% missed)
+    xp += vol * pen_miss_pg * att_mult * pts("miss_penalty", pos)
 
     # Assists — scaled by fixture difficulty
-    xp += start_p * (assists_pg * att_mult) * pts("assist", pos)
+    xp += vol * (assists_pg * att_mult) * pts("assist", pos)
 
     # Clean sheet (only if plays 60+ min)
     cs_pt = pts("clean_sheet", pos)
     if cs_pt > 0:
         xp += start_p * min60_p * cs_prob * cs_pt
 
-    # GK: saves
+    # GK: saves scale UP with difficulty (more shots faced), plus pen saves
     if pos == "GK":
-        avg_saves = saves_pg
-        xp += start_p * (avg_saves / 3) * pts("save_per_3", pos)
+        save_mult = SAVES_MULT.get(difficulty, 1.0)
+        xp += vol * (saves_pg * save_mult / 3) * pts("save_per_3", pos)
+        xp += start_p * PEN_FACED_PG * PEN_SAVE_RATE * pts("pen_save", pos)
 
-    # MID: tackles bonus
+    # MID: tackles + chances created bonuses
     if pos == "MID":
-        xp += start_p * (tackles_pg / 3) * pts("tackle_per_3", pos)
-        xp += start_p * (kp_pg / 2) * pts("chance_per_2", pos)
+        xp += vol * (tackles_pg / 3) * pts("tackle_per_3", pos)
+        xp += vol * (kp_pg / 2) * pts("chance_per_2", pos)
 
     # FWD: shots on target bonus
     if pos == "FWD":
-        xp += start_p * (sot_pg / 2) * pts("sot_per_2", pos)
+        xp += vol * (sot_pg * att_mult / 2) * pts("sot_per_2", pos)
 
     # Winning a penalty
-    xp += start_p * win_pen_pg * pts("win_penalty", pos)
+    xp += vol * win_pen_pg * pts("win_penalty", pos)
 
     # Yellow card
     xp += start_p * yellow_pg * pts("yellow", pos)
+
+    # Scouting Bonus: +2 if <5% owned and scores >4 pts in the game.
+    # P(>4 pts) approximated from the game's expected points.
+    ownership = player.get("ownership", 1.0)
+    if ownership < 0.05:
+        p_haul = max(0.0, min(0.6, (xp - 2.5) / 8.0))
+        xp += pts("scouting_bonus", pos) * p_haul
 
     return round(xp, 3)
 

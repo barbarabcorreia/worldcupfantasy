@@ -515,9 +515,6 @@ def enrich():
         "sot_per_2_FWD": 1,
     })
 
-    players_path.write_text(json.dumps(pdata, indent=2, ensure_ascii=False))
-    print(f"Enriched {enriched}/{len(pdata['players'])} players with stats.")
-
     # Update fixtures with CS probs
     fdata = json.loads(fixtures_path.read_text())
     for group in fdata["groups"].values():
@@ -530,6 +527,17 @@ def enrich():
                         fix["cs_prob"] = {}
                     fix["cs_prob"][team] = cs_list[md - 1]
 
+    # Regenerate xp / xp_md from the scoring engine so the stored values
+    # always match what the optimizer actually uses (no stale hand-estimates).
+    from optimizer import player_md_xp
+    for player in pdata["players"]:
+        xp_md = [round(player_md_xp(player, fdata, md), 2) for md in (1, 2, 3)]
+        player["xp_md"] = xp_md
+        player["xp"] = round(sum(xp_md), 1)
+
+    players_path.write_text(json.dumps(pdata, indent=2, ensure_ascii=False))
+    print(f"Enriched {enriched}/{len(pdata['players'])} players with stats "
+          f"and regenerated model xp/xp_md.")
     fixtures_path.write_text(json.dumps(fdata, indent=2, ensure_ascii=False))
     print("Updated fixtures.json with clean sheet probabilities.")
 

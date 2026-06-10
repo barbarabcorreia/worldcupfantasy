@@ -49,11 +49,11 @@
       "nation": "Norway",
       "group": "I",
       "price": 10.5,
-      "xp": 26.0,
+      "xp": 27.2,
       "xp_md": [
-        9.5,
-        8.5,
-        8.0
+        11.23,
+        9.07,
+        6.91
       ],
       "ownership": 0.33,
       "notes": "MD1 vs Iraq (easy), MD2 vs Senegal (medium), MD3 vs FRANCE (hard). Penalty taker, elite scorer.",
@@ -75,11 +75,11 @@
       "nation": "France",
       "group": "I",
       "price": 10.5,
-      "xp": 24.0,
+      "xp": 19.9,
       "xp_md": [
-        8.0,
-        9.0,
-        7.0
+        6.65,
+        8.11,
+        5.19
       ],
       "ownership": 0.52,
       "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy), MD3 vs NORWAY (hard). Penalty taker, 52% owned.",
@@ -101,11 +101,11 @@
       "nation": "Brazil",
       "group": "C",
       "price": 10.0,
-      "xp": 21.0,
+      "xp": 16.8,
       "xp_md": [
-        6.5,
-        7.0,
-        7.5
+        5.23,
+        5.4,
+        6.21
       ],
       "ownership": 0.28,
       "notes": "MD1 vs Morocco (hard), MD2 vs Scotland (medium), MD3 vs Haiti (easy). Brazil powerhouse.",
@@ -128,11 +128,11 @@
       "nation": "Egypt",
       "group": "G",
       "price": 10.0,
-      "xp": 14.0,
+      "xp": 15.4,
       "xp_md": [
-        4.5,
-        5.0,
-        4.5
+        4.99,
+        5.31,
+        5.09
       ],
       "ownership": 0.12,
       "notes": "MD1 vs Belgium (hard), MD2 vs New Zealand (easy), MD3 vs Iran (medium). Poor 2025-26 season.",
@@ -155,11 +155,11 @@
       "nation": "Portugal",
       "group": "K",
       "price": 8.5,
-      "xp": 19.0,
+      "xp": 27.0,
       "xp_md": [
-        7.0,
-        6.5,
-        5.5
+        9.54,
+        9.54,
+        7.97
       ],
       "ownership": 0.31,
       "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy), MD3 vs Colombia (medium). 21 EPL assists.",
@@ -184,11 +184,11 @@
       "nation": "England",
       "group": "L",
       "price": 8.3,
-      "xp": 16.0,
+      "xp": 17.9,
       "xp_md": [
-        5.0,
-        5.5,
-        5.5
+        5.68,
+        6.07,
+        6.11
       ],
       "ownership": 0.24,
       "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). Creative threat.",
@@ -212,11 +212,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 7.8,
-      "xp": 20.5,
+      "xp": 21.5,
       "xp_md": [
-        8.0,
-        6.5,
-        6.0
+        7.96,
+        7.08,
+        6.5
       ],
       "ownership": 0.16,
       "notes": "MD1 vs Cape Verde (easy), MD2 vs Saudi Arabia (easy), MD3 vs Uruguay (hard). 6G 3A in qualifying. Best value FWD.",
@@ -239,11 +239,11 @@
       "nation": "Germany",
       "group": "E",
       "price": 8.0,
-      "xp": 17.0,
+      "xp": 15.4,
       "xp_md": [
-        7.0,
-        5.5,
-        4.5
+        5.64,
+        5.06,
+        4.68
       ],
       "ownership": 0.19,
       "notes": "MD1 vs Curacao (very easy), MD2 vs Ivory Coast (easy), MD3 vs Ecuador (medium).",
@@ -264,11 +264,11 @@
       "nation": "England",
       "group": "L",
       "price": 7.0,
-      "xp": 13.5,
+      "xp": 15.7,
       "xp_md": [
-        4.5,
-        4.5,
-        4.5
+        5.03,
+        5.33,
+        5.37
       ],
       "ownership": 0.22,
       "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). Set piece threat.",
@@ -291,11 +291,11 @@
       "nation": "Belgium",
       "group": "G",
       "price": 7.2,
-      "xp": 16.0,
+      "xp": 16.1,
       "xp_md": [
-        5.5,
-        5.5,
-        5.0
+        5.08,
+        5.46,
+        5.53
       ],
       "ownership": 0.18,
       "notes": "MD1 vs Egypt (medium), MD2 vs Iran (easy), MD3 vs New Zealand (easy). Goal threat.",
@@ -318,11 +318,11 @@
       "nation": "Germany",
       "group": "E",
       "price": 7.2,
-      "xp": 15.0,
+      "xp": 12.6,
       "xp_md": [
-        6.0,
-        4.5,
-        4.5
+        4.62,
+        4.16,
+        3.85
       ],
       "ownership": 0.14,
       "notes": "MD1 vs Curacao (very easy), excellent early fixture.",
@@ -342,11 +342,11 @@
       "nation": "Senegal",
       "group": "I",
       "price": 6.7,
-      "xp": 13.0,
+      "xp": 11.1,
       "xp_md": [
-        4.0,
-        4.5,
-        4.5
+        3.6,
+        3.6,
+        3.87
       ],
       "ownership": 0.11,
       "notes": "MD1 vs France (very hard), MD2 vs Norway (hard), MD3 vs Iraq (easy). Hard group stage.",
@@ -365,11 +365,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 7.5,
-      "xp": 17.5,
+      "xp": 20.7,
       "xp_md": [
-        6.5,
-        5.5,
-        5.5
+        7.52,
+        6.87,
+        6.33
       ],
       "ownership": 0.27,
       "notes": "MD1 vs Cape Verde (easy), MD2 vs Saudi Arabia (easy), MD3 vs Uruguay (hard). Spain's creative star.",
@@ -393,11 +393,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 7.0,
-      "xp": 14.0,
+      "xp": 15.4,
       "xp_md": [
-        5.0,
-        4.5,
-        4.5
+        5.51,
+        5.11,
+        4.75
       ],
       "ownership": 0.2,
       "notes": "MD1 vs Cape Verde (easy). Spain midfield engine.",
@@ -419,11 +419,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 6.8,
-      "xp": 14.5,
+      "xp": 13.8,
       "xp_md": [
-        5.5,
-        4.5,
-        4.5
+        4.98,
+        4.59,
+        4.25
       ],
       "ownership": 0.15,
       "notes": "MD1 vs Cape Verde (easy). Spain attacking mid, good value.",
@@ -445,11 +445,11 @@
       "nation": "Scotland",
       "group": "C",
       "price": 6.0,
-      "xp": 11.5,
+      "xp": 13.4,
       "xp_md": [
-        4.5,
-        3.0,
-        4.0
+        4.76,
+        4.12,
+        4.49
       ],
       "ownership": 0.1,
       "notes": "MD1 vs Haiti (easy), MD2 vs Brazil (very hard), MD3 vs Morocco (hard). Set piece taker.",
@@ -472,11 +472,11 @@
       "nation": "England",
       "group": "L",
       "price": 7.8,
-      "xp": 14.5,
+      "xp": 16.1,
       "xp_md": [
-        4.5,
-        5.0,
-        5.0
+        5.11,
+        5.47,
+        5.5
       ],
       "ownership": 0.21,
       "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England creative.",
@@ -499,11 +499,11 @@
       "nation": "England",
       "group": "L",
       "price": 7.5,
-      "xp": 14.0,
+      "xp": 16.8,
       "xp_md": [
-        4.5,
-        4.5,
-        5.0
+        5.36,
+        5.72,
+        5.76
       ],
       "ownership": 0.2,
       "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England winger.",
@@ -526,11 +526,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 6.5,
-      "xp": 12.0,
+      "xp": 12.3,
       "xp_md": [
-        4.5,
-        4.0,
-        3.5
+        4.39,
+        4.1,
+        3.85
       ],
       "ownership": 0.1,
       "notes": "MD1 vs Cape Verde (easy). Fitness concern.",
@@ -552,11 +552,11 @@
       "nation": "Portugal",
       "group": "K",
       "price": 7.0,
-      "xp": 13.0,
+      "xp": 14.5,
       "xp_md": [
-        4.5,
-        4.5,
-        4.0
+        5.04,
+        5.04,
+        4.41
       ],
       "ownership": 0.15,
       "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy), MD3 vs Colombia.",
@@ -579,9 +579,9 @@
       "price": 7.5,
       "xp": 13.5,
       "xp_md": [
-        4.0,
         4.5,
-        5.0
+        4.79,
+        4.2
       ],
       "ownership": 0.12,
       "notes": "MD1 vs Saudi Arabia (medium), MD2 vs Cape Verde (easy), MD3 vs Spain (hard).",
@@ -603,11 +603,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 5.5,
-      "xp": 10.0,
+      "xp": 9.6,
       "xp_md": [
-        3.5,
-        3.5,
-        3.0
+        3.44,
+        3.2,
+        2.98
       ],
       "ownership": 0.08,
       "notes": "Budget Spain MID. Good early fixtures.",
@@ -628,11 +628,11 @@
       "nation": "Uruguay",
       "group": "H",
       "price": 5.8,
-      "xp": 10.5,
+      "xp": 9.9,
       "xp_md": [
+        3.3,
         3.5,
-        3.5,
-        3.5
+        3.1
       ],
       "ownership": 0.09,
       "notes": "Uruguay midfield. MD3 vs Spain is hard.",
@@ -654,11 +654,11 @@
       "nation": "England",
       "group": "L",
       "price": 5.5,
-      "xp": 10.0,
+      "xp": 8.7,
       "xp_md": [
-        3.5,
-        3.5,
-        3.0
+        2.78,
+        2.94,
+        2.97
       ],
       "ownership": 0.08,
       "notes": "Budget England MID, bench option.",
@@ -679,11 +679,11 @@
       "nation": "Netherlands",
       "group": "F",
       "price": 5.8,
-      "xp": 14.0,
+      "xp": 12.4,
       "xp_md": [
-        4.5,
-        4.5,
-        5.0
+        3.88,
+        4.0,
+        4.49
       ],
       "ownership": 0.23,
       "notes": "MD1 vs Japan (medium), MD2 vs Sweden (medium), MD3 vs Tunisia (easy). Clean sheet upside.",
@@ -704,11 +704,11 @@
       "nation": "Morocco",
       "group": "C",
       "price": 6.0,
-      "xp": 16.0,
+      "xp": 13.9,
       "xp_md": [
-        4.5,
-        6.0,
-        5.5
+        3.87,
+        5.34,
+        4.68
       ],
       "ownership": 0.29,
       "notes": "MD1 vs Brazil (very hard), MD2 vs Haiti (easy!), MD3 vs Scotland (medium). Wait for MD2+.",
@@ -730,11 +730,11 @@
       "nation": "France",
       "group": "I",
       "price": 5.3,
-      "xp": 13.0,
+      "xp": 11.1,
       "xp_md": [
-        4.0,
-        5.0,
-        4.0
+        3.67,
+        4.6,
+        2.83
       ],
       "ownership": 0.18,
       "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy, clean sheet likely), MD3 vs Norway (hard).",
@@ -755,11 +755,11 @@
       "nation": "France",
       "group": "I",
       "price": 5.4,
-      "xp": 12.5,
+      "xp": 11.3,
       "xp_md": [
-        3.5,
-        5.0,
-        3.5
+        3.73,
+        4.68,
+        2.86
       ],
       "ownership": 0.15,
       "notes": "MD2 vs Iraq is the standout fixture (clean sheet + attacking threat).",
@@ -780,11 +780,11 @@
       "nation": "France",
       "group": "I",
       "price": 5.3,
-      "xp": 11.5,
+      "xp": 10.1,
       "xp_md": [
-        3.5,
-        4.5,
-        3.5
+        3.36,
+        4.2,
+        2.58
       ],
       "ownership": 0.12,
       "notes": "France CB.",
@@ -805,11 +805,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 5.5,
-      "xp": 13.5,
+      "xp": 13.3,
       "xp_md": [
-        5.0,
+        5.23,
         4.5,
-        4.0
+        3.58
       ],
       "ownership": 0.2,
       "notes": "MD1 vs Cape Verde (very easy), MD2 vs Saudi Arabia (easy). Attacking LB for Spain.",
@@ -830,11 +830,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 5.0,
-      "xp": 11.0,
+      "xp": 10.0,
       "xp_md": [
-        4.0,
-        3.5,
-        3.5
+        3.93,
+        3.4,
+        2.7
       ],
       "ownership": 0.13,
       "notes": "Spain RB, fitness concern.",
@@ -855,11 +855,11 @@
       "nation": "England",
       "group": "L",
       "price": 4.8,
-      "xp": 11.5,
+      "xp": 13.6,
       "xp_md": [
-        3.5,
-        4.0,
-        4.0
+        4.07,
+        4.66,
+        4.84
       ],
       "ownership": 0.16,
       "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). 3 assists in qualifying!",
@@ -880,11 +880,11 @@
       "nation": "Portugal",
       "group": "K",
       "price": 4.6,
-      "xp": 10.5,
+      "xp": 11.9,
       "xp_md": [
-        4.0,
-        4.0,
-        2.5
+        4.34,
+        4.34,
+        3.25
       ],
       "ownership": 0.11,
       "notes": "MD1 vs Congo DR (very easy), MD2 vs Uzbekistan (easy). Clean sheet machine early.",
@@ -905,11 +905,11 @@
       "nation": "Uruguay",
       "group": "H",
       "price": 4.4,
-      "xp": 10.0,
+      "xp": 9.2,
       "xp_md": [
-        3.0,
-        3.5,
-        3.5
+        3.03,
+        3.61,
+        2.61
       ],
       "ownership": 0.1,
       "notes": "MD1 vs Saudi Arabia (medium).",
@@ -930,11 +930,11 @@
       "nation": "Czechia",
       "group": "A",
       "price": 4.4,
-      "xp": 9.5,
+      "xp": 8.7,
       "xp_md": [
-        3.0,
-        3.0,
-        3.5
+        2.77,
+        3.19,
+        2.77
       ],
       "ownership": 0.08,
       "notes": "Budget option. Czech group fixtures vs South Africa, Mexico.",
@@ -955,11 +955,11 @@
       "nation": "Colombia",
       "group": "K",
       "price": 3.8,
-      "xp": 9.0,
+      "xp": 10.0,
       "xp_md": [
-        3.0,
-        3.0,
-        3.0
+        3.5,
+        3.67,
+        2.82
       ],
       "ownership": 0.09,
       "notes": "Cheapest good DEF. Colombia vs Uzbekistan (easy), Congo DR (easy).",
@@ -980,11 +980,11 @@
       "nation": "USA",
       "group": "D",
       "price": 4.5,
-      "xp": 9.5,
+      "xp": 8.3,
       "xp_md": [
-        3.0,
-        3.0,
-        3.5
+        2.79,
+        2.73,
+        2.79
       ],
       "ownership": 0.09,
       "notes": "USA host nation, medium fixtures.",
@@ -1005,11 +1005,11 @@
       "nation": "Netherlands",
       "group": "F",
       "price": 4.3,
-      "xp": 9.0,
+      "xp": 9.1,
       "xp_md": [
-        3.0,
-        3.0,
-        3.0
+        2.84,
+        2.93,
+        3.29
       ],
       "ownership": 0.07,
       "notes": "Netherlands CB.",
@@ -1030,11 +1030,11 @@
       "nation": "Portugal",
       "group": "K",
       "price": 4.0,
-      "xp": 8.5,
+      "xp": 8.4,
       "xp_md": [
-        3.0,
-        3.0,
-        2.5
+        3.05,
+        3.05,
+        2.31
       ],
       "ownership": 0.06,
       "notes": "Budget Portugal DEF.",
@@ -1054,11 +1054,11 @@
       "nation": "Portugal",
       "group": "K",
       "price": 5.2,
-      "xp": 11.0,
+      "xp": 12.6,
       "xp_md": [
-        4.0,
-        4.0,
-        3.0
+        4.59,
+        4.59,
+        3.44
       ],
       "ownership": 0.14,
       "notes": "MD1 vs Congo DR (easy), MD2 vs Uzbekistan (easy). Portugal LB, attacking threat.",
@@ -1079,11 +1079,11 @@
       "nation": "Germany",
       "group": "E",
       "price": 4.5,
-      "xp": 9.5,
+      "xp": 10.5,
       "xp_md": [
+        4.04,
         3.5,
-        3.0,
-        3.0
+        2.96
       ],
       "ownership": 0.08,
       "notes": "MD1 vs Curacao (very easy). Germany LB.",
@@ -1104,11 +1104,11 @@
       "nation": "France",
       "group": "I",
       "price": 4.8,
-      "xp": 10.0,
+      "xp": 9.7,
       "xp_md": [
-        3.0,
-        4.0,
-        3.0
+        3.22,
+        4.03,
+        2.48
       ],
       "ownership": 0.09,
       "notes": "France RB, MD2 vs Iraq is standout.",
@@ -1129,11 +1129,11 @@
       "nation": "Argentina",
       "group": "J",
       "price": 5.5,
-      "xp": 14.5,
+      "xp": 15.7,
       "xp_md": [
-        5.5,
-        4.5,
-        4.5
+        5.15,
+        4.78,
+        5.73
       ],
       "ownership": 0.26,
       "notes": "MD1 vs Algeria (easy), MD2 vs Austria (medium), MD3 vs Jordan (very easy). Clean sheet machine.",
@@ -1151,11 +1151,11 @@
       "nation": "England",
       "group": "L",
       "price": 5.2,
-      "xp": 13.0,
+      "xp": 15.5,
       "xp_md": [
-        4.0,
-        4.5,
-        4.5
+        4.76,
+        5.27,
+        5.49
       ],
       "ownership": 0.23,
       "notes": "MD1 vs Croatia (medium), MD2 vs Ghana (easy), MD3 vs Panama (easy). England didn't concede in qualifying.",
@@ -1173,11 +1173,11 @@
       "nation": "France",
       "group": "I",
       "price": 5.8,
-      "xp": 13.5,
+      "xp": 14.3,
       "xp_md": [
-        4.0,
-        5.5,
-        4.0
+        4.71,
+        5.47,
+        4.09
       ],
       "ownership": 0.2,
       "notes": "MD2 vs Iraq is standout (clean sheet very likely). MD3 vs Norway is hard.",
@@ -1195,11 +1195,11 @@
       "nation": "Netherlands",
       "group": "F",
       "price": 5.0,
-      "xp": 12.0,
+      "xp": 13.6,
       "xp_md": [
-        4.0,
-        4.0,
-        4.0
+        4.29,
+        4.42,
+        4.91
       ],
       "ownership": 0.17,
       "notes": "MD1 vs Japan (medium), consistent clean sheet potential.",
@@ -1217,11 +1217,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 5.5,
-      "xp": 13.5,
+      "xp": 14.1,
       "xp_md": [
-        5.5,
-        4.5,
-        3.5
+        5.38,
+        4.8,
+        3.95
       ],
       "ownership": 0.19,
       "notes": "MD1 vs Cape Verde (clean sheet very likely!), MD2 vs Saudi Arabia (easy).",
@@ -1239,11 +1239,11 @@
       "nation": "Germany",
       "group": "E",
       "price": 5.0,
-      "xp": 11.5,
+      "xp": 14.4,
       "xp_md": [
-        5.0,
-        4.0,
-        2.5
+        5.37,
+        4.82,
+        4.2
       ],
       "ownership": 0.15,
       "notes": "MD1 vs Curacao (very easy, likely clean sheet). Gets harder later.",
@@ -1261,11 +1261,11 @@
       "nation": "Switzerland",
       "group": "B",
       "price": 5.0,
-      "xp": 12.0,
+      "xp": 13.6,
       "xp_md": [
-        4.0,
-        4.5,
-        3.5
+        4.97,
+        4.33,
+        4.26
       ],
       "ownership": 0.13,
       "notes": "MD1 vs Qatar (very easy), Switzerland solid defense.",
@@ -1283,11 +1283,11 @@
       "nation": "Brazil",
       "group": "C",
       "price": 5.2,
-      "xp": 12.0,
+      "xp": 14.3,
       "xp_md": [
-        3.5,
-        4.5,
-        5.0
+        4.0,
+        4.92,
+        5.42
       ],
       "ownership": 0.12,
       "notes": "MD1 vs Morocco (hard), better later: MD3 vs Haiti (easy).",
@@ -1305,11 +1305,11 @@
       "nation": "Canada",
       "group": "B",
       "price": 4.0,
-      "xp": 9.5,
+      "xp": 12.2,
       "xp_md": [
-        3.5,
-        3.0,
-        3.0
+        3.93,
+        4.42,
+        3.81
       ],
       "ownership": 0.08,
       "notes": "Cheapest viable GK. MD1 vs Bosnia, MD2 vs Qatar (easy).",
@@ -1327,11 +1327,11 @@
       "nation": "Argentina",
       "group": "J",
       "price": 4.5,
-      "xp": 10.5,
+      "xp": 9.8,
       "xp_md": [
-        4.0,
-        3.5,
-        3.0
+        3.21,
+        3.0,
+        3.55
       ],
       "ownership": 0.09,
       "notes": "Budget Argentina GK if Martinez injured.",
@@ -1349,11 +1349,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 4.8,
-      "xp": 11.0,
+      "xp": 9.4,
       "xp_md": [
-        4.5,
-        3.5,
-        3.0
+        3.52,
+        3.18,
+        2.66
       ],
       "ownership": 0.1,
       "notes": "Budget Spain GK option. Very easy MD1.",
@@ -1371,11 +1371,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 6.5,
-      "xp": 13.0,
+      "xp": 10.5,
       "xp_md": [
-        5.0,
-        4.0,
-        4.0
+        3.83,
+        3.46,
+        3.22
       ],
       "ownership": 0.13,
       "notes": "Spain striker. MD1 vs Cape Verde ideal.",
@@ -1394,11 +1394,11 @@
       "nation": "Portugal",
       "group": "K",
       "price": 9.0,
-      "xp": 17.0,
+      "xp": 15.1,
       "xp_md": [
-        6.0,
-        6.0,
-        5.0
+        5.34,
+        5.34,
+        4.46
       ],
       "ownership": 0.35,
       "notes": "MD1 vs Congo DR (easy), penalty taker. Declining age 41, but still a goal threat.",
@@ -1419,11 +1419,11 @@
       "nation": "Brazil",
       "group": "C",
       "price": 7.5,
-      "xp": 15.5,
+      "xp": 10.8,
       "xp_md": [
-        4.5,
-        5.0,
-        6.0
+        3.38,
+        3.38,
+        4.05
       ],
       "ownership": 0.17,
       "notes": "MD1 vs Morocco (hard), gets easier: MD3 vs Haiti. Injury risk.",
@@ -1444,11 +1444,11 @@
       "nation": "Brazil",
       "group": "C",
       "price": 5.5,
-      "xp": 11.0,
+      "xp": 7.0,
       "xp_md": [
-        3.0,
-        4.0,
-        4.0
+        2.19,
+        2.19,
+        2.59
       ],
       "ownership": 0.09,
       "notes": "Budget Brazil FWD, MD3 vs Haiti is excellent.",
@@ -1467,11 +1467,11 @@
       "nation": "Poland",
       "group": "A",
       "price": 9.0,
-      "xp": 16.0,
+      "xp": 16.6,
       "xp_md": [
-        5.0,
-        5.5,
-        5.5
+        5.53,
+        5.53,
+        5.53
       ],
       "ownership": 0.28,
       "notes": "Poland face South Korea/Mexico/Czechia. Penalty taker.",
@@ -1492,11 +1492,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 7.0,
-      "xp": 14.0,
+      "xp": 11.6,
       "xp_md": [
-        5.5,
-        4.5,
-        4.0
+        4.24,
+        3.82,
+        3.53
       ],
       "ownership": 0.15,
       "notes": "MD1 vs Cape Verde (easy). Spain striker.",
@@ -1516,11 +1516,11 @@
       "nation": "Uruguay",
       "group": "H",
       "price": 7.5,
-      "xp": 14.5,
+      "xp": 11.7,
       "xp_md": [
-        4.0,
-        5.0,
-        5.5
+        3.94,
+        4.25,
+        3.55
       ],
       "ownership": 0.18,
       "notes": "MD1 vs Saudi Arabia (medium), MD2 vs Cape Verde (easy), MD3 vs Spain (hard).",
@@ -1541,11 +1541,11 @@
       "nation": "France",
       "group": "I",
       "price": 7.8,
-      "xp": 15.5,
+      "xp": 13.2,
       "xp_md": [
-        5.0,
-        5.5,
-        5.0
+        4.4,
+        5.28,
+        3.52
       ],
       "ownership": 0.2,
       "notes": "MD1 vs Senegal, MD2 vs Iraq (excellent!). France creative outlet.",
@@ -1566,11 +1566,11 @@
       "nation": "Argentina",
       "group": "J",
       "price": 8.5,
-      "xp": 17.5,
+      "xp": 18.4,
       "xp_md": [
-        6.5,
-        5.5,
-        5.5
+        6.05,
+        5.58,
+        6.76
       ],
       "ownership": 0.24,
       "notes": "MD1 vs Algeria (easy), MD2 vs Austria (medium), penalty taker.",
@@ -1591,11 +1591,11 @@
       "nation": "Brazil",
       "group": "C",
       "price": 6.0,
-      "xp": 12.0,
+      "xp": 8.8,
       "xp_md": [
-        3.5,
-        4.0,
-        4.5
+        2.76,
+        2.76,
+        3.28
       ],
       "ownership": 0.1,
       "notes": "Budget Brazil FWD. MD3 vs Haiti is best fixture.",
@@ -1614,11 +1614,11 @@
       "nation": "Netherlands",
       "group": "F",
       "price": 7.0,
-      "xp": 13.5,
+      "xp": 13.6,
       "xp_md": [
-        4.0,
-        4.5,
-        5.0
+        4.55,
+        4.55,
+        4.55
       ],
       "ownership": 0.14,
       "notes": "MD1 vs Japan, MD3 vs Tunisia (easy). Penalty threat.",
@@ -1639,11 +1639,11 @@
       "nation": "Netherlands",
       "group": "F",
       "price": 6.5,
-      "xp": 12.5,
+      "xp": 9.0,
       "xp_md": [
-        4.0,
-        4.0,
-        4.5
+        3.01,
+        3.01,
+        3.01
       ],
       "ownership": 0.11,
       "notes": "MD3 vs Tunisia (easy). Netherlands FWD.",
@@ -1662,11 +1662,11 @@
       "nation": "France",
       "group": "I",
       "price": 7.2,
-      "xp": 14.0,
+      "xp": 10.0,
       "xp_md": [
-        4.5,
-        5.0,
-        4.5
+        3.32,
+        3.99,
+        2.65
       ],
       "ownership": 0.16,
       "notes": "MD2 vs Iraq is standout. France sub/starter.",
@@ -1685,11 +1685,11 @@
       "pos": "FWD",
       "nation": "Guinea",
       "price": 6.5,
-      "xp": 13.5,
+      "xp": 14.0,
       "xp_md": [
-        4.5,
-        4.5,
-        4.5
+        4.68,
+        4.68,
+        4.68
       ],
       "ownership": 0.12,
       "notes": "Bundesliga top scorer. Guinea group info TBC.",
@@ -1709,11 +1709,11 @@
       "nation": "Ivory Coast",
       "group": "E",
       "price": 5.5,
-      "xp": 11.0,
+      "xp": 10.0,
       "xp_md": [
-        3.5,
-        3.5,
-        4.0
+        3.24,
+        3.24,
+        3.49
       ],
       "ownership": 0.08,
       "notes": "MD1 vs Ecuador (medium), MD2 vs Germany (very hard), MD3 vs Curacao (easy).",
@@ -1732,11 +1732,11 @@
       "nation": "Colombia",
       "group": "K",
       "price": 6.0,
-      "xp": 12.5,
+      "xp": 11.2,
       "xp_md": [
-        4.5,
-        4.0,
-        4.0
+        3.81,
+        3.81,
+        3.53
       ],
       "ownership": 0.11,
       "notes": "MD1 vs Uzbekistan (easy), MD2 vs Congo DR (easy). Aston Villa striker.",
@@ -1755,11 +1755,11 @@
       "nation": "Ghana",
       "group": "L",
       "price": 4.5,
-      "xp": 9.0,
+      "xp": 8.2,
       "xp_md": [
-        3.0,
-        2.5,
-        3.0
+        2.81,
+        2.81,
+        2.63
       ],
       "ownership": 0.05,
       "notes": "Budget FWD. Ghana face Panama, England, Croatia.",
@@ -1778,11 +1778,11 @@
       "nation": "Spain",
       "group": "H",
       "price": 6.2,
-      "xp": 12.0,
+      "xp": 9.2,
       "xp_md": [
-        4.5,
-        4.0,
-        3.5
+        3.35,
+        3.03,
+        2.82
       ],
       "ownership": 0.1,
       "notes": "Spain FWD, good early fixtures.",
