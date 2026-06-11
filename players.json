@@ -211,7 +211,7 @@
       "pos": "FWD",
       "nation": "Spain",
       "group": "H",
-      "price": 7.8,
+      "price": 8.1,
       "xp": 21.5,
       "xp_md": [
         7.96,
@@ -290,7 +290,7 @@
       "pos": "MID",
       "nation": "Belgium",
       "group": "G",
-      "price": 7.2,
+      "price": 6.6,
       "xp": 16.1,
       "xp_md": [
         5.08,
@@ -364,7 +364,7 @@
       "pos": "MID",
       "nation": "Spain",
       "group": "H",
-      "price": 7.5,
+      "price": 10.0,
       "xp": 10.3,
       "xp_md": [
         3.71,
@@ -848,7 +848,7 @@
       "pos": "DEF",
       "nation": "England",
       "group": "L",
-      "price": 4.8,
+      "price": 5.1,
       "xp": 13.6,
       "xp_md": [
         4.07,
@@ -948,7 +948,7 @@
       "pos": "DEF",
       "nation": "Colombia",
       "group": "K",
-      "price": 3.8,
+      "price": 3.9,
       "xp": 10.0,
       "xp_md": [
         3.5,
@@ -1045,7 +1045,7 @@
       "pos": "DEF",
       "nation": "Portugal",
       "group": "K",
-      "price": 5.2,
+      "price": 5.8,
       "xp": 12.6,
       "xp_md": [
         4.59,
@@ -1140,7 +1140,7 @@
       "pos": "GK",
       "nation": "England",
       "group": "L",
-      "price": 5.2,
+      "price": 4.8,
       "xp": 15.5,
       "xp_md": [
         4.76,
