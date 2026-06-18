@@ -1,3 +1,9 @@
 __pycache__/
 *.pyc
 *.pyo
+
+# Playwright scraper (scrape_fifa.py)
+.fifa_browser_profile/   # holds your play.fifa.com login session — never commit
+.venv/
+fifa_raw/
+# NOTE: fifa_pool_raw.json is NOT ignored — commit it so Claude can read the data
