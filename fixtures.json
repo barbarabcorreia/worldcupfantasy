@@ -658,7 +658,7 @@
           },
           "cs_prob": {
             "New Zealand": 0.18,
-            "Belgium": 0.62
+            "Belgium": 0.72
           }
         }
       ]
@@ -831,8 +831,8 @@
             "France": 5
           },
           "cs_prob": {
-            "Norway": 0.2,
-            "France": 0.22
+            "Norway": 0.18,
+            "France": 0.2
           }
         },
         {

@@ -29,15 +29,19 @@ PLAYER_STATS: dict[str, dict] = {
     "Erling Haaland": {
         # 16G in 8 WCQ games (2.0 G/game). Top UEFA qualifier scorer.
         # 41 shots, 28 SoT in qualifying (3.5 SoT/game). Penalty taker.
+        # MD3: Norway vs France — BOTH teams already qualified (6pts each).
+        # Dead rubber: Haaland very likely rested for Round of 32.
         "goals_p90": 2.00, "assists_p90": 0.12, "sot_p90": 3.50,
-        "pen_taker": True, "start_prob": 0.95, "min_60_prob": 0.88,
+        "pen_taker": True, "start_prob": 0.50, "min_60_prob": 0.70,
         "obx_ratio": 0.10, "yellow_p90": 0.05, "win_pen_p90": 0.08,
     },
     "Kylian Mbappe": {
         # 5G in WCQ qualifiers (lower due to fewer games played). Penalty taker.
         # 3 SoT/game estimate from club form.
+        # MD3: France vs Norway — BOTH teams already qualified (6pts each).
+        # Dead rubber: Deschamps historically rests key players in dead rubbers.
         "goals_p90": 0.85, "assists_p90": 0.40, "sot_p90": 3.20,
-        "pen_taker": True, "start_prob": 0.95, "min_60_prob": 0.85,
+        "pen_taker": True, "start_prob": 0.45, "min_60_prob": 0.65,
         "obx_ratio": 0.15, "yellow_p90": 0.08, "win_pen_p90": 0.06,
     },
     "Mikel Oyarzabal": {
@@ -389,6 +393,29 @@ PLAYER_STATS: dict[str, dict] = {
         "tackles_p90": 0.80,
     },
 
+    # === NEW PLAYERS ADDED POST-MD2 ===
+    "Lionel Messi": {
+        # Hat-trick MD1 (vs Algeria 3-0). Argentina pen taker. Age 38 but still elite
+        # in major tournaments. Argentina qualified after 2 wins (6pts).
+        # MD3 vs Jordan: very easy fixture. Scaloni typically plays Messi regardless.
+        # Slight rotation risk (~20%) as Argentina might manage minutes.
+        "goals_p90": 0.90, "assists_p90": 0.55, "sot_p90": 2.80,
+        "kp_p90": 2.20, "tackles_p90": 0.40,
+        "pen_taker": True, "fk_taker": True, "start_prob": 0.82,
+        "min_60_prob": 0.75, "obx_ratio": 0.20, "yellow_p90": 0.08,
+        "win_pen_p90": 0.06,
+    },
+    "Sadio Mane": {
+        # Senegal captain, primary pen taker. MD3 vs Iraq (both eliminated, 0pts each).
+        # Consolation fixture but Mane always plays and Iraq is very weak.
+        # Community's #1 differential at 2% owned — scouting bonus candidate.
+        "goals_p90": 0.65, "assists_p90": 0.35, "sot_p90": 2.50,
+        "kp_p90": 1.80, "tackles_p90": 0.80,
+        "pen_taker": True, "fk_taker": False, "start_prob": 0.92,
+        "min_60_prob": 0.82, "obx_ratio": 0.18, "yellow_p90": 0.10,
+        "win_pen_p90": 0.05,
+    },
+
     # === NEW PLAYERS ADDED IN MD1 REVIEW ===
     "Harry Kane": {
         # England captain, Bayern Munich. Primary pen taker + FK scorer. Easy group.
@@ -417,9 +444,10 @@ PLAYER_STATS: dict[str, dict] = {
     },
     "Theo Hernandez": {
         # France LB (Al-Hilal). Consistent starter under Deschamps, attacking threat.
+        # MD3: France vs Norway — dead rubber, both qualified. Rotation risk.
         "goals_p90": 0.18, "assists_p90": 0.22, "sot_p90": 0.0,
         "tackles_p90": 1.20,
-        "pen_taker": False, "start_prob": 0.88, "min_60_prob": 0.82,
+        "pen_taker": False, "start_prob": 0.50, "min_60_prob": 0.65,
         "yellow_p90": 0.15,
     },
 
@@ -481,8 +509,8 @@ PLAYER_STATS: dict[str, dict] = {
 # ---------------------------------------------------------------------------
 CLEAN_SHEET_PROBS: dict[str, list[float]] = {
     # [md1_cs, md2_cs, md3_cs]
-    "Norway":      [0.52, 0.32, 0.20],  # vs Iraq, Senegal, France
-    "France":      [0.40, 0.60, 0.22],  # vs Senegal, Iraq, Norway
+    "Norway":      [0.52, 0.32, 0.18],  # vs Iraq, Senegal, France (MD3 dead rubber — both qualified)
+    "France":      [0.40, 0.60, 0.20],  # vs Senegal, Iraq, Norway (MD3 dead rubber — both qualified)
     "Senegal":     [0.20, 0.22, 0.40],  # vs France, Norway, Iraq
     "Iraq":        [0.08, 0.10, 0.22],  # vs Norway, France, Senegal
     "Spain":       [0.65, 0.50, 0.28],  # vs Cape Verde, Saudi Arabia, Uruguay
@@ -501,7 +529,7 @@ CLEAN_SHEET_PROBS: dict[str, list[float]] = {
     "Morocco":     [0.25, 0.52, 0.40],  # vs Brazil (hard), Haiti, Scotland
     "Haiti":       [0.08, 0.10, 0.08],
     "Scotland":    [0.40, 0.08, 0.28],  # vs Haiti (easy), Brazil (hard), Morocco
-    "Belgium":     [0.38, 0.52, 0.62],  # vs Egypt, Iran, New Zealand
+    "Belgium":     [0.38, 0.52, 0.72],  # vs Egypt, Iran, New Zealand (MUST WIN — full strength)
     "Egypt":       [0.20, 0.28, 0.35],
     "Iran":        [0.22, 0.22, 0.30],
     "New Zealand": [0.20, 0.30, 0.18],

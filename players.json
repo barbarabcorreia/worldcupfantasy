@@ -49,11 +49,11 @@
       "nation": "Norway",
       "group": "I",
       "price": 10.5,
-      "xp": 27.2,
+      "xp": 13.0,
       "xp_md": [
-        11.23,
-        9.07,
-        6.91
+        5.35,
+        4.32,
+        3.29
       ],
       "ownership": 0.33,
       "notes": "MD1 vs Iraq (easy), MD2 vs Senegal (medium), MD3 vs FRANCE (hard). Penalty taker, elite scorer.",
@@ -62,8 +62,8 @@
         "assists_p90": 0.12,
         "sot_p90": 3.5,
         "pen_taker": true,
-        "start_prob": 0.95,
-        "min_60_prob": 0.88,
+        "start_prob": 0.5,
+        "min_60_prob": 0.7,
         "obx_ratio": 0.1,
         "yellow_p90": 0.05,
         "win_pen_p90": 0.08
@@ -75,11 +75,11 @@
       "nation": "France",
       "group": "I",
       "price": 10.5,
-      "xp": 19.9,
+      "xp": 8.4,
       "xp_md": [
-        6.65,
-        8.11,
-        5.19
+        2.81,
+        3.43,
+        2.19
       ],
       "ownership": 0.52,
       "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy), MD3 vs NORWAY (hard). Penalty taker, 52% owned.",
@@ -88,8 +88,8 @@
         "assists_p90": 0.4,
         "sot_p90": 3.2,
         "pen_taker": true,
-        "start_prob": 0.95,
-        "min_60_prob": 0.85,
+        "start_prob": 0.45,
+        "min_60_prob": 0.65,
         "obx_ratio": 0.15,
         "yellow_p90": 0.08,
         "win_pen_p90": 0.06
@@ -295,7 +295,7 @@
       "xp_md": [
         5.08,
         5.46,
-        5.53
+        5.6
       ],
       "ownership": 0.18,
       "notes": "MD1 vs Egypt (medium), MD2 vs Iran (easy), MD3 vs New Zealand (easy). Goal threat.",
@@ -732,7 +732,7 @@
       "xp_md": [
         2.32,
         2.87,
-        1.82
+        1.78
       ],
       "ownership": 0.18,
       "notes": "MD1 vs Senegal (medium), MD2 vs Iraq (easy, clean sheet likely), MD3 vs Norway (hard).",
@@ -753,11 +753,11 @@
       "nation": "France",
       "group": "I",
       "price": 5.4,
-      "xp": 11.3,
+      "xp": 11.2,
       "xp_md": [
         3.73,
         4.68,
-        2.86
+        2.78
       ],
       "ownership": 0.15,
       "notes": "MD2 vs Iraq is the standout fixture (clean sheet + attacking threat).",
@@ -782,7 +782,7 @@
       "xp_md": [
         3.36,
         4.2,
-        2.58
+        2.52
       ],
       "ownership": 0.12,
       "notes": "France CB.",
@@ -1163,11 +1163,11 @@
       "nation": "France",
       "group": "I",
       "price": 5.8,
-      "xp": 14.3,
+      "xp": 14.2,
       "xp_md": [
         4.71,
         5.47,
-        4.09
+        4.0
       ],
       "ownership": 0.2,
       "notes": "MD2 vs Iraq is standout (clean sheet very likely). MD3 vs Norway is hard.",
@@ -1871,11 +1871,11 @@
       "nation": "France",
       "group": "I",
       "price": 5.0,
-      "xp": 12.3,
+      "xp": 6.0,
       "xp_md": [
-        4.08,
-        5.15,
-        3.09
+        2.0,
+        2.51,
+        1.5
       ],
       "ownership": 0.12,
       "notes": "France LB starter (Al-Hilal). Replaced Jonathan Clauss. Consistent under Deschamps.",
@@ -1885,9 +1885,65 @@
         "sot_p90": 0.0,
         "tackles_p90": 1.2,
         "pen_taker": false,
-        "start_prob": 0.88,
-        "min_60_prob": 0.82,
+        "start_prob": 0.5,
+        "min_60_prob": 0.65,
         "yellow_p90": 0.15
+      }
+    },
+    {
+      "name": "Lionel Messi",
+      "pos": "FWD",
+      "nation": "Argentina",
+      "price": 10.0,
+      "ownership": 0.3,
+      "group": "J",
+      "xp": 18.9,
+      "xp_md": [
+        6.2,
+        5.7,
+        6.96
+      ],
+      "stats": {
+        "goals_p90": 0.9,
+        "assists_p90": 0.55,
+        "sot_p90": 2.8,
+        "kp_p90": 2.2,
+        "tackles_p90": 0.4,
+        "pen_taker": true,
+        "fk_taker": true,
+        "start_prob": 0.82,
+        "min_60_prob": 0.75,
+        "obx_ratio": 0.2,
+        "yellow_p90": 0.08,
+        "win_pen_p90": 0.06
+      }
+    },
+    {
+      "name": "Sadio Mane",
+      "pos": "FWD",
+      "nation": "Senegal",
+      "price": 7.6,
+      "ownership": 0.02,
+      "group": "I",
+      "xp": 19.7,
+      "xp_md": [
+        6.38,
+        6.38,
+        6.97
+      ],
+      "stats": {
+        "goals_p90": 0.65,
+        "assists_p90": 0.35,
+        "sot_p90": 2.5,
+        "kp_p90": 1.8,
+        "tackles_p90": 0.8,
+        "pen_taker": true,
+        "fk_taker": false,
+        "start_prob": 0.92,
+        "min_60_prob": 0.82,
+        "obx_ratio": 0.18,
+        "yellow_p90": 0.1,
+        "win_pen_p90": 0.05
       }
     }
   ]
