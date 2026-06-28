@@ -29,19 +29,17 @@ PLAYER_STATS: dict[str, dict] = {
     "Erling Haaland": {
         # 16G in 8 WCQ games (2.0 G/game). Top UEFA qualifier scorer.
         # 41 shots, 28 SoT in qualifying (3.5 SoT/game). Penalty taker.
-        # MD3: Norway vs France — BOTH teams already qualified (6pts each).
-        # Dead rubber: Haaland very likely rested for Round of 32.
+        # R32 knockout vs Ivory Coast — full strength, win-or-go-home.
         "goals_p90": 2.00, "assists_p90": 0.12, "sot_p90": 3.50,
-        "pen_taker": True, "start_prob": 0.50, "min_60_prob": 0.70,
+        "pen_taker": True, "start_prob": 0.95, "min_60_prob": 0.88,
         "obx_ratio": 0.10, "yellow_p90": 0.05, "win_pen_p90": 0.08,
     },
     "Kylian Mbappe": {
         # 5G in WCQ qualifiers (lower due to fewer games played). Penalty taker.
         # 3 SoT/game estimate from club form.
-        # MD3: France vs Norway — BOTH teams already qualified (6pts each).
-        # Dead rubber: Deschamps historically rests key players in dead rubbers.
+        # R32 knockout vs Sweden — full strength, win-or-go-home.
         "goals_p90": 0.85, "assists_p90": 0.40, "sot_p90": 3.20,
-        "pen_taker": True, "start_prob": 0.45, "min_60_prob": 0.65,
+        "pen_taker": True, "start_prob": 0.95, "min_60_prob": 0.85,
         "obx_ratio": 0.15, "yellow_p90": 0.08, "win_pen_p90": 0.06,
     },
     "Mikel Oyarzabal": {
@@ -178,13 +176,12 @@ PLAYER_STATS: dict[str, dict] = {
     },
     "Lamine Yamal": {
         # 12.81 xG, 37 SoT in La Liga. Key chance creator for Spain.
-        # June 11: Barcelona advised Spain to cap him at ~15 min vs Cape Verde
-        # (MD1) as he returns from the April hamstring injury. Likely bench
-        # cameo MD1, building toward starts in MD2/MD3 — heavy minutes discount.
+        # Returned from an April hamstring injury during the group stage;
+        # by the knockouts he is fully fit and a nailed Spain starter.
         "goals_p90": 0.48, "assists_p90": 0.62, "sot_p90": 3.00,
         "kp_p90": 3.20, "tackles_p90": 0.80,
-        "pen_taker": False, "fk_taker": True, "start_prob": 0.55,
-        "min_60_prob": 0.55, "obx_ratio": 0.30, "yellow_p90": 0.08,
+        "pen_taker": False, "fk_taker": True, "start_prob": 0.85,
+        "min_60_prob": 0.80, "obx_ratio": 0.30, "yellow_p90": 0.08,
     },
     "Jude Bellingham": {
         # Set piece threat. Goals and assists for England.
@@ -444,10 +441,10 @@ PLAYER_STATS: dict[str, dict] = {
     },
     "Theo Hernandez": {
         # France LB (Al-Hilal). Consistent starter under Deschamps, attacking threat.
-        # MD3: France vs Norway — dead rubber, both qualified. Rotation risk.
+        # R32 knockout vs Sweden — full strength.
         "goals_p90": 0.18, "assists_p90": 0.22, "sot_p90": 0.0,
         "tackles_p90": 1.20,
-        "pen_taker": False, "start_prob": 0.50, "min_60_prob": 0.65,
+        "pen_taker": False, "start_prob": 0.88, "min_60_prob": 0.82,
         "yellow_p90": 0.15,
     },
 

@@ -1,0 +1,87 @@
+{
+  "round": "R32",
+  "lock": "2026-06-28T17:00:00",
+  "note": "Single-elimination. Each team plays ONE match. Difficulty/CS reflect that specific knockout tie (strength gap + neutral-venue knockout caution).",
+  "matches": [
+    {
+      "date": "2026-06-28", "teamA": "South Africa", "teamB": "Canada",
+      "difficulty": {"South Africa": 3, "Canada": 3},
+      "cs_prob": {"South Africa": 0.28, "Canada": 0.32}
+    },
+    {
+      "date": "2026-06-28", "teamA": "Brazil", "teamB": "Japan",
+      "difficulty": {"Brazil": 3, "Japan": 4},
+      "cs_prob": {"Brazil": 0.45, "Japan": 0.22}
+    },
+    {
+      "date": "2026-06-29", "teamA": "Germany", "teamB": "Paraguay",
+      "difficulty": {"Germany": 2, "Paraguay": 4},
+      "cs_prob": {"Germany": 0.50, "Paraguay": 0.18}
+    },
+    {
+      "date": "2026-06-29", "teamA": "Netherlands", "teamB": "Morocco",
+      "difficulty": {"Netherlands": 4, "Morocco": 4},
+      "cs_prob": {"Netherlands": 0.35, "Morocco": 0.30}
+    },
+    {
+      "date": "2026-06-30", "teamA": "France", "teamB": "Sweden",
+      "difficulty": {"France": 3, "Sweden": 4},
+      "cs_prob": {"France": 0.48, "Sweden": 0.20}
+    },
+    {
+      "date": "2026-06-30", "teamA": "Mexico", "teamB": "Ecuador",
+      "difficulty": {"Mexico": 3, "Ecuador": 3},
+      "cs_prob": {"Mexico": 0.30, "Ecuador": 0.40}
+    },
+    {
+      "date": "2026-06-30", "teamA": "Norway", "teamB": "Ivory Coast",
+      "difficulty": {"Norway": 3, "Ivory Coast": 3},
+      "cs_prob": {"Norway": 0.35, "Ivory Coast": 0.28}
+    },
+    {
+      "date": "2026-07-01", "teamA": "Belgium", "teamB": "Senegal",
+      "difficulty": {"Belgium": 4, "Senegal": 4},
+      "cs_prob": {"Belgium": 0.32, "Senegal": 0.30}
+    },
+    {
+      "date": "2026-07-01", "teamA": "England", "teamB": "Congo DR",
+      "difficulty": {"England": 2, "Congo DR": 5},
+      "cs_prob": {"England": 0.55, "Congo DR": 0.08}
+    },
+    {
+      "date": "2026-07-01", "teamA": "USA", "teamB": "Bosnia-Herzegovina",
+      "difficulty": {"USA": 3, "Bosnia-Herzegovina": 4},
+      "cs_prob": {"USA": 0.35, "Bosnia-Herzegovina": 0.22}
+    },
+    {
+      "date": "2026-07-02", "teamA": "Spain", "teamB": "Austria",
+      "difficulty": {"Spain": 3, "Austria": 4},
+      "cs_prob": {"Spain": 0.45, "Austria": 0.15}
+    },
+    {
+      "date": "2026-07-02", "teamA": "Portugal", "teamB": "Croatia",
+      "difficulty": {"Portugal": 4, "Croatia": 4},
+      "cs_prob": {"Portugal": 0.32, "Croatia": 0.25}
+    },
+    {
+      "date": "2026-07-02", "teamA": "Switzerland", "teamB": "Algeria",
+      "difficulty": {"Switzerland": 3, "Algeria": 3},
+      "cs_prob": {"Switzerland": 0.34, "Algeria": 0.25}
+    },
+    {
+      "date": "2026-07-03", "teamA": "Argentina", "teamB": "Cape Verde",
+      "difficulty": {"Argentina": 2, "Cape Verde": 5},
+      "cs_prob": {"Argentina": 0.52, "Cape Verde": 0.06}
+    },
+    {
+      "date": "2026-07-03", "teamA": "Colombia", "teamB": "Ghana",
+      "difficulty": {"Colombia": 3, "Ghana": 4},
+      "cs_prob": {"Colombia": 0.42, "Ghana": 0.18}
+    },
+    {
+      "date": "2026-07-03", "teamA": "Egypt", "teamB": "Australia",
+      "difficulty": {"Egypt": 3, "Australia": 3},
+      "cs_prob": {"Egypt": 0.32, "Australia": 0.25}
+    }
+  ]
+}

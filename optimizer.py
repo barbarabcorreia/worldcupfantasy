@@ -88,6 +88,137 @@ def player_md_xp(player: dict, fixtures: dict, md: int) -> float:
     return calc_xp_per_game(player, cs, diff)
 
 
+# ---------------------------------------------------------------------------
+# Knockout (single-elimination) support. Each team plays ONE match per round,
+# so xp is a single game and any player from an eliminated nation scores 0.
+# ---------------------------------------------------------------------------
+def build_ko_lookup(ko: dict) -> dict:
+    """nation -> {opponent, difficulty, cs_prob, date} for a knockout round."""
+    lookup = {}
+    for m in ko.get("matches", []):
+        for team, other in ((m["teamA"], m["teamB"]), (m["teamB"], m["teamA"])):
+            lookup[team] = {
+                "opponent": other,
+                "difficulty": m["difficulty"].get(team, 3),
+                "cs_prob": m["cs_prob"].get(team, 0.30),
+                "date": m["date"],
+            }
+    return lookup
+
+
+def compute_player_xp_ko(player: dict, lookup: dict) -> float:
+    """Single knockout-game xp. 0.0 if the player's nation is eliminated
+    (not present in this round's matches) or the player has no stats."""
+    info = lookup.get(player["nation"])
+    if not info or not player.get("stats"):
+        return 0.0
+    return calc_xp_per_game(player, info["cs_prob"], info["difficulty"])
+
+
+def load_data_ko(players_path: str | None, ko_path: str | None):
+    pp = Path(players_path) if players_path else BASE_DIR / "players.json"
+    kp = Path(ko_path) if ko_path else BASE_DIR / "fixtures_r32.json"
+    pdata = json.loads(pp.read_text())
+    ko = json.loads(kp.read_text())
+    lookup = build_ko_lookup(ko)
+    for p in pdata["players"]:
+        p["xp"] = round(compute_player_xp_ko(p, lookup), 2)
+    return pdata["meta"], pdata["players"], ko, lookup
+
+
+def ko_head_to_head(squad: list[dict], lookup: dict) -> list[str]:
+    """Squad players whose nations face each other this knockout round."""
+    clashes, seen = [], set()
+    for p in squad:
+        info = lookup.get(p["nation"])
+        if not info:
+            continue
+        pair = frozenset((p["nation"], info["opponent"]))
+        if pair in seen:
+            continue
+        a_players = [q["name"] for q in squad if q["nation"] == p["nation"]]
+        b_players = [q["name"] for q in squad if q["nation"] == info["opponent"]]
+        if a_players and b_players:
+            seen.add(pair)
+            clashes.append(f"{', '.join(a_players)} ({p['nation']}) vs "
+                           f"{', '.join(b_players)} ({info['opponent']}) "
+                           f"— {info['date']}")
+    return clashes
+
+
+def print_team_ko(meta: dict, squad: list[dict], lookup: dict, round_name: str) -> None:
+    xi, bench = pick_starting_xi(squad)
+    captain = max(xi, key=lambda p: p["xp"])
+    vice = sorted([p for p in xi if p != captain], key=lambda p: p["xp"], reverse=True)[0]
+    total_cost = sum(p["price"] for p in squad)
+    xi_xp = sum(p["xp"] for p in xi)
+
+    print("=" * 72)
+    print(f"  FIFA WORLD CUP FANTASY 2026 — {round_name} SQUAD")
+    print("=" * 72)
+    print(f"  Total squad cost : ${total_cost:.1f}m  (budget ${meta['budget']}m, ${meta['budget']-total_cost:.1f}m free)")
+    print(f"  Starting XI xp   : {xi_xp:.1f} expected points (one knockout game each)")
+    print(f"  Captain          : {captain['name']} (×2 pts)")
+    print(f"  Vice-captain     : {vice['name']}")
+    print()
+    print("  STARTING XI  (↳ shows this round's knockout tie)")
+    print("  " + "-" * 68)
+    for pos_label, pos_code in [("GOALKEEPER", "GK"), ("DEFENDERS", "DEF"),
+                                ("MIDFIELDERS", "MID"), ("FORWARDS", "FWD")]:
+        pos_players = sorted([p for p in xi if p["pos"] == pos_code],
+                             key=lambda x: x["xp"], reverse=True)
+        if pos_players:
+            print(f"\n  [{pos_label}]")
+            for p in pos_players:
+                tag = " ★ CAPTAIN" if p == captain else (" © VICE" if p == vice else "")
+                opp = lookup.get(p["nation"], {}).get("opponent", "?")
+                print(fmt(p, f"{tag}  (vs {opp})"))
+
+    print()
+    print("  BENCH (4 players)")
+    print("  " + "-" * 68)
+    for p in sorted(bench, key=lambda x: x["xp"], reverse=True):
+        opp = lookup.get(p["nation"], {}).get("opponent", "ELIMINATED")
+        print(fmt(p, f"  (vs {opp})"))
+
+    # Captain live-switch order (by kickoff date)
+    print()
+    print("  CAPTAIN LIVE-SWITCH ORDER (switch before each player's game kicks off)")
+    print("  " + "-" * 68)
+    rows = []
+    for p in xi:
+        info = lookup.get(p["nation"])
+        if info:
+            rows.append((info["date"], p, info))
+    for date, p, info in sorted(rows, key=lambda r: r[0]):
+        diff_stars = "★" * (6 - info["difficulty"])
+        cap_tag = " ← captain?" if p["xp"] >= sorted(xi, key=lambda x: x["xp"])[-4]["xp"] else ""
+        print(f"  {date}  {p['name']:20s} vs {info['opponent']:16s} {diff_stars}{cap_tag}")
+
+    # Head-to-head clashes
+    clashes = ko_head_to_head(squad, lookup)
+    if clashes:
+        print()
+        print("  ⚠  HEAD-TO-HEAD CLASHES — these squad players face each other:")
+        print("  " + "-" * 68)
+        for c in clashes:
+            print(f"    • {c}  (one WILL be eliminated)")
+
+    # Knockout chip strategy
+    print()
+    print("  KNOCKOUT CHIP STRATEGY")
+    print("  " + "-" * 68)
+    print("  • Qualification Booster — PLAY IN R32: +2 for every XI player whose")
+    print("    team advances. A full XI of favourites ≈ +20 pts. You have unlimited")
+    print("    free transfers now, so pack the XI with teams you expect to win.")
+    print("  • 12th Man — save for a later round; in R32 your XI already covers the")
+    print("    best ties, and bench players from losing teams won't help.")
+    print("  • Clean Sheet Shield (revealed Mystery chip) — hold for Round of 16.")
+    print("  • Unlimited free transfers each knockout round — rebuild freely; the")
+    print("    only constraint is $%.0fm budget and max %d per nation." % (meta["budget"], meta["max_per_nation"]))
+    print("=" * 72)
+
+
 def load_data(players_path: str | None = None, fixtures_path: str | None = None):
     pp = Path(players_path) if players_path else BASE_DIR / "players.json"
     fp = Path(fixtures_path) if fixtures_path else BASE_DIR / "fixtures.json"
@@ -557,7 +688,8 @@ def main():
     parser = argparse.ArgumentParser(description="FIFA WC Fantasy 2026 Optimizer")
     parser.add_argument("--data",     help="Path to players.json", default=None)
     parser.add_argument("--fixtures", help="Path to fixtures.json", default=None)
-    parser.add_argument("--budget",   type=float, help="Override budget (default 100.0)", default=None)
+    parser.add_argument("--budget",   type=float, help="Override budget (default 100.0 group, 105.0 knockout)", default=None)
+    parser.add_argument("--round",    help="Knockout round: 'r32' (uses fixtures_r32.json, single-game xp)", default=None)
     parser.add_argument("--json",     action="store_true", help="Output JSON instead of formatted text")
     parser.add_argument("--scoring",  action="store_true", help="Print scoring table and exit")
     parser.add_argument("--differential", action="store_true",
@@ -567,6 +699,20 @@ def main():
 
     if args.scoring:
         print(describe_scoring())
+        return
+
+    # --- Knockout mode (single-elimination round) ---
+    if args.round and args.round.lower() in ("r32", "ro32", "round32"):
+        ko_path = args.fixtures or str(BASE_DIR / "fixtures_r32.json")
+        meta, players, ko, lookup = load_data_ko(args.data, ko_path)
+        meta["budget"] = args.budget if args.budget else 105.0
+        if args.differential:
+            for p in players:
+                p["xp"] = round(p["xp"] * (1 - 0.5 * min(p.get("ownership", 0.0), 0.6)), 2)
+            print("Differential mode: xp discounted by ownership.\n", file=sys.stderr)
+        print("Optimizing Round of 32 squad...\n", file=sys.stderr)
+        squad = optimize(meta, players)
+        print_team_ko(meta, squad, lookup, "ROUND OF 32")
         return
 
     meta, players, fixtures = load_data(args.data, args.fixtures)
