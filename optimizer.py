@@ -204,18 +204,22 @@ def print_team_ko(meta: dict, squad: list[dict], lookup: dict, round_name: str) 
         for c in clashes:
             print(f"    • {c}  (one WILL be eliminated)")
 
-    # Knockout chip strategy
+    # Knockout chip strategy (each chip usable once, one per round)
     print()
-    print("  KNOCKOUT CHIP STRATEGY")
+    print("  KNOCKOUT CHIP STRATEGY (each once; one per round)")
     print("  " + "-" * 68)
-    print("  • Qualification Booster — PLAY IN R32: +2 for every XI player whose")
-    print("    team advances. A full XI of favourites ≈ +20 pts. You have unlimited")
-    print("    free transfers now, so pack the XI with teams you expect to win.")
-    print("  • 12th Man — save for a later round; in R32 your XI already covers the")
-    print("    best ties, and bench players from losing teams won't help.")
-    print("  • Clean Sheet Shield (revealed Mystery chip) — hold for Round of 16.")
+    print("  • Qualification Booster — +2 per XI player whose team advances.")
+    print("    Best early (R32/R16) while you field the most survivors.")
+    print("  • Clean Sheet Shield — GK/DEF/MID keep clean-sheet pts unless their")
+    print("    team concedes 2+. Play it in a round where you STACK defenders from")
+    print("    a dominant team (a big favourite that rarely concedes twice).")
+    print("  • 12th Man — all 4 bench start too. Use by the QF at latest: from the")
+    print("    semis only 4 (then 2) teams remain, so max-%d-per-nation caps you" % meta["max_per_nation"])
+    print("    below 15 players and the chip is wasted.")
+    print("  • Maximum Captain — auto-doubles your top XI scorer (no wrong guess).")
+    print("    Save for a SF/Final where your best player has the softest tie.")
     print("  • Unlimited free transfers each knockout round — rebuild freely; the")
-    print("    only constraint is $%.0fm budget and max %d per nation." % (meta["budget"], meta["max_per_nation"]))
+    print("    only constraints are $%.0fm budget and max %d per nation." % (meta["budget"], meta["max_per_nation"]))
     print("=" * 72)
 
 
@@ -702,17 +706,38 @@ def main():
         return
 
     # --- Knockout mode (single-elimination round) ---
-    if args.round and args.round.lower() in ("r32", "ro32", "round32"):
-        ko_path = args.fixtures or str(BASE_DIR / "fixtures_r32.json")
+    if args.round:
+        ROUND_FILES = {
+            "r32": ("fixtures_r32.json", "ROUND OF 32"),
+            "r16": ("fixtures_r16.json", "ROUND OF 16"),
+            "qf":  ("fixtures_qf.json",  "QUARTER-FINALS"),
+            "sf":  ("fixtures_sf.json",  "SEMI-FINALS"),
+            "final": ("fixtures_final.json", "FINAL"),
+        }
+        aliases = {
+            "r32": "r32", "ro32": "r32", "round32": "r32", "roundof32": "r32",
+            "r16": "r16", "ro16": "r16", "round16": "r16", "roundof16": "r16",
+            "qf": "qf", "quarterfinals": "qf", "quarterfinal": "qf", "quarters": "qf",
+            "sf": "sf", "semifinals": "sf", "semifinal": "sf", "semis": "sf",
+            "final": "final", "f": "final",
+        }
+        key = aliases.get(args.round.lower().replace("-", "").replace("_", "").replace(" ", ""))
+        if key is None:
+            sys.exit(f"Unknown --round '{args.round}'. Use one of: r32, r16, qf, sf, final.")
+        fname, label = ROUND_FILES[key]
+        ko_path = args.fixtures or str(BASE_DIR / fname)
+        if not Path(ko_path).exists():
+            sys.exit(f"Fixtures file not found: {ko_path}\n"
+                     f"Create it (see fixtures_r32.json for the format) before optimizing {label}.")
         meta, players, ko, lookup = load_data_ko(args.data, ko_path)
         meta["budget"] = args.budget if args.budget else 105.0
         if args.differential:
             for p in players:
                 p["xp"] = round(p["xp"] * (1 - 0.5 * min(p.get("ownership", 0.0), 0.6)), 2)
             print("Differential mode: xp discounted by ownership.\n", file=sys.stderr)
-        print("Optimizing Round of 32 squad...\n", file=sys.stderr)
+        print(f"Optimizing {label} squad...\n", file=sys.stderr)
         squad = optimize(meta, players)
-        print_team_ko(meta, squad, lookup, "ROUND OF 32")
+        print_team_ko(meta, squad, lookup, label)
         return
 
     meta, players, fixtures = load_data(args.data, args.fixtures)

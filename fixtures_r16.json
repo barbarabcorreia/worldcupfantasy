@@ -1,0 +1,47 @@
+{
+  "round": "R16",
+  "lock": "2026-07-04T13:00:00",
+  "note": "Round of 16, single-elimination. July 4-7. Each team plays ONE match.",
+  "matches": [
+    {
+      "date": "2026-07-04", "teamA": "Canada", "teamB": "Morocco",
+      "difficulty": {"Canada": 4, "Morocco": 3},
+      "cs_prob": {"Canada": 0.28, "Morocco": 0.32}
+    },
+    {
+      "date": "2026-07-04", "teamA": "Paraguay", "teamB": "France",
+      "difficulty": {"Paraguay": 5, "France": 2},
+      "cs_prob": {"Paraguay": 0.12, "France": 0.50}
+    },
+    {
+      "date": "2026-07-05", "teamA": "Brazil", "teamB": "Norway",
+      "difficulty": {"Brazil": 3, "Norway": 4},
+      "cs_prob": {"Brazil": 0.40, "Norway": 0.22}
+    },
+    {
+      "date": "2026-07-05", "teamA": "Mexico", "teamB": "England",
+      "difficulty": {"Mexico": 4, "England": 3},
+      "cs_prob": {"Mexico": 0.28, "England": 0.38}
+    },
+    {
+      "date": "2026-07-06", "teamA": "Portugal", "teamB": "Spain",
+      "difficulty": {"Portugal": 4, "Spain": 4},
+      "cs_prob": {"Portugal": 0.28, "Spain": 0.32}
+    },
+    {
+      "date": "2026-07-06", "teamA": "USA", "teamB": "Belgium",
+      "difficulty": {"USA": 3, "Belgium": 4},
+      "cs_prob": {"USA": 0.30, "Belgium": 0.28}
+    },
+    {
+      "date": "2026-07-07", "teamA": "Argentina", "teamB": "Egypt",
+      "difficulty": {"Argentina": 2, "Egypt": 4},
+      "cs_prob": {"Argentina": 0.45, "Egypt": 0.20}
+    },
+    {
+      "date": "2026-07-07", "teamA": "Switzerland", "teamB": "Colombia",
+      "difficulty": {"Switzerland": 3, "Colombia": 3},
+      "cs_prob": {"Switzerland": 0.32, "Colombia": 0.30}
+    }
+  ]
+}
