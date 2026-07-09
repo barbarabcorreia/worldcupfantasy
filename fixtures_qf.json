@@ -1,0 +1,27 @@
+{
+  "round": "QF",
+  "lock": "2026-07-09T16:00:00",
+  "note": "Quarter-finals, single-elimination. July 9-11. Each team plays ONE match.",
+  "matches": [
+    {
+      "date": "2026-07-09", "teamA": "France", "teamB": "Morocco",
+      "difficulty": {"France": 4, "Morocco": 4},
+      "cs_prob": {"France": 0.35, "Morocco": 0.30}
+    },
+    {
+      "date": "2026-07-10", "teamA": "Spain", "teamB": "Belgium",
+      "difficulty": {"Spain": 3, "Belgium": 4},
+      "cs_prob": {"Spain": 0.40, "Belgium": 0.25}
+    },
+    {
+      "date": "2026-07-11", "teamA": "Norway", "teamB": "England",
+      "difficulty": {"Norway": 4, "England": 3},
+      "cs_prob": {"Norway": 0.22, "England": 0.32}
+    },
+    {
+      "date": "2026-07-11", "teamA": "Argentina", "teamB": "Switzerland",
+      "difficulty": {"Argentina": 3, "Switzerland": 4},
+      "cs_prob": {"Argentina": 0.42, "Switzerland": 0.22}
+    }
+  ]
+}

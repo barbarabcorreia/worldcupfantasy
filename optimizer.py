@@ -146,7 +146,8 @@ def ko_head_to_head(squad: list[dict], lookup: dict) -> list[str]:
     return clashes
 
 
-def print_team_ko(meta: dict, squad: list[dict], lookup: dict, round_name: str) -> None:
+def print_team_ko(meta: dict, squad: list[dict], lookup: dict, round_name: str,
+                  twelfth_man: bool = False) -> None:
     xi, bench = pick_starting_xi(squad)
     captain = max(xi, key=lambda p: p["xp"])
     vice = sorted([p for p in xi if p != captain], key=lambda p: p["xp"], reverse=True)[0]
@@ -175,11 +176,17 @@ def print_team_ko(meta: dict, squad: list[dict], lookup: dict, round_name: str) 
                 print(fmt(p, f"{tag}  (vs {opp})"))
 
     print()
-    print("  BENCH (4 players)")
+    if twelfth_man:
+        print("  BENCH (12th Man ACTIVE — these 4 ALSO score this round)")
+    else:
+        print("  BENCH (4 players)")
     print("  " + "-" * 68)
     for p in sorted(bench, key=lambda x: x["xp"], reverse=True):
         opp = lookup.get(p["nation"], {}).get("opponent", "ELIMINATED")
         print(fmt(p, f"  (vs {opp})"))
+    if twelfth_man:
+        all15 = sum(p["xp"] for p in squad) + max(p["xp"] for p in xi)
+        print(f"\n  With 12th Man, all 15 score: total xp incl. captain ≈ {all15:.1f}")
 
     # Captain live-switch order (by kickoff date)
     print()
@@ -693,7 +700,9 @@ def main():
     parser.add_argument("--data",     help="Path to players.json", default=None)
     parser.add_argument("--fixtures", help="Path to fixtures.json", default=None)
     parser.add_argument("--budget",   type=float, help="Override budget (default 100.0 group, 105.0 knockout)", default=None)
-    parser.add_argument("--round",    help="Knockout round: 'r32' (uses fixtures_r32.json, single-game xp)", default=None)
+    parser.add_argument("--round",    help="Knockout round: r32/r16/qf/sf/final (uses fixtures_<round>.json, single-game xp)", default=None)
+    parser.add_argument("--twelfth-man", dest="twelfth_man", action="store_true",
+                        help="Optimize all 15 players equally (for the 12th Man chip, where the bench also scores)")
     parser.add_argument("--json",     action="store_true", help="Output JSON instead of formatted text")
     parser.add_argument("--scoring",  action="store_true", help="Print scoring table and exit")
     parser.add_argument("--differential", action="store_true",
@@ -731,13 +740,17 @@ def main():
                      f"Create it (see fixtures_r32.json for the format) before optimizing {label}.")
         meta, players, ko, lookup = load_data_ko(args.data, ko_path)
         meta["budget"] = args.budget if args.budget else 105.0
+        if args.twelfth_man:
+            # With 12th Man the bench also scores, so value all 15 equally.
+            globals()["BENCH_WEIGHT"] = 1.0
+            print("12th Man mode: optimizing all 15 players equally.\n", file=sys.stderr)
         if args.differential:
             for p in players:
                 p["xp"] = round(p["xp"] * (1 - 0.5 * min(p.get("ownership", 0.0), 0.6)), 2)
             print("Differential mode: xp discounted by ownership.\n", file=sys.stderr)
         print(f"Optimizing {label} squad...\n", file=sys.stderr)
         squad = optimize(meta, players)
-        print_team_ko(meta, squad, lookup, label)
+        print_team_ko(meta, squad, lookup, label, twelfth_man=args.twelfth_man)
         return
 
     meta, players, fixtures = load_data(args.data, args.fixtures)
