@@ -1945,6 +1945,27 @@
         "yellow_p90": 0.1,
         "win_pen_p90": 0.05
       }
+    },
+    {
+      "name": "Bono",
+      "pos": "GK",
+      "nation": "Morocco",
+      "price": 5.0,
+      "ownership": 0.04,
+      "group": "C",
+      "xp": 16.1,
+      "xp_md": [
+        4.72,
+        6.0,
+        5.43
+      ],
+      "stats": {
+        "goals_p90": 0.0,
+        "saves_p90": 3.3,
+        "start_prob": 0.95,
+        "min_60_prob": 0.93,
+        "yellow_p90": 0.04
+      }
     }
   ]
 }

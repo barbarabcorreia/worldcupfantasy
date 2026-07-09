@@ -497,6 +497,12 @@ PLAYER_STATS: dict[str, dict] = {
         "goals_p90": 0.0, "saves_p90": 2.50,
         "start_prob": 0.72, "min_60_prob": 0.70, "yellow_p90": 0.04,
     },
+    "Bono": {
+        # Yassine Bounou — Morocco #1. Elite shot-stopper behind a very strong
+        # defense; a busy keeper (high save volume) with real clean-sheet upside.
+        "goals_p90": 0.0, "saves_p90": 3.30,
+        "start_prob": 0.95, "min_60_prob": 0.93, "yellow_p90": 0.04,
+    },
 }
 
 # ---------------------------------------------------------------------------
