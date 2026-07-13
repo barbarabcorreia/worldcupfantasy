@@ -740,6 +740,9 @@ def main():
                      f"Create it (see fixtures_r32.json for the format) before optimizing {label}.")
         meta, players, ko, lookup = load_data_ko(args.data, ko_path)
         meta["budget"] = args.budget if args.budget else 105.0
+        # Late knockout rounds loosen the per-nation cap (fewer teams left).
+        if "max_per_nation" in ko:
+            meta["max_per_nation"] = ko["max_per_nation"]
         if args.twelfth_man:
             # With 12th Man the bench also scores, so value all 15 equally.
             globals()["BENCH_WEIGHT"] = 1.0
