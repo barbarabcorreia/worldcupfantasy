@@ -448,6 +448,50 @@ PLAYER_STATS: dict[str, dict] = {
         "yellow_p90": 0.15,
     },
 
+    # === FINAL ADDITIONS (Spain vs Argentina — deepen the two finalists) ===
+    "Julian Alvarez": {
+        # Argentina forward, in-form scorer. Not primary pen taker (Messi is).
+        "goals_p90": 0.60, "assists_p90": 0.28, "sot_p90": 2.30,
+        "kp_p90": 1.20, "tackles_p90": 0.60,
+        "pen_taker": False, "start_prob": 0.90, "min_60_prob": 0.82,
+        "obx_ratio": 0.15, "yellow_p90": 0.10,
+    },
+    "Enzo Fernandez": {
+        # Argentina central MID, set-piece taker; scored the SF winner vs England.
+        "goals_p90": 0.22, "assists_p90": 0.30, "sot_p90": 1.30,
+        "kp_p90": 1.90, "tackles_p90": 1.90,
+        "pen_taker": False, "fk_taker": True, "start_prob": 0.92,
+        "min_60_prob": 0.86, "yellow_p90": 0.16,
+    },
+    "Alexis Mac Allister": {
+        # Argentina MID, all-round contributor.
+        "goals_p90": 0.20, "assists_p90": 0.28, "sot_p90": 1.30,
+        "kp_p90": 1.80, "tackles_p90": 2.10,
+        "pen_taker": False, "start_prob": 0.92, "min_60_prob": 0.86,
+        "yellow_p90": 0.15,
+    },
+    "Cristian Romero": {
+        # Argentina CB, strong aerial set-piece goal threat.
+        "goals_p90": 0.14, "assists_p90": 0.05, "sot_p90": 0.0,
+        "tackles_p90": 1.60,
+        "pen_taker": False, "start_prob": 0.92, "min_60_prob": 0.88,
+        "yellow_p90": 0.22,
+    },
+    "Nahuel Molina": {
+        # Argentina attacking RB.
+        "goals_p90": 0.06, "assists_p90": 0.16, "sot_p90": 0.0,
+        "tackles_p90": 1.40,
+        "pen_taker": False, "start_prob": 0.82, "min_60_prob": 0.75,
+        "yellow_p90": 0.14,
+    },
+    "Robin Le Normand": {
+        # Spain CB, clean-sheet anchor.
+        "goals_p90": 0.08, "assists_p90": 0.04, "sot_p90": 0.0,
+        "tackles_p90": 1.20,
+        "pen_taker": False, "start_prob": 0.88, "min_60_prob": 0.84,
+        "yellow_p90": 0.14,
+    },
+
     # === GOALKEEPERS ===
     "Emiliano Martinez": {
         # Argentina conceded very little in qualifying. Dominant presence.

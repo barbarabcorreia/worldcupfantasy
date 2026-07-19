@@ -1,0 +1,13 @@
+{
+  "round": "FINAL",
+  "lock": "2026-07-19T15:00:00",
+  "max_per_nation": 6,
+  "note": "Final: Spain vs Argentina, July 19 at MetLife Stadium. Only two teams left. Each plays ONE match.",
+  "matches": [
+    {
+      "date": "2026-07-19", "teamA": "Spain", "teamB": "Argentina",
+      "difficulty": {"Spain": 4, "Argentina": 4},
+      "cs_prob": {"Spain": 0.32, "Argentina": 0.35}
+    }
+  ]
+}
